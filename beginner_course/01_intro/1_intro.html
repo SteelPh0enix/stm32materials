@@ -1,0 +1,2257 @@
+<!DOCTYPE html><html><head>
+      <title>1_intro</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <style>
+      /*!
+ * reveal.js
+ * http://revealjs.com
+ * MIT licensed
+ *
+ * Copyright (C) 2018 Hakim El Hattab, http://hakim.se
+ */
+/*********************************************
+ * RESET STYLES
+ *********************************************/
+html, body, .reveal div, .reveal span, .reveal applet, .reveal object, .reveal iframe,
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, .reveal p, .reveal blockquote, .reveal pre,
+.reveal a, .reveal abbr, .reveal acronym, .reveal address, .reveal big, .reveal cite, .reveal code,
+.reveal del, .reveal dfn, .reveal em, .reveal img, .reveal ins, .reveal kbd, .reveal q, .reveal s, .reveal samp,
+.reveal small, .reveal strike, .reveal strong, .reveal sub, .reveal sup, .reveal tt, .reveal var,
+.reveal b, .reveal u, .reveal center,
+.reveal dl, .reveal dt, .reveal dd, .reveal ol, .reveal ul, .reveal li,
+.reveal fieldset, .reveal form, .reveal label, .reveal legend,
+.reveal table, .reveal caption, .reveal tbody, .reveal tfoot, .reveal thead, .reveal tr, .reveal th, .reveal td,
+.reveal article, .reveal aside, .reveal canvas, .reveal details, .reveal embed,
+.reveal figure, .reveal figcaption, .reveal footer, .reveal header, .reveal hgroup,
+.reveal menu, .reveal nav, .reveal output, .reveal ruby, .reveal section, .reveal summary,
+.reveal time, .reveal mark, .reveal audio, .reveal video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  /* font: inherit; */
+  vertical-align: baseline; }
+
+.reveal article, .reveal aside, .reveal details, .reveal figcaption, .reveal figure,
+.reveal footer, .reveal header, .reveal hgroup, .reveal menu, .reveal nav, .reveal section {
+  display: block; }
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+body {
+  position: relative;
+  line-height: 1;
+  background-color: #fff;
+  color: #000; }
+
+/*********************************************
+ * VIEW FRAGMENTS
+ *********************************************/
+.reveal .slides section .fragment {
+  opacity: 0;
+  visibility: hidden;
+  transition: all .2s ease; }
+  .reveal .slides section .fragment.visible {
+    opacity: 1;
+    visibility: inherit; }
+
+.reveal .slides section .fragment.grow {
+  opacity: 1;
+  visibility: inherit; }
+  .reveal .slides section .fragment.grow.visible {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3); }
+
+.reveal .slides section .fragment.shrink {
+  opacity: 1;
+  visibility: inherit; }
+  .reveal .slides section .fragment.shrink.visible {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7); }
+
+.reveal .slides section .fragment.zoom-in {
+  -webkit-transform: scale(0.1);
+          transform: scale(0.1); }
+  .reveal .slides section .fragment.zoom-in.visible {
+    -webkit-transform: none;
+            transform: none; }
+
+.reveal .slides section .fragment.fade-out {
+  opacity: 1;
+  visibility: inherit; }
+  .reveal .slides section .fragment.fade-out.visible {
+    opacity: 0;
+    visibility: hidden; }
+
+.reveal .slides section .fragment.semi-fade-out {
+  opacity: 1;
+  visibility: inherit; }
+  .reveal .slides section .fragment.semi-fade-out.visible {
+    opacity: 0.5;
+    visibility: inherit; }
+
+.reveal .slides section .fragment.strike {
+  opacity: 1;
+  visibility: inherit; }
+  .reveal .slides section .fragment.strike.visible {
+    text-decoration: line-through; }
+
+.reveal .slides section .fragment.fade-up {
+  -webkit-transform: translate(0, 20%);
+          transform: translate(0, 20%); }
+  .reveal .slides section .fragment.fade-up.visible {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+
+.reveal .slides section .fragment.fade-down {
+  -webkit-transform: translate(0, -20%);
+          transform: translate(0, -20%); }
+  .reveal .slides section .fragment.fade-down.visible {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+
+.reveal .slides section .fragment.fade-right {
+  -webkit-transform: translate(-20%, 0);
+          transform: translate(-20%, 0); }
+  .reveal .slides section .fragment.fade-right.visible {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+
+.reveal .slides section .fragment.fade-left {
+  -webkit-transform: translate(20%, 0);
+          transform: translate(20%, 0); }
+  .reveal .slides section .fragment.fade-left.visible {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+
+.reveal .slides section .fragment.fade-in-then-out,
+.reveal .slides section .fragment.current-visible {
+  opacity: 0;
+  visibility: hidden; }
+  .reveal .slides section .fragment.fade-in-then-out.current-fragment,
+  .reveal .slides section .fragment.current-visible.current-fragment {
+    opacity: 1;
+    visibility: inherit; }
+
+.reveal .slides section .fragment.fade-in-then-semi-out {
+  opacity: 0;
+  visibility: hidden; }
+  .reveal .slides section .fragment.fade-in-then-semi-out.visible {
+    opacity: 0.5;
+    visibility: inherit; }
+  .reveal .slides section .fragment.fade-in-then-semi-out.current-fragment {
+    opacity: 1;
+    visibility: inherit; }
+
+.reveal .slides section .fragment.highlight-red,
+.reveal .slides section .fragment.highlight-current-red,
+.reveal .slides section .fragment.highlight-green,
+.reveal .slides section .fragment.highlight-current-green,
+.reveal .slides section .fragment.highlight-blue,
+.reveal .slides section .fragment.highlight-current-blue {
+  opacity: 1;
+  visibility: inherit; }
+
+.reveal .slides section .fragment.highlight-red.visible {
+  color: #ff2c2d; }
+
+.reveal .slides section .fragment.highlight-green.visible {
+  color: #17ff2e; }
+
+.reveal .slides section .fragment.highlight-blue.visible {
+  color: #1b91ff; }
+
+.reveal .slides section .fragment.highlight-current-red.current-fragment {
+  color: #ff2c2d; }
+
+.reveal .slides section .fragment.highlight-current-green.current-fragment {
+  color: #17ff2e; }
+
+.reveal .slides section .fragment.highlight-current-blue.current-fragment {
+  color: #1b91ff; }
+
+/*********************************************
+ * DEFAULT ELEMENT STYLES
+ *********************************************/
+/* Fixes issue in Chrome where italic fonts did not appear when printing to PDF */
+.reveal:after {
+  content: '';
+  font-style: italic; }
+
+.reveal iframe {
+  z-index: 1; }
+
+/** Prevents layering issues in certain browser/transition combinations */
+.reveal a {
+  position: relative; }
+
+.reveal .stretch {
+  max-width: none;
+  max-height: none; }
+
+.reveal pre.stretch code {
+  height: 100%;
+  max-height: 100%;
+  box-sizing: border-box; }
+
+/*********************************************
+ * CONTROLS
+ *********************************************/
+@-webkit-keyframes bounce-right {
+  0%, 10%, 25%, 40%, 50% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+  20% {
+    -webkit-transform: translateX(10px);
+            transform: translateX(10px); }
+  30% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px); } }
+@keyframes bounce-right {
+  0%, 10%, 25%, 40%, 50% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+  20% {
+    -webkit-transform: translateX(10px);
+            transform: translateX(10px); }
+  30% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px); } }
+
+@-webkit-keyframes bounce-down {
+  0%, 10%, 25%, 40%, 50% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); }
+  20% {
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px); }
+  30% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px); } }
+
+@keyframes bounce-down {
+  0%, 10%, 25%, 40%, 50% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); }
+  20% {
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px); }
+  30% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px); } }
+
+.reveal .controls {
+  display: none;
+  position: absolute;
+  top: auto;
+  bottom: 12px;
+  right: 12px;
+  left: auto;
+  z-index: 1;
+  color: #000;
+  pointer-events: none;
+  font-size: 10px; }
+  .reveal .controls button {
+    position: absolute;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    color: currentColor;
+    -webkit-transform: scale(0.9999);
+            transform: scale(0.9999);
+    transition: color 0.2s ease, opacity 0.2s ease, -webkit-transform 0.2s ease;
+    transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+    z-index: 2;
+    pointer-events: auto;
+    font-size: inherit;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent; }
+  .reveal .controls .controls-arrow:before,
+  .reveal .controls .controls-arrow:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2.6em;
+    height: 0.5em;
+    border-radius: 0.25em;
+    background-color: currentColor;
+    transition: all 0.15s ease, background-color 0.8s ease;
+    -webkit-transform-origin: 0.2em 50%;
+            transform-origin: 0.2em 50%;
+    will-change: transform; }
+  .reveal .controls .controls-arrow {
+    position: relative;
+    width: 3.6em;
+    height: 3.6em; }
+    .reveal .controls .controls-arrow:before {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(45deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(45deg); }
+    .reveal .controls .controls-arrow:after {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(-45deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(-45deg); }
+    .reveal .controls .controls-arrow:hover:before {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(40deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(40deg); }
+    .reveal .controls .controls-arrow:hover:after {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(-40deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(-40deg); }
+    .reveal .controls .controls-arrow:active:before {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(36deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(36deg); }
+    .reveal .controls .controls-arrow:active:after {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(-36deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(-36deg); }
+  .reveal .controls .navigate-left {
+    right: 6.4em;
+    bottom: 3.2em;
+    -webkit-transform: translateX(-10px);
+            transform: translateX(-10px); }
+  .reveal .controls .navigate-right {
+    right: 0;
+    bottom: 3.2em;
+    -webkit-transform: translateX(10px);
+            transform: translateX(10px); }
+    .reveal .controls .navigate-right .controls-arrow {
+      -webkit-transform: rotate(180deg);
+              transform: rotate(180deg); }
+    .reveal .controls .navigate-right.highlight {
+      -webkit-animation: bounce-right 2s 50 both ease-out;
+              animation: bounce-right 2s 50 both ease-out; }
+  .reveal .controls .navigate-up {
+    right: 3.2em;
+    bottom: 6.4em;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px); }
+    .reveal .controls .navigate-up .controls-arrow {
+      -webkit-transform: rotate(90deg);
+              transform: rotate(90deg); }
+  .reveal .controls .navigate-down {
+    right: 3.2em;
+    bottom: 0;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px); }
+    .reveal .controls .navigate-down .controls-arrow {
+      -webkit-transform: rotate(-90deg);
+              transform: rotate(-90deg); }
+    .reveal .controls .navigate-down.highlight {
+      -webkit-animation: bounce-down 2s 50 both ease-out;
+              animation: bounce-down 2s 50 both ease-out; }
+  .reveal .controls[data-controls-back-arrows="faded"] .navigate-left.enabled,
+  .reveal .controls[data-controls-back-arrows="faded"] .navigate-up.enabled {
+    opacity: 0.3; }
+    .reveal .controls[data-controls-back-arrows="faded"] .navigate-left.enabled:hover,
+    .reveal .controls[data-controls-back-arrows="faded"] .navigate-up.enabled:hover {
+      opacity: 1; }
+  .reveal .controls[data-controls-back-arrows="hidden"] .navigate-left.enabled,
+  .reveal .controls[data-controls-back-arrows="hidden"] .navigate-up.enabled {
+    opacity: 0;
+    visibility: hidden; }
+  .reveal .controls .enabled {
+    visibility: visible;
+    opacity: 0.9;
+    cursor: pointer;
+    -webkit-transform: none;
+            transform: none; }
+  .reveal .controls .enabled.fragmented {
+    opacity: 0.5; }
+  .reveal .controls .enabled:hover,
+  .reveal .controls .enabled.fragmented:hover {
+    opacity: 1; }
+
+.reveal:not(.has-vertical-slides) .controls .navigate-left {
+  bottom: 1.4em;
+  right: 5.5em; }
+
+.reveal:not(.has-vertical-slides) .controls .navigate-right {
+  bottom: 1.4em;
+  right: 0.5em; }
+
+.reveal:not(.has-horizontal-slides) .controls .navigate-up {
+  right: 1.4em;
+  bottom: 5em; }
+
+.reveal:not(.has-horizontal-slides) .controls .navigate-down {
+  right: 1.4em;
+  bottom: 0.5em; }
+
+.reveal.has-dark-background .controls {
+  color: #fff; }
+
+.reveal.has-light-background .controls {
+  color: #000; }
+
+.reveal.no-hover .controls .controls-arrow:hover:before,
+.reveal.no-hover .controls .controls-arrow:active:before {
+  -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(45deg);
+          transform: translateX(0.5em) translateY(1.55em) rotate(45deg); }
+
+.reveal.no-hover .controls .controls-arrow:hover:after,
+.reveal.no-hover .controls .controls-arrow:active:after {
+  -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(-45deg);
+          transform: translateX(0.5em) translateY(1.55em) rotate(-45deg); }
+
+@media screen and (min-width: 500px) {
+  .reveal .controls[data-controls-layout="edges"] {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; }
+  .reveal .controls[data-controls-layout="edges"] .navigate-left,
+  .reveal .controls[data-controls-layout="edges"] .navigate-right,
+  .reveal .controls[data-controls-layout="edges"] .navigate-up,
+  .reveal .controls[data-controls-layout="edges"] .navigate-down {
+    bottom: auto;
+    right: auto; }
+  .reveal .controls[data-controls-layout="edges"] .navigate-left {
+    top: 50%;
+    left: 8px;
+    margin-top: -1.8em; }
+  .reveal .controls[data-controls-layout="edges"] .navigate-right {
+    top: 50%;
+    right: 8px;
+    margin-top: -1.8em; }
+  .reveal .controls[data-controls-layout="edges"] .navigate-up {
+    top: 8px;
+    left: 50%;
+    margin-left: -1.8em; }
+  .reveal .controls[data-controls-layout="edges"] .navigate-down {
+    bottom: 8px;
+    left: 50%;
+    margin-left: -1.8em; } }
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  position: absolute;
+  display: none;
+  height: 3px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff; }
+
+.reveal .progress:after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 10px;
+  width: 100%;
+  top: -10px; }
+
+.reveal .progress span {
+  display: block;
+  height: 100%;
+  width: 0px;
+  background-color: currentColor;
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+/*********************************************
+ * SLIDE NUMBER
+ *********************************************/
+.reveal .slide-number {
+  position: absolute;
+  display: block;
+  right: 8px;
+  bottom: 8px;
+  z-index: 31;
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 5px; }
+
+.reveal .slide-number a {
+  color: currentColor; }
+
+.reveal .slide-number-delimiter {
+  margin: 0 3px; }
+
+/*********************************************
+ * SLIDES
+ *********************************************/
+.reveal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -ms-touch-action: none;
+      touch-action: none; }
+
+@media only screen and (orientation: landscape) {
+  .reveal.ua-iphone {
+    position: fixed; } }
+
+.reveal .slides {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+  text-align: center;
+  -webkit-perspective: 600px;
+          perspective: 600px;
+  -webkit-perspective-origin: 50% 40%;
+          perspective-origin: 50% 40%; }
+
+.reveal .slides > section {
+  -ms-perspective: 600px; }
+
+.reveal .slides > section,
+.reveal .slides > section > section {
+  display: none;
+  position: absolute;
+  width: 100%;
+  padding: 20px 0px;
+  pointer-events: auto;
+  z-index: 10;
+  -webkit-transform-style: flat;
+          transform-style: flat;
+  transition: -webkit-transform-origin 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), -webkit-transform 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), visibility 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), opacity 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transition: transform-origin 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), transform 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), visibility 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), opacity 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+/* Global transition speed settings */
+.reveal[data-transition-speed="fast"] .slides section {
+  transition-duration: 400ms; }
+
+.reveal[data-transition-speed="slow"] .slides section {
+  transition-duration: 1200ms; }
+
+/* Slide-specific transition speed overrides */
+.reveal .slides section[data-transition-speed="fast"] {
+  transition-duration: 400ms; }
+
+.reveal .slides section[data-transition-speed="slow"] {
+  transition-duration: 1200ms; }
+
+.reveal .slides > section.stack {
+  padding-top: 0;
+  padding-bottom: 0;
+  pointer-events: none; }
+
+.reveal .slides > section.present,
+.reveal .slides > section > section.present {
+  display: block;
+  z-index: 11;
+  opacity: 1; }
+
+.reveal .slides > section:empty,
+.reveal .slides > section > section:empty,
+.reveal .slides > section[data-background-interactive],
+.reveal .slides > section > section[data-background-interactive] {
+  pointer-events: none; }
+
+.reveal.center,
+.reveal.center .slides,
+.reveal.center .slides section {
+  min-height: 0 !important; }
+
+/* Don't allow interaction with invisible slides */
+.reveal .slides > section.future,
+.reveal .slides > section > section.future,
+.reveal .slides > section.past,
+.reveal .slides > section > section.past {
+  pointer-events: none; }
+
+.reveal.overview .slides > section,
+.reveal.overview .slides > section > section {
+  pointer-events: auto; }
+
+.reveal .slides > section.past,
+.reveal .slides > section.future,
+.reveal .slides > section > section.past,
+.reveal .slides > section > section.future {
+  opacity: 0; }
+
+/*********************************************
+ * Mixins for readability of transitions
+ *********************************************/
+/*********************************************
+ * SLIDE TRANSITION
+ * Aliased 'linear' for backwards compatibility
+ *********************************************/
+.reveal.slide section {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+
+.reveal .slides > section[data-transition=slide].past,
+.reveal .slides > section[data-transition~=slide-out].past,
+.reveal.slide .slides > section:not([data-transition]).past {
+  -webkit-transform: translate(-150%, 0);
+          transform: translate(-150%, 0); }
+
+.reveal .slides > section[data-transition=slide].future,
+.reveal .slides > section[data-transition~=slide-in].future,
+.reveal.slide .slides > section:not([data-transition]).future {
+  -webkit-transform: translate(150%, 0);
+          transform: translate(150%, 0); }
+
+.reveal .slides > section > section[data-transition=slide].past,
+.reveal .slides > section > section[data-transition~=slide-out].past,
+.reveal.slide .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate(0, -150%);
+          transform: translate(0, -150%); }
+
+.reveal .slides > section > section[data-transition=slide].future,
+.reveal .slides > section > section[data-transition~=slide-in].future,
+.reveal.slide .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate(0, 150%);
+          transform: translate(0, 150%); }
+
+.reveal.linear section {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+
+.reveal .slides > section[data-transition=linear].past,
+.reveal .slides > section[data-transition~=linear-out].past,
+.reveal.linear .slides > section:not([data-transition]).past {
+  -webkit-transform: translate(-150%, 0);
+          transform: translate(-150%, 0); }
+
+.reveal .slides > section[data-transition=linear].future,
+.reveal .slides > section[data-transition~=linear-in].future,
+.reveal.linear .slides > section:not([data-transition]).future {
+  -webkit-transform: translate(150%, 0);
+          transform: translate(150%, 0); }
+
+.reveal .slides > section > section[data-transition=linear].past,
+.reveal .slides > section > section[data-transition~=linear-out].past,
+.reveal.linear .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate(0, -150%);
+          transform: translate(0, -150%); }
+
+.reveal .slides > section > section[data-transition=linear].future,
+.reveal .slides > section > section[data-transition~=linear-in].future,
+.reveal.linear .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate(0, 150%);
+          transform: translate(0, 150%); }
+
+/*********************************************
+ * CONVEX TRANSITION
+ * Aliased 'default' for backwards compatibility
+ *********************************************/
+.reveal .slides section[data-transition=default].stack,
+.reveal.default .slides section.stack {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d; }
+
+.reveal .slides > section[data-transition=default].past,
+.reveal .slides > section[data-transition~=default-out].past,
+.reveal.default .slides > section:not([data-transition]).past {
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0); }
+
+.reveal .slides > section[data-transition=default].future,
+.reveal .slides > section[data-transition~=default-in].future,
+.reveal.default .slides > section:not([data-transition]).future {
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0); }
+
+.reveal .slides > section > section[data-transition=default].past,
+.reveal .slides > section > section[data-transition~=default-out].past,
+.reveal.default .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0);
+          transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0); }
+
+.reveal .slides > section > section[data-transition=default].future,
+.reveal .slides > section > section[data-transition~=default-in].future,
+.reveal.default .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0);
+          transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0); }
+
+.reveal .slides section[data-transition=convex].stack,
+.reveal.convex .slides section.stack {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d; }
+
+.reveal .slides > section[data-transition=convex].past,
+.reveal .slides > section[data-transition~=convex-out].past,
+.reveal.convex .slides > section:not([data-transition]).past {
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0); }
+
+.reveal .slides > section[data-transition=convex].future,
+.reveal .slides > section[data-transition~=convex-in].future,
+.reveal.convex .slides > section:not([data-transition]).future {
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0); }
+
+.reveal .slides > section > section[data-transition=convex].past,
+.reveal .slides > section > section[data-transition~=convex-out].past,
+.reveal.convex .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0);
+          transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0); }
+
+.reveal .slides > section > section[data-transition=convex].future,
+.reveal .slides > section > section[data-transition~=convex-in].future,
+.reveal.convex .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0);
+          transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0); }
+
+/*********************************************
+ * CONCAVE TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=concave].stack,
+.reveal.concave .slides section.stack {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d; }
+
+.reveal .slides > section[data-transition=concave].past,
+.reveal .slides > section[data-transition~=concave-out].past,
+.reveal.concave .slides > section:not([data-transition]).past {
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0); }
+
+.reveal .slides > section[data-transition=concave].future,
+.reveal .slides > section[data-transition~=concave-in].future,
+.reveal.concave .slides > section:not([data-transition]).future {
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0); }
+
+.reveal .slides > section > section[data-transition=concave].past,
+.reveal .slides > section > section[data-transition~=concave-out].past,
+.reveal.concave .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate3d(0, -80%, 0) rotateX(-70deg) translate3d(0, -80%, 0);
+          transform: translate3d(0, -80%, 0) rotateX(-70deg) translate3d(0, -80%, 0); }
+
+.reveal .slides > section > section[data-transition=concave].future,
+.reveal .slides > section > section[data-transition~=concave-in].future,
+.reveal.concave .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate3d(0, 80%, 0) rotateX(70deg) translate3d(0, 80%, 0);
+          transform: translate3d(0, 80%, 0) rotateX(70deg) translate3d(0, 80%, 0); }
+
+/*********************************************
+ * ZOOM TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=zoom],
+.reveal.zoom .slides section:not([data-transition]) {
+  transition-timing-function: ease; }
+
+.reveal .slides > section[data-transition=zoom].past,
+.reveal .slides > section[data-transition~=zoom-out].past,
+.reveal.zoom .slides > section:not([data-transition]).past {
+  visibility: hidden;
+  -webkit-transform: scale(16);
+          transform: scale(16); }
+
+.reveal .slides > section[data-transition=zoom].future,
+.reveal .slides > section[data-transition~=zoom-in].future,
+.reveal.zoom .slides > section:not([data-transition]).future {
+  visibility: hidden;
+  -webkit-transform: scale(0.2);
+          transform: scale(0.2); }
+
+.reveal .slides > section > section[data-transition=zoom].past,
+.reveal .slides > section > section[data-transition~=zoom-out].past,
+.reveal.zoom .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate(0, -150%);
+          transform: translate(0, -150%); }
+
+.reveal .slides > section > section[data-transition=zoom].future,
+.reveal .slides > section > section[data-transition~=zoom-in].future,
+.reveal.zoom .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate(0, 150%);
+          transform: translate(0, 150%); }
+
+/*********************************************
+ * CUBE TRANSITION
+ *
+ * WARNING:
+ * this is deprecated and will be removed in a
+ * future version.
+ *********************************************/
+.reveal.cube .slides {
+  -webkit-perspective: 1300px;
+          perspective: 1300px; }
+
+.reveal.cube .slides section {
+  padding: 30px;
+  min-height: 700px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  box-sizing: border-box;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d; }
+
+.reveal.center.cube .slides section {
+  min-height: 0; }
+
+.reveal.cube .slides section:not(.stack):before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  -webkit-transform: translateZ(-20px);
+          transform: translateZ(-20px); }
+
+.reveal.cube .slides section:not(.stack):after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 90%;
+  height: 30px;
+  left: 5%;
+  bottom: 0;
+  background: none;
+  z-index: 1;
+  border-radius: 4px;
+  box-shadow: 0px 95px 25px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translateZ(-90px) rotateX(65deg);
+          transform: translateZ(-90px) rotateX(65deg); }
+
+.reveal.cube .slides > section.stack {
+  padding: 0;
+  background: none; }
+
+.reveal.cube .slides > section.past {
+  -webkit-transform-origin: 100% 0%;
+          transform-origin: 100% 0%;
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(-90deg);
+          transform: translate3d(-100%, 0, 0) rotateY(-90deg); }
+
+.reveal.cube .slides > section.future {
+  -webkit-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(90deg);
+          transform: translate3d(100%, 0, 0) rotateY(90deg); }
+
+.reveal.cube .slides > section > section.past {
+  -webkit-transform-origin: 0% 100%;
+          transform-origin: 0% 100%;
+  -webkit-transform: translate3d(0, -100%, 0) rotateX(90deg);
+          transform: translate3d(0, -100%, 0) rotateX(90deg); }
+
+.reveal.cube .slides > section > section.future {
+  -webkit-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transform: translate3d(0, 100%, 0) rotateX(-90deg);
+          transform: translate3d(0, 100%, 0) rotateX(-90deg); }
+
+/*********************************************
+ * PAGE TRANSITION
+ *
+ * WARNING:
+ * this is deprecated and will be removed in a
+ * future version.
+ *********************************************/
+.reveal.page .slides {
+  -webkit-perspective-origin: 0% 50%;
+          perspective-origin: 0% 50%;
+  -webkit-perspective: 3000px;
+          perspective: 3000px; }
+
+.reveal.page .slides section {
+  padding: 30px;
+  min-height: 700px;
+  box-sizing: border-box;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d; }
+
+.reveal.page .slides section.past {
+  z-index: 12; }
+
+.reveal.page .slides section:not(.stack):before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-transform: translateZ(-20px);
+          transform: translateZ(-20px); }
+
+.reveal.page .slides section:not(.stack):after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 90%;
+  height: 30px;
+  left: 5%;
+  bottom: 0;
+  background: none;
+  z-index: 1;
+  border-radius: 4px;
+  box-shadow: 0px 95px 25px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translateZ(-90px) rotateX(65deg); }
+
+.reveal.page .slides > section.stack {
+  padding: 0;
+  background: none; }
+
+.reveal.page .slides > section.past {
+  -webkit-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transform: translate3d(-40%, 0, 0) rotateY(-80deg);
+          transform: translate3d(-40%, 0, 0) rotateY(-80deg); }
+
+.reveal.page .slides > section.future {
+  -webkit-transform-origin: 100% 0%;
+          transform-origin: 100% 0%;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
+
+.reveal.page .slides > section > section.past {
+  -webkit-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transform: translate3d(0, -40%, 0) rotateX(80deg);
+          transform: translate3d(0, -40%, 0) rotateX(80deg); }
+
+.reveal.page .slides > section > section.future {
+  -webkit-transform-origin: 0% 100%;
+          transform-origin: 0% 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
+
+/*********************************************
+ * FADE TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=fade],
+.reveal.fade .slides section:not([data-transition]),
+.reveal.fade .slides > section > section:not([data-transition]) {
+  -webkit-transform: none;
+          transform: none;
+  transition: opacity 0.5s; }
+
+.reveal.fade.overview .slides section,
+.reveal.fade.overview .slides > section > section {
+  transition: none; }
+
+/*********************************************
+ * NO TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=none],
+.reveal.none .slides section:not([data-transition]) {
+  -webkit-transform: none;
+          transform: none;
+  transition: none; }
+
+/*********************************************
+ * PAUSED MODE
+ *********************************************/
+.reveal .pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 100;
+  transition: all 1s ease; }
+
+.reveal .pause-overlay .resume-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: #ccc;
+  border-radius: 2px;
+  padding: 6px 14px;
+  border: 2px solid #ccc;
+  font-size: 16px;
+  background: transparent;
+  cursor: pointer; }
+  .reveal .pause-overlay .resume-button:hover {
+    color: #fff;
+    border-color: #fff; }
+
+.reveal.paused .pause-overlay {
+  visibility: visible;
+  opacity: 1; }
+
+/*********************************************
+ * FALLBACK
+ *********************************************/
+.no-transforms {
+  overflow-y: auto; }
+
+.no-transforms .reveal .slides {
+  position: relative;
+  width: 80%;
+  height: auto !important;
+  top: 0;
+  left: 50%;
+  margin: 0;
+  text-align: center; }
+
+.no-transforms .reveal .controls,
+.no-transforms .reveal .progress {
+  display: none !important; }
+
+.no-transforms .reveal .slides section {
+  display: block !important;
+  opacity: 1 !important;
+  position: relative !important;
+  height: auto;
+  min-height: 0;
+  top: 0;
+  left: -50%;
+  margin: 70px 0;
+  -webkit-transform: none;
+          transform: none; }
+
+.no-transforms .reveal .slides section section {
+  left: 0; }
+
+.reveal .no-transition,
+.reveal .no-transition * {
+  transition: none !important; }
+
+/*********************************************
+ * PER-SLIDE BACKGROUNDS
+ *********************************************/
+.reveal .backgrounds {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  -webkit-perspective: 600px;
+          perspective: 600px; }
+
+.reveal .slide-background {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  background-color: transparent;
+  transition: all 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+.reveal .slide-background-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.reveal .slide-background.stack {
+  display: block; }
+
+.reveal .slide-background.present {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2; }
+
+.print-pdf .reveal .slide-background {
+  opacity: 1 !important;
+  visibility: visible !important; }
+
+/* Video backgrounds */
+.reveal .slide-background video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  top: 0;
+  left: 0;
+  -o-object-fit: cover;
+     object-fit: cover; }
+
+.reveal .slide-background[data-background-size="contain"] video {
+  -o-object-fit: contain;
+     object-fit: contain; }
+
+/* Immediate transition style */
+.reveal[data-background-transition=none] > .backgrounds .slide-background,
+.reveal > .backgrounds .slide-background[data-background-transition=none] {
+  transition: none; }
+
+/* Slide */
+.reveal[data-background-transition=slide] > .backgrounds .slide-background,
+.reveal > .backgrounds .slide-background[data-background-transition=slide] {
+  opacity: 1;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+
+.reveal[data-background-transition=slide] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=slide] {
+  -webkit-transform: translate(-100%, 0);
+          transform: translate(-100%, 0); }
+
+.reveal[data-background-transition=slide] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=slide] {
+  -webkit-transform: translate(100%, 0);
+          transform: translate(100%, 0); }
+
+.reveal[data-background-transition=slide] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=slide] {
+  -webkit-transform: translate(0, -100%);
+          transform: translate(0, -100%); }
+
+.reveal[data-background-transition=slide] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=slide] {
+  -webkit-transform: translate(0, 100%);
+          transform: translate(0, 100%); }
+
+/* Convex */
+.reveal[data-background-transition=convex] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=convex] {
+  opacity: 0;
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0); }
+
+.reveal[data-background-transition=convex] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=convex] {
+  opacity: 0;
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0); }
+
+.reveal[data-background-transition=convex] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=convex] {
+  opacity: 0;
+  -webkit-transform: translate3d(0, -100%, 0) rotateX(90deg) translate3d(0, -100%, 0);
+          transform: translate3d(0, -100%, 0) rotateX(90deg) translate3d(0, -100%, 0); }
+
+.reveal[data-background-transition=convex] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=convex] {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 100%, 0) rotateX(-90deg) translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0) rotateX(-90deg) translate3d(0, 100%, 0); }
+
+/* Concave */
+.reveal[data-background-transition=concave] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=concave] {
+  opacity: 0;
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0); }
+
+.reveal[data-background-transition=concave] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=concave] {
+  opacity: 0;
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0); }
+
+.reveal[data-background-transition=concave] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=concave] {
+  opacity: 0;
+  -webkit-transform: translate3d(0, -100%, 0) rotateX(-90deg) translate3d(0, -100%, 0);
+          transform: translate3d(0, -100%, 0) rotateX(-90deg) translate3d(0, -100%, 0); }
+
+.reveal[data-background-transition=concave] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=concave] {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 100%, 0) rotateX(90deg) translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0) rotateX(90deg) translate3d(0, 100%, 0); }
+
+/* Zoom */
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background,
+.reveal > .backgrounds .slide-background[data-background-transition=zoom] {
+  transition-timing-function: ease; }
+
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(16);
+          transform: scale(16); }
+
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(0.2);
+          transform: scale(0.2); }
+
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(16);
+          transform: scale(16); }
+
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(0.2);
+          transform: scale(0.2); }
+
+/* Global transition speed settings */
+.reveal[data-transition-speed="fast"] > .backgrounds .slide-background {
+  transition-duration: 400ms; }
+
+.reveal[data-transition-speed="slow"] > .backgrounds .slide-background {
+  transition-duration: 1200ms; }
+
+/*********************************************
+ * OVERVIEW
+ *********************************************/
+.reveal.overview {
+  -webkit-perspective-origin: 50% 50%;
+          perspective-origin: 50% 50%;
+  -webkit-perspective: 700px;
+          perspective: 700px; }
+  .reveal.overview .slides {
+    -moz-transform-style: preserve-3d; }
+  .reveal.overview .slides section {
+    height: 100%;
+    top: 0 !important;
+    opacity: 1 !important;
+    overflow: hidden;
+    visibility: visible !important;
+    cursor: pointer;
+    box-sizing: border-box; }
+  .reveal.overview .slides section:hover,
+  .reveal.overview .slides section.present {
+    outline: 10px solid rgba(150, 150, 150, 0.4);
+    outline-offset: 10px; }
+  .reveal.overview .slides section .fragment {
+    opacity: 1;
+    transition: none; }
+  .reveal.overview .slides section:after,
+  .reveal.overview .slides section:before {
+    display: none !important; }
+  .reveal.overview .slides > section.stack {
+    padding: 0;
+    top: 0 !important;
+    background: none;
+    outline: none;
+    overflow: visible; }
+  .reveal.overview .backgrounds {
+    -webkit-perspective: inherit;
+            perspective: inherit;
+    -moz-transform-style: preserve-3d; }
+  .reveal.overview .backgrounds .slide-background {
+    opacity: 1;
+    visibility: visible;
+    outline: 10px solid rgba(150, 150, 150, 0.1);
+    outline-offset: 10px; }
+  .reveal.overview .backgrounds .slide-background.stack {
+    overflow: visible; }
+
+.reveal.overview .slides section,
+.reveal.overview-deactivating .slides section {
+  transition: none; }
+
+.reveal.overview .backgrounds .slide-background,
+.reveal.overview-deactivating .backgrounds .slide-background {
+  transition: none; }
+
+/*********************************************
+ * RTL SUPPORT
+ *********************************************/
+.reveal.rtl .slides,
+.reveal.rtl .slides h1,
+.reveal.rtl .slides h2,
+.reveal.rtl .slides h3,
+.reveal.rtl .slides h4,
+.reveal.rtl .slides h5,
+.reveal.rtl .slides h6 {
+  direction: rtl;
+  font-family: sans-serif; }
+
+.reveal.rtl pre,
+.reveal.rtl code {
+  direction: ltr; }
+
+.reveal.rtl ol,
+.reveal.rtl ul {
+  text-align: right; }
+
+.reveal.rtl .progress span {
+  float: right; }
+
+/*********************************************
+ * PARALLAX BACKGROUND
+ *********************************************/
+.reveal.has-parallax-background .backgrounds {
+  transition: all 0.8s ease; }
+
+/* Global transition speed settings */
+.reveal.has-parallax-background[data-transition-speed="fast"] .backgrounds {
+  transition-duration: 400ms; }
+
+.reveal.has-parallax-background[data-transition-speed="slow"] .backgrounds {
+  transition-duration: 1200ms; }
+
+/*********************************************
+ * LINK PREVIEW OVERLAY
+ *********************************************/
+.reveal .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease; }
+
+.reveal .overlay.visible {
+  opacity: 1;
+  visibility: visible; }
+
+.reveal .overlay .spinner {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  z-index: 10;
+  background-image: url(data:image/gif;base64,R0lGODlhIAAgAPMAAJmZmf%2F%2F%2F6%2Bvr8nJybW1tcDAwOjo6Nvb26ioqKOjo7Ozs%2FLy8vz8%2FAAAAAAAAAAAACH%2FC05FVFNDQVBFMi4wAwEAAAAh%2FhpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh%2BQQJCgAAACwAAAAAIAAgAAAE5xDISWlhperN52JLhSSdRgwVo1ICQZRUsiwHpTJT4iowNS8vyW2icCF6k8HMMBkCEDskxTBDAZwuAkkqIfxIQyhBQBFvAQSDITM5VDW6XNE4KagNh6Bgwe60smQUB3d4Rz1ZBApnFASDd0hihh12BkE9kjAJVlycXIg7CQIFA6SlnJ87paqbSKiKoqusnbMdmDC2tXQlkUhziYtyWTxIfy6BE8WJt5YJvpJivxNaGmLHT0VnOgSYf0dZXS7APdpB309RnHOG5gDqXGLDaC457D1zZ%2FV%2FnmOM82XiHRLYKhKP1oZmADdEAAAh%2BQQJCgAAACwAAAAAIAAgAAAE6hDISWlZpOrNp1lGNRSdRpDUolIGw5RUYhhHukqFu8DsrEyqnWThGvAmhVlteBvojpTDDBUEIFwMFBRAmBkSgOrBFZogCASwBDEY%2FCZSg7GSE0gSCjQBMVG023xWBhklAnoEdhQEfyNqMIcKjhRsjEdnezB%2BA4k8gTwJhFuiW4dokXiloUepBAp5qaKpp6%2BHo7aWW54wl7obvEe0kRuoplCGepwSx2jJvqHEmGt6whJpGpfJCHmOoNHKaHx61WiSR92E4lbFoq%2BB6QDtuetcaBPnW6%2BO7wDHpIiK9SaVK5GgV543tzjgGcghAgAh%2BQQJCgAAACwAAAAAIAAgAAAE7hDISSkxpOrN5zFHNWRdhSiVoVLHspRUMoyUakyEe8PTPCATW9A14E0UvuAKMNAZKYUZCiBMuBakSQKG8G2FzUWox2AUtAQFcBKlVQoLgQReZhQlCIJesQXI5B0CBnUMOxMCenoCfTCEWBsJColTMANldx15BGs8B5wlCZ9Po6OJkwmRpnqkqnuSrayqfKmqpLajoiW5HJq7FL1Gr2mMMcKUMIiJgIemy7xZtJsTmsM4xHiKv5KMCXqfyUCJEonXPN2rAOIAmsfB3uPoAK%2B%2BG%2Bw48edZPK%2BM6hLJpQg484enXIdQFSS1u6UhksENEQAAIfkECQoAAAAsAAAAACAAIAAABOcQyEmpGKLqzWcZRVUQnZYg1aBSh2GUVEIQ2aQOE%2BG%2BcD4ntpWkZQj1JIiZIogDFFyHI0UxQwFugMSOFIPJftfVAEoZLBbcLEFhlQiqGp1Vd140AUklUN3eCA51C1EWMzMCezCBBmkxVIVHBWd3HHl9JQOIJSdSnJ0TDKChCwUJjoWMPaGqDKannasMo6WnM562R5YluZRwur0wpgqZE7NKUm%2BFNRPIhjBJxKZteWuIBMN4zRMIVIhffcgojwCF117i4nlLnY5ztRLsnOk%2BaV%2BoJY7V7m76PdkS4trKcdg0Zc0tTcKkRAAAIfkECQoAAAAsAAAAACAAIAAABO4QyEkpKqjqzScpRaVkXZWQEximw1BSCUEIlDohrft6cpKCk5xid5MNJTaAIkekKGQkWyKHkvhKsR7ARmitkAYDYRIbUQRQjWBwJRzChi9CRlBcY1UN4g0%2FVNB0AlcvcAYHRyZPdEQFYV8ccwR5HWxEJ02YmRMLnJ1xCYp0Y5idpQuhopmmC2KgojKasUQDk5BNAwwMOh2RtRq5uQuPZKGIJQIGwAwGf6I0JXMpC8C7kXWDBINFMxS4DKMAWVWAGYsAdNqW5uaRxkSKJOZKaU3tPOBZ4DuK2LATgJhkPJMgTwKCdFjyPHEnKxFCDhEAACH5BAkKAAAALAAAAAAgACAAAATzEMhJaVKp6s2nIkolIJ2WkBShpkVRWqqQrhLSEu9MZJKK9y1ZrqYK9WiClmvoUaF8gIQSNeF1Er4MNFn4SRSDARWroAIETg1iVwuHjYB1kYc1mwruwXKC9gmsJXliGxc%2BXiUCby9ydh1sOSdMkpMTBpaXBzsfhoc5l58Gm5yToAaZhaOUqjkDgCWNHAULCwOLaTmzswadEqggQwgHuQsHIoZCHQMMQgQGubVEcxOPFAcMDAYUA85eWARmfSRQCdcMe0zeP1AAygwLlJtPNAAL19DARdPzBOWSm1brJBi45soRAWQAAkrQIykShQ9wVhHCwCQCACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiRMDjI0Fd30%2FiI2UA5GSS5UDj2l6NoqgOgN4gksEBgYFf0FDqKgHnyZ9OX8HrgYHdHpcHQULXAS2qKpENRg7eAMLC7kTBaixUYFkKAzWAAnLC7FLVxLWDBLKCwaKTULgEwbLA4hJtOkSBNqITT3xEgfLpBtzE%2FjiuL04RGEBgwWhShRgQExHBAAh%2BQQJCgAAACwAAAAAIAAgAAAE7xDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfZiCqGk5dTESJeaOAlClzsJsqwiJwiqnFrb2nS9kmIcgEsjQydLiIlHehhpejaIjzh9eomSjZR%2BipslWIRLAgMDOR2DOqKogTB9pCUJBagDBXR6XB0EBkIIsaRsGGMMAxoDBgYHTKJiUYEGDAzHC9EACcUGkIgFzgwZ0QsSBcXHiQvOwgDdEwfFs0sDzt4S6BK4xYjkDOzn0unFeBzOBijIm1Dgmg5YFQwsCMjp1oJ8LyIAACH5BAkKAAAALAAAAAAgACAAAATwEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GGl6NoiPOH16iZKNlH6KmyWFOggHhEEvAwwMA0N9GBsEC6amhnVcEwavDAazGwIDaH1ipaYLBUTCGgQDA8NdHz0FpqgTBwsLqAbWAAnIA4FWKdMLGdYGEgraigbT0OITBcg5QwPT4xLrROZL6AuQAPUS7bxLpoWidY0JtxLHKhwwMJBTHgPKdEQAACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GAULDJCRiXo1CpGXDJOUjY%2BYip9DhToJA4RBLwMLCwVDfRgbBAaqqoZ1XBMHswsHtxtFaH1iqaoGNgAIxRpbFAgfPQSqpbgGBqUD1wBXeCYp1AYZ19JJOYgH1KwA4UBvQwXUBxPqVD9L3sbp2BNk2xvvFPJd%2BMFCN6HAAIKgNggY0KtEBAAh%2BQQJCgAAACwAAAAAIAAgAAAE6BDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfYIDMaAFdTESJeaEDAIMxYFqrOUaNW4E4ObYcCXaiBVEgULe0NJaxxtYksjh2NLkZISgDgJhHthkpU4mW6blRiYmZOlh4JWkDqILwUGBnE6TYEbCgevr0N1gH4At7gHiRpFaLNrrq8HNgAJA70AWxQIH1%2BvsYMDAzZQPC9VCNkDWUhGkuE5PxJNwiUK4UfLzOlD4WvzAHaoG9nxPi5d%2BjYUqfAhhykOFwJWiAAAIfkECQoAAAAsAAAAACAAIAAABPAQyElpUqnqzaciSoVkXVUMFaFSwlpOCcMYlErAavhOMnNLNo8KsZsMZItJEIDIFSkLGQoQTNhIsFehRww2CQLKF0tYGKYSg%2BygsZIuNqJksKgbfgIGepNo2cIUB3V1B3IvNiBYNQaDSTtfhhx0CwVPI0UJe0%2Bbm4g5VgcGoqOcnjmjqDSdnhgEoamcsZuXO1aWQy8KAwOAuTYYGwi7w5h%2BKr0SJ8MFihpNbx%2B4Erq7BYBuzsdiH1jCAzoSfl0rVirNbRXlBBlLX%2BBP0XJLAPGzTkAuAOqb0WT5AH7OcdCm5B8TgRwSRKIHQtaLCwg1RAAAOwAAAAAAAAAAAA%3D%3D);
+  visibility: visible;
+  opacity: 0.6;
+  transition: all 0.3s ease; }
+
+.reveal .overlay header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 2;
+  border-bottom: 1px solid #222; }
+
+.reveal .overlay header a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 36px;
+  padding: 0 10px;
+  float: right;
+  opacity: 0.6;
+  box-sizing: border-box; }
+
+.reveal .overlay header a:hover {
+  opacity: 1; }
+
+.reveal .overlay header a .icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-position: 50% 50%;
+  background-size: 100%;
+  background-repeat: no-repeat; }
+
+.reveal .overlay header a.close .icon {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABkklEQVRYR8WX4VHDMAxG6wnoJrABZQPYBCaBTWAD2g1gE5gg6OOsXuxIlr40d81dfrSJ9V4c2VLK7spHuTJ/5wpM07QXuXc5X0opX2tEJcadjHuV80li/FgxTIEK/5QBCICBD6xEhSMGHgQPgBgLiYVAB1dpSqKDawxTohFw4JSEA3clzgIBPCURwE2JucBR7rhPJJv5OpJwDX+SfDjgx1wACQeJG1aChP9K/IMmdZ8DtESV1WyP3Bt4MwM6sj4NMxMYiqUWHQu4KYA/SYkIjOsm3BXYWMKFDwU2khjCQ4ELJUJ4SmClRArOCmSXGuKma0fYD5CbzHxFpCSGAhfAVSSUGDUk2BWZaff2g6GE15BsBQ9nwmpIGDiyHQddwNTMKkbZaf9fajXQca1EX44puJZUsnY0ObGmITE3GVLCbEhQUjGVt146j6oasWN+49Vph2w1pZ5EansNZqKBm1txbU57iRRcZ86RWMDdWtBJUHBHwoQPi1GV+JCbntmvok7iTX4/Up9mgyTc/FJYDTcndgH/AA5A/CHsyEkVAAAAAElFTkSuQmCC); }
+
+.reveal .overlay header a.external .icon {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAcElEQVRYR+2WSQoAIQwEzf8f7XiOMkUQxUPlGkM3hVmiQfQR9GYnH1SsAQlI4DiBqkCMoNb9y2e90IAEJPAcgdznU9+engMaeJ7Azh5Y1U67gAho4DqBqmB1buAf0MB1AlVBek83ZPkmJMGc1wAR+AAqod/B97TRpQAAAABJRU5ErkJggg==); }
+
+.reveal .overlay .viewport {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  top: 40px;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
+.reveal .overlay.overlay-preview .viewport iframe {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease; }
+
+.reveal .overlay.overlay-preview.loaded .viewport iframe {
+  opacity: 1;
+  visibility: visible; }
+
+.reveal .overlay.overlay-preview.loaded .viewport-inner {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 45%;
+  width: 100%;
+  text-align: center;
+  letter-spacing: normal; }
+
+.reveal .overlay.overlay-preview .x-frame-error {
+  opacity: 0;
+  transition: opacity 0.3s ease 0.3s; }
+
+.reveal .overlay.overlay-preview.loaded .x-frame-error {
+  opacity: 1; }
+
+.reveal .overlay.overlay-preview.loaded .spinner {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(0.2);
+          transform: scale(0.2); }
+
+.reveal .overlay.overlay-help .viewport {
+  overflow: auto;
+  color: #fff; }
+
+.reveal .overlay.overlay-help .viewport .viewport-inner {
+  width: 600px;
+  margin: auto;
+  padding: 20px 20px 80px 20px;
+  text-align: center;
+  letter-spacing: normal; }
+
+.reveal .overlay.overlay-help .viewport .viewport-inner .title {
+  font-size: 20px; }
+
+.reveal .overlay.overlay-help .viewport .viewport-inner table {
+  border: 1px solid #fff;
+  border-collapse: collapse;
+  font-size: 16px; }
+
+.reveal .overlay.overlay-help .viewport .viewport-inner table th,
+.reveal .overlay.overlay-help .viewport .viewport-inner table td {
+  width: 200px;
+  padding: 14px;
+  border: 1px solid #fff;
+  vertical-align: middle; }
+
+.reveal .overlay.overlay-help .viewport .viewport-inner table th {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+/*********************************************
+ * PLAYBACK COMPONENT
+ *********************************************/
+.reveal .playback {
+  position: absolute;
+  left: 15px;
+  bottom: 20px;
+  z-index: 30;
+  cursor: pointer;
+  transition: all 400ms ease;
+  -webkit-tap-highlight-color: transparent; }
+
+.reveal.overview .playback {
+  opacity: 0;
+  visibility: hidden; }
+
+/*********************************************
+ * ROLLING LINKS
+ *********************************************/
+.reveal .roll {
+  display: inline-block;
+  line-height: 1.2;
+  overflow: hidden;
+  vertical-align: top;
+  -webkit-perspective: 400px;
+          perspective: 400px;
+  -webkit-perspective-origin: 50% 50%;
+          perspective-origin: 50% 50%; }
+
+.reveal .roll:hover {
+  background: none;
+  text-shadow: none; }
+
+.reveal .roll span {
+  display: block;
+  position: relative;
+  padding: 0 2px;
+  pointer-events: none;
+  transition: all 400ms ease;
+  -webkit-transform-origin: 50% 0%;
+          transform-origin: 50% 0%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+
+.reveal .roll:hover span {
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transform: translate3d(0px, 0px, -45px) rotateX(90deg);
+          transform: translate3d(0px, 0px, -45px) rotateX(90deg); }
+
+.reveal .roll span:after {
+  content: attr(data-title);
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0 2px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform-origin: 50% 0%;
+          transform-origin: 50% 0%;
+  -webkit-transform: translate3d(0px, 110%, 0px) rotateX(-90deg);
+          transform: translate3d(0px, 110%, 0px) rotateX(-90deg); }
+
+/*********************************************
+ * SPEAKER NOTES
+ *********************************************/
+.reveal aside.notes {
+  display: none; }
+
+.reveal .speaker-notes {
+  display: none;
+  position: absolute;
+  width: 25vw;
+  height: 100%;
+  top: 0;
+  left: 100%;
+  padding: 14px 18px 14px 18px;
+  z-index: 1;
+  font-size: 18px;
+  line-height: 1.4;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: #222;
+  background-color: #f5f5f5;
+  overflow: auto;
+  box-sizing: border-box;
+  text-align: left;
+  font-family: Helvetica, sans-serif;
+  -webkit-overflow-scrolling: touch; }
+  .reveal .speaker-notes .notes-placeholder {
+    color: #ccc;
+    font-style: italic; }
+  .reveal .speaker-notes:focus {
+    outline: none; }
+  .reveal .speaker-notes:before {
+    content: 'Speaker notes';
+    display: block;
+    margin-bottom: 10px;
+    opacity: 0.5; }
+
+.reveal.show-notes {
+  max-width: 75vw;
+  overflow: visible; }
+
+.reveal.show-notes .speaker-notes {
+  display: block; }
+
+@media screen and (min-width: 1600px) {
+  .reveal .speaker-notes {
+    font-size: 20px; } }
+
+@media screen and (max-width: 1024px) {
+  .reveal.show-notes {
+    border-left: 0;
+    max-width: none;
+    max-height: 70%;
+    overflow: visible; }
+  .reveal.show-notes .speaker-notes {
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 42.8571428571%; } }
+
+@media screen and (max-width: 600px) {
+  .reveal.show-notes {
+    max-height: 60%; }
+  .reveal.show-notes .speaker-notes {
+    top: 100%;
+    height: 66.6666666667%; }
+  .reveal .speaker-notes {
+    font-size: 14px; } }
+
+/*********************************************
+ * ZOOM PLUGIN
+ *********************************************/
+.zoomed .reveal *,
+.zoomed .reveal *:before,
+.zoomed .reveal *:after {
+  -webkit-backface-visibility: visible !important;
+          backface-visibility: visible !important; }
+
+.zoomed .reveal .progress,
+.zoomed .reveal .controls {
+  opacity: 0; }
+
+.zoomed .reveal .roll span {
+  background: none; }
+
+.zoomed .reveal .roll span:after {
+  visibility: hidden; }
+
+      
+      </style>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/theme/white.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/lib/js/head.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/js/reveal.js"></script>
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript+abap+actionscript+ada+apacheconf+apl+applescript+asciidoc+aspnet+autoit+autohotkey+bash+basic+batch+c+brainfuck+bro+bison+csharp+cpp+coffeescript+ruby+css-extras+d+dart+django+diff+docker+eiffel+elixir+erlang+fsharp+fortran+gherkin+git+glsl+go+graphql+groovy+haml+handlebars+haskell+haxe+http+icon+inform7+ini+j+jade+java+jolie+json+julia+keyman+kotlin+latex+less+livescript+lolcode+lua+makefile+markdown+matlab+mel+mizar+monkey+nasm+nginx+nim+nix+nsis+objectivec+ocaml+oz+parigp+parser+pascal+perl+php+php-extras+powershell+processing+prolog+properties+protobuf+puppet+pure+python+q+qore+r+jsx+reason+rest+rip+roboconf+crystal+rust+sas+sass+scss+scala+scheme+smalltalk+smarty+sql+stylus+swift+tcl+textile+twig+typescript+vbnet+verilog+vhdl+vim+wiki+xojo+yaml */
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+/* highlight */
+pre[data-line] {
+	position: relative;
+	padding: 1em 0 1em 3em;
+  }
+  pre[data-line] .line-highlight-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: transparent;
+	display: block;
+	width: 100%;
+  }
+  
+  pre[data-line] .line-highlight {
+	position: absolute;
+	left: 0;
+	right: 0;
+	padding: inherit 0;
+	margin-top: 1em;
+	background: hsla(24, 20%, 50%,.08);
+	background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+	pointer-events: none;
+	line-height: inherit;
+	white-space: pre;
+  }
+  
+  pre[data-line] .line-highlight:before, 
+  pre[data-line] .line-highlight[data-end]:after {
+	content: attr(data-start);
+	position: absolute;
+	top: .4em;
+	left: .6em;
+	min-width: 1em;
+	padding: 0 .5em;
+	background-color: hsla(24, 20%, 50%,.4);
+	color: hsl(24, 20%, 95%);
+	font: bold 65%/1.5 sans-serif;
+	text-align: center;
+	vertical-align: .3em;
+	border-radius: 999px;
+	text-shadow: none;
+	box-shadow: 0 1px white;
+  }
+  
+  pre[data-line] .line-highlight[data-end]:after {
+	content: attr(data-end);
+	top: auto;
+	bottom: .4em;
+  }.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/*  .markdown-preview.markdown-preview {
+
+  left: 0 !important;
+  transform: none !important;
+
+  font-family: 'Fira Sans',
+  sans-serif;
+
+  background-color: #222222;
+  color           : #aaaaaa;
+
+  strong {
+    color: #bbbbbb;
+  }
+
+  .media-row {
+    display        : flex;
+    flex-direction : row;
+    justify-content: space-around;
+  }
+
+  .media-img {
+    height: 40px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #bbbbbb;
+  }
+
+  a {
+    color: #df6400;
+  }
+
+  footer {
+    font-size: 75%;
+  }
+
+  pre,
+  code {
+
+    font-family     : 'Fira Mono', monospace;
+    background-color: #363636;
+    color           : #c5c5c5;
+
+    .punctuation {
+      color: #e48f3f;
+    }
+
+    .operator {
+      color: #ffc038;
+    }
+
+    .macro,
+    .directive,
+    .macro>.string {
+      color: #00b43c !important;
+    }
+
+    .function {
+      color: #ff6b58;
+    }
+
+    .keyword {
+      color: #e8eb56;
+    }
+
+    .string {
+      color: #64cce6;
+    }
+  }
+} */
+p {
+  font-size: 100%;
+}
+.mume-header {
+  font-size: 200%;
+}
+
+      </style>
+    </head>
+    <body for="html-export" data-presentation-mode>
+      <div class="mume markdown-preview  " data-presentation-mode>
+      
+    <div style="display:none;"></div>
+    <div class="reveal">
+      <div class="slides">
+        <section lineno="11" class="slide " data-line="11" data-h="0" data-v="0">
+<h1 class="mume-header" id="kurs-stm32">Kurs STM32</h1>
+
+<p><em>Wojciech Olech</em></p>
+<h2 class="mume-header" id="cz%C4%99%C5%9B%C4%87-i-wst%C4%99p-%C5%9Brodowisko-obs%C5%82uga-p%C5%82ytki">Cz&#x119;&#x15B;&#x107; I: Wst&#x119;p, &#x15B;rodowisko, obs&#x142;uga p&#x142;ytki</h2>
+
+</section><section lineno="18" class="slide " data-line="18" data-h="1" data-v="0">
+<h3 class="mume-header" id="platforma-stm32-vs-avr">Platforma STM32 vs AVR</h3>
+
+<p><strong>Architektury</strong></p>
+<ul>
+<li>ARM - Advanced RISC Machine, 32 i 64 bitowa architektura, szeroko stosowana w systemach wbudowanych i systemach o niskim poborze mocy.</li>
+<li>W por&#xF3;wnaniu z AVR, znacznie bardziej zaawansowana, energooszcz&#x119;dna i wydajna.</li>
+<li><strong>ARMy typowo dzia&#x142;aj&#x105; na logice 3.3V, AVRy na 3.3V lub 5V</strong></li>
+</ul>
+<p><strong>STM32 vs ATMega</strong></p>
+<ul>
+<li>STMy maj&#x105; o wiele wi&#x119;cej wbudowanych peryferi&#xF3;w</li>
+<li>STMy mog&#x105; pracowa&#x107; na znacznie wy&#x17C;szych zegarach (ATMegi typowo 8/16MHz, STMy typowo 32-480MHz (w zale&#x17C;no&#x15B;ci od serii), plus lepsze IPC = znacznie wi&#x119;ksza wydajno&#x15B;&#x107;)</li>
+<li>STMy maj&#x105; kilka razy lepszy stosunek wydajno&#x15B;ci/mo&#x17C;liwo&#x15B;ci do ceny</li>
+<li>Obie platformy s&#x105; kompatybilne z Arduino*</li>
+<li>STMy maj&#x105; bardzo dobre wsparcie wielu &#x15B;rodowisk oraz framework&#xF3;w (mi&#x119;dzy innymi RTOS - Real Time Operating System)</li>
+</ul>
+<p><code>* w du&#x17C;ej cz&#x119;&#x15B;ci, niekoniecznie w 100%</code></p>
+</section><section lineno="36" class="slide " data-line="36" data-h="2" data-v="0">
+<h3 class="mume-header" id="wbudowane-peryferia-dost%C4%99pne-w-wi%C4%99kszo%C5%9Bci-stm%C3%B3w">Wbudowane peryferia dost&#x119;pne w wi&#x119;kszo&#x15B;ci STM&#xF3;w</h3>
+
+<ul>
+<li>DMA (Direct Memory Access) - kontroler pozwalaj&#x105;cy na wykonywanie operacji I/O bez udzia&#x142;u CPU</li>
+<li>GPIO - piny I/O na logice 3.3V (cz&#x119;&#x15B;&#x107; pin&#xF3;w ma tolerancj&#x119; 5V)</li>
+<li>Watchdog</li>
+<li>ADC (przetwornik analogowo-cyfrowy), 12-bitowy</li>
+<li>RTC (Real-Time Clock)</li>
+<li>Timery (proste i zaawansowane, z mo&#x17C;liwo&#x15B;ci&#x105; generowania sygna&#x142;u PWM)</li>
+<li>Magistrale komunikacyjne:
+<ul>
+<li>CAN</li>
+<li>I2C</li>
+<li>SPI</li>
+<li>USART</li>
+<li>USB</li>
+<li>R&#xF3;&#x17C;ne pochodne powy&#x17C;szych (I2S, SMBus, IRDA, SmartCard)</li>
+</ul>
+</li>
+<li>Hardware&apos;owe CRC</li>
+</ul>
+</section><section lineno="55" class="slide " data-line="55" data-h="3" data-v="0">
+<h3 class="mume-header" id="serie-stm32">Serie STM32</h3>
+
+<img src="en.stm32_cl1734.png" style="width:80%">
+</section><section lineno="61" class="slide " data-line="61" data-h="4" data-v="0">
+<h3 class="mume-header" id="oprogramowanie">Oprogramowanie</h3>
+
+<ul>
+<li><strong>ZALECANE</strong> - STM32CubeIDE - IDE zintegrowane z generatorem projekt&#xF3;w na podstawie kt&#xF3;rego b&#x119;dzie prowadzony ten kurs.<br>
+<strong>Link do pobrania: <a href="https://bit.ly/36Nfde3">https://bit.ly/36Nfde3</a></strong></li>
+</ul>
+<p><strong>ALTERNATYWY</strong></p>
+<ul>
+<li>STM32CubeMX - generator projekt&#xF3;w i graficzny konfigurator mikrokontrolera w postaci osobnego programu - mo&#x17C;e generowa&#x107; projekty dla r&#xF3;&#x17C;nych IDE<br>
+Link do pobrania: <a href="https://bit.ly/35aVMvr">https://bit.ly/35aVMvr</a></li>
+<li>Atollic TrueSTUDIO - &#x15B;rodowisko programistyczne, na kt&#xF3;rym zosta&#x142;o oparte STM32CubeIDE. Nierozwijane.<br>
+Link do pobrania: <a href="https://bit.ly/2NRH3Qa">https://bit.ly/2NRH3Qa</a></li>
+</ul>
+</section><section lineno="74" class="slide " data-line="74" data-h="5" data-v="0">
+<h3 class="mume-header" id="popularne-bibliotekiframeworki-do-obs%C5%82ugi-stm32">Popularne biblioteki/frameworki do obs&#x142;ugi STM32</h3>
+
+<ul>
+<li><strong>CMSIS</strong> - <em>Cortex Microcontroller Software Interface Standard</em>, biblioteka standardowa dla mikrokontroler&#xF3;w opartych o ARM kt&#xF3;ra pe&#x142;ni funkcj&#x119; warstwy abstrakcji dla sprz&#x119;tu, napisana w C. Jest baz&#x105; dla wszystkich bibliotek pisanych pod ARMy</li>
+<li><strong>STM32 HAL</strong> - <em>Hardware Abstraction Layer</em>, standardowa biblioteka dla STM32 kt&#xF3;r&#x105; b&#x119;dziemy si&#x119; pos&#x142;ugiwa&#x107;. Pozwala na &#x142;atwe u&#x17C;ywanie mikrokontrolera. Napisana w C.</li>
+<li><strong>Arduino</strong> - Najpopularniejsze p&#x142;ytki i procesory STM32 maj&#x105; wsparcie Arduino*</li>
+<li><strong>RTOS</strong> - <em>Real Time Operating System</em>, framework umo&#x17C;liwiaj&#x105;cy tworzenie wielow&#x105;tkowych program&#xF3;w na mikrokontrolery.</li>
+<li><strong>MBed</strong> - Framework dla urz&#x105;dze&#x144; embedded/IoT na architekturze ARM ze wsparciem RTOSa, wspiera C++a. Dobra alternatywa dla Arduino.</li>
+</ul>
+<p><code>* Nie wszystkie biblioteki Arduinowe b&#x119;d&#x105; dzia&#x142;a&#x107; na STM32, poniewa&#x17C; niekt&#xF3;re maj&#x105; wstawki dla AVR&#xF3;w lub korzystaj&#x105; z peryferi&#xF3;w niedost&#x119;pnych na STMach (EEPROM)</code></p>
+</section><section lineno="86" class="slide " data-line="86" data-h="6" data-v="0">
+<h3 class="mume-header" id="stm32cubemx">STM32CubeMX</h3>
+
+<ul>
+<li>Narz&#x119;dzie do konfigurowania mikrokontrolera oraz generowania projektu dla dowolnego wspieranego IDE</li>
+<li>Umo&#x17C;liwia bardzo &#x142;atwe tworzenie projekt&#xF3;w dla STM&#xF3;w i p&#x142;ytek Nucleo/Discovery</li>
+<li>Zintegrowane z STM32CubeIDE</li>
+</ul>
+</section><section lineno="94" class="slide " data-line="94" data-h="7" data-v="0">
+<h4 class="mume-header" id="tworzenie-projektu">Tworzenie projektu</h4>
+
+<p>&#x17B;eby stworzy&#x107; nowy projekt w STM32CubeIDE, otwieramy Information Center i wybieramy opcj&#x119; &quot;Start new STM32 project&quot;, lub w menu File -&gt; New wybieramy opcj&#x119; &quot;STM32 Project&quot;</p>
+<img src="create_project.png" style="width:80%">
+</section><section lineno="102" class="slide " data-line="102" data-h="8" data-v="0">
+<p>W oknie kt&#xF3;re si&#x119; pojawi&#x142;o mo&#x17C;emy wybra&#x107; jedn&#x105; z trzech zak&#x142;adek:</p>
+<ul>
+<li>MCU/MPU Selector - je&#x15B;li tworzymy projekt pod MCU na naszej w&#x142;asnej, lub customowej p&#x142;ytce, interesuje nas ta zak&#x142;adka</li>
+<li>Board Selector - je&#x15B;li mamy p&#x142;ytk&#x119; od ST (przyk&#x142;adowo Discovery lub Nucleo), to w tej zak&#x142;adce znajdziemy szablony projekt&#xF3;w dla tych p&#x142;ytek</li>
+<li>Cross Selector - pozwala dobra&#x107; MCU od ST na podstawie MCU innego producenta</li>
+</ul>
+<p>Nas interesuje zak&#x142;adka &quot;Board Selector&quot;. W pole wyszukiwania wpisujemy model naszego Nucleo</p>
+<img src="mcu_selector.png" style="width:40%">
+</section><section lineno="113" class="slide " data-line="113" data-h="9" data-v="0">
+<p>Po wybraniu p&#x142;ytki i klikni&#x119;ciu &quot;Next &gt;&quot; wy&#x15B;wietli nam si&#x119; okno z wyborem lokalizacji projektu, j&#x119;zyka i typu projektu. Zmieniamy tylko nazw&#x119;, pozosta&#x142;e ustawienia zostawiamy domy&#x15B;lnie, po czym klikamy &quot;Finish&quot;.</p>
+<img src="project_settings.png" style="width:50%">
+</section><section lineno="119" class="slide " data-line="119" data-h="10" data-v="0">
+<p>Je&#x15B;li tworzymy projekt na p&#x142;ytk&#x119; ST, to pojawi nam si&#x119; pop-up z pytaniem czy chcemy ustawi&#x107; peryferia na domy&#x15B;lne tryby - klikamy &quot;Yes&quot;.</p>
+<img src="project_default_periph.png" style="width:80%">
+</section><section lineno="125" class="slide " data-line="125" data-h="11" data-v="0">
+<p>Powinnien si&#x119; automatycznie otworzy&#x107; nast&#x119;puj&#x105;cy widok w STM32CubeIDE, z poziomu kt&#xF3;rego mo&#x17C;emy konfigurowa&#x107; peryferia procesora oraz jego poszczeg&#xF3;lne piny.</p>
+<img src="cube_mcu_view.png" style="width:100%">
+</section><section lineno="131" class="slide " data-line="131" data-h="12" data-v="0">
+<p>Po lewej stronie mamy pogrupowane peryferia zgodnie z ich kategoriami</p>
+<ul>
+<li>System Core - g&#x142;&#xF3;wne peryferia systemowe, m. in. kontroler zegar&#xF3;w, przerwa&#x144;, GPIO</li>
+<li>Analog - peryferia analogowo/cyfrowe: ADC, DAC, wzmacniacze operacyjne, komparatory</li>
+<li>Timers - timery, RTC i timery niskiej mocy</li>
+<li>Connectivity - magistrale danych - UART, USART, SPI, I2C, CAN, USB, SDMMC</li>
+<li>Multimedia - magistrale danych do peryferi&#xF3;w multimedialnych - LCD, SAI, I2C</li>
+<li>Security - peryferia powi&#x105;zane z bezpiecze&#x144;stwem - RNG, szyfrowanie</li>
+<li>Computing - peryferia wspomagaj&#x105;ce obliczenia - CRC, filtry</li>
+<li>Middleware - dodatkowe biblioteki, przyk&#x142;adowo RTOS, FATFS, USB</li>
+</ul>
+</section><section lineno="143" class="slide " data-line="143" data-h="13" data-v="0">
+<p>Na obrazku procesora mo&#x17C;emy zauwa&#x17C;y&#x107; kilka r&#xF3;&#x17C;nych kolor&#xF3;w pin&#xF3;w.</p>
+<ul>
+<li>Szary - nieu&#x17C;ywany</li>
+<li>Kremowy (VBAT/VDD/VSS) - linia zasilania procesora</li>
+<li>Limonkowy (BOOT0) - piny zarezerwowane przez niskopoziomowe mechanizmy (boot/reset)</li>
+<li>Pomara&#x144;czowy - piny potencjalnie zarezerwowane przez peryferia kt&#xF3;re nie s&#x105; jeszcze skonfigurowane</li>
+<li>Zielony - skonfigurowane i u&#x17C;ywane przez dane peryferia piny</li>
+</ul>
+<img src="cube_mcu_pins.png" style="width:80%">
+</section><section lineno="155" class="slide " data-line="155" data-h="14" data-v="0">
+<p>&#x17B;eby skonfigurowa&#x107; dany pin, mo&#x17C;emy na niego klikn&#x105;&#x107; i wybra&#x107; jedn&#x105; z wielu funkcjonalno&#x15B;ci do kt&#xF3;rych b&#x119;dzie u&#x17C;ywany. Zazwyczaj nie wystarczy jednak tylko tutaj zaznaczy&#x107; jego trybu, poniewa&#x17C; w wi&#x119;kszo&#x15B;ci przypadk&#xF3;w nale&#x17C;y r&#xF3;wnie&#x17C; skonfigurowa&#x107; ustawienia peryferii (je&#x15B;li pin za&#x15B;wieci si&#x119; na pomara&#x144;czowo).</p>
+<img src="cube_pin_mode.png" style="width:30%">
+</section><section lineno="161" class="slide " data-line="161" data-h="15" data-v="0">
+<p>Kolorystyczne oznaczenia pojawiaj&#x105; si&#x119; r&#xF3;wnie&#x17C; na li&#x15B;cie peryferi&#xF3;w</p>
+<ul>
+<li>Zielone - skonfigurowane poprawnie</li>
+<li>&#x17B;&#xF3;&#x142;ty tr&#xF3;jk&#x105;t - cz&#x119;&#x15B;&#x107; ustawie&#x144; jest niedost&#x119;pna przez konflikty z innymi peryferiami</li>
+<li>Czerwone - peryferium niedost&#x119;pne przez konflikt z innymi peryferiami</li>
+<li>Czarne - peryferium nieskonfigurowane</li>
+<li>Szare - peryferium niedost&#x119;pne przez brak konfiguracji innego peryferium</li>
+</ul>
+<img src="cube_periph.png" style="width:10%">
+</section><section lineno="172" class="slide " data-line="172" data-h="16" data-v="0">
+<h3 class="mume-header" id="kluczowe-peryferia-systemowe">Kluczowe peryferia systemowe</h3>
+
+<p>Kluczowymi peryferiami do kt&#xF3;rych warto zagl&#x105;da&#x107; przy tworzeniu ka&#x17C;dego projektu s&#x105; <strong>RCC</strong> (Reset and Clock Control) i <strong>SYS</strong> (System)</p>
+<p>W RCC mo&#x17C;emy ustawi&#x107; z jakich &#x17A;r&#xF3;de&#x142; zegara ma korzysta&#x107; nas procesor. W SYS mo&#x17C;emy <a href="http://m.in">m.in</a>. zmieni&#x107; tryb debugowania i bazowy zegar &quot;tick&#xF3;w&quot; naszego programu.</p>
+</section><section lineno="180" class="slide " data-line="180" data-h="17" data-v="0">
+<p>W zak&#x142;adce &quot;Clock Configuration&quot; mamy pokazane drzewo zegar&#xF3;w dost&#x119;pnych dla naszego procesora.</p>
+<img src="cube_clock_tree.png" style="width:90%">
+</section><section lineno="186" class="slide " data-line="186" data-h="18" data-v="0">
+<p>Na ten moment nie musimy si&#x119; nim przejmowa&#x107;, automatycznie jest ono ustawione tak &#x17C;eby wszystkie peryferia dzia&#x142;a&#x142;y.<br>
+W niekt&#xF3;rych przypadkach jednak b&#x119;dziemy chcieli zmieni&#x107; cz&#x119;stotliwo&#x15B;ci taktowania procesora lub peryferi&#xF3;w - wystarczy wtedy wpisa&#x107; warto&#x15B;&#x107; w &#x17C;&#x105;dane pole i CubeMX automatycznie przeliczy dzielniki i mno&#x17C;niki tak, &#x17C;eby uzyska&#x107; dany zegar, lub zwr&#xF3;ci b&#x142;&#x105;d je&#x15B;li nie b&#x119;dzie to mo&#x17C;liwe.</p>
+</section><section lineno="191" class="slide " data-line="191" data-h="19" data-v="0">
+<p>STMy posiadaj&#x105; kilka g&#x142;&#xF3;wnych &#x17A;r&#xF3;de&#x142; zegarowych.</p>
+<ul>
+<li><strong>HSI</strong> - High Speed Internal, szybki zegar wewn&#x119;trzny (u&#x17C;ywany do taktowania rdzenia i peryferi&#xF3;w)</li>
+<li><strong>LSI</strong> - Low Speed Internal, wolny zegar wewn&#x119;trzny (u&#x17C;ywany do taktowania RTC)</li>
+<li><strong>HSE</strong> - High Speed External, zewn&#x119;trzny odpowiednik HSI</li>
+<li><strong>LSE</strong> - Low Speed External, zewn&#x119;trzny odpowiednik LSI</li>
+<li><strong>System Clock Mux</strong> - Multiplekser kt&#xF3;ry pozwala na programowy wyb&#xF3;r &#x17A;r&#xF3;d&#x142;a zegara taktuj&#x105;cego procesor</li>
+<li><strong>PLL Source Mux</strong> - P&#x119;tla synchronizacji fazy, pozwalaj&#x105;ca na zwi&#x119;kszanie cz&#x119;stotliwo&#x15B;ci zegara</li>
+</ul>
+<p>CubeMX automatycznie dostosowuje ustawienia PLL i &#x17A;r&#xF3;d&#x142;a je&#x15B;li podamy mu cz&#x119;stotliwo&#x15B;&#x107; zegara w polu z niebiesk&#x105; ramk&#x105;.</p>
+</section><section lineno="204" class="slide " data-line="204" data-h="20" data-v="0">
+<h4 class="mume-header" id="konfiguracja-mikrokontrolera-pod-debugging">Konfiguracja mikrokontrolera pod debugging</h4>
+
+<p>Podstawowy debugging mo&#x17C;emy skonfigurowa&#x107; w zak&#x142;adce System Core -&gt; Sys</p>
+<img src="cube_sys_debug.png" style="width:50%;height:50%;">
+<ul>
+<li>Serial Wire - najprostszy tryb debugowania pozwalaj&#x105;cy na podgl&#x105;d pami&#x119;ci i chodzenie po kodzie krok po kroku</li>
+<li>Trace Asynchronous Sw - bardziej zaawansowany tryb debugowania, niedost&#x119;pny w STM32L0, STM32G0 i STM32F0 (wymagany Cortex-M3 lub mocniejszy), pozwala mi&#x119;dzy innymi na komunikacj&#x119; poprzez debuger z procesorem (wysy&#x142;anie tekstu z procesora do debugera)</li>
+<li><strong>Debugowanie musi by&#x107; skonfigurowane &#x17C;eby mo&#x17C;na by&#x142;o u&#x17C;ywa&#x107; pe&#x142;nych mo&#x17C;liwo&#x15B;ci debugera - je&#x15B;li tego nie zrobimy i spr&#xF3;bujemy debugowa&#x107;, debuger wyrzuci b&#x142;&#x105;d (ale program zostanie uploadowany na procesor)</strong></li>
+</ul>
+</section><section lineno="216" class="slide " data-line="216" data-h="21" data-v="0">
+<h4 class="mume-header" id="ustawienia-projektu">Ustawienia projektu</h4>
+
+<p>W zak&#x142;adce <strong>Project Manager -&gt; Project</strong> mo&#x17C;emy ustawi&#x107;</p>
+<ol>
+<li>Nazw&#x119; projektu</li>
+<li>Lokalizacj&#x119;</li>
+<li>Minimaln&#x105; wielko&#x15B;&#x107; stosu/sterty programu</li>
+</ol>
+<img src="cubeide_project_manager.png" style="width:60%">
+</section><section lineno="227" class="slide " data-line="227" data-h="22" data-v="0">
+<p>Dodatkowo, w podzak&#x142;adce <strong>Code Generation</strong> mo&#x17C;emy kaza&#x107; Cube&apos;owi generowa&#x107; pliki inicjalizacyjne jako para nag&#x142;&#xF3;wek+&#x17A;r&#xF3;d&#x142;o i robi&#x107; backup kodu przy ka&#x17C;dym generowaniu. Polecam zaznaczy&#x107; nast&#x119;puj&#x105;ce opcje:</p>
+<img src="cubeide_code_gen_settings.png" style="width:100%">
+</section><section lineno="233" class="slide " data-line="233" data-h="23" data-v="0">
+<p>Kod automatycznie zostaje wygenerowany przy zapisie. Po ka&#x17C;dym zapisie projektu w widoku CubeMX&apos;a zostaje tak&#x17C;e re-generowany.</p>
+<p>Nale&#x17C;y zwraca&#x107; uwag&#x119; na to, w jakich miejscach piszemy kod - CubeMX w plikach kt&#xF3;rymi zarz&#x105;dza generuje sekcje oznaczone jako komentarze w stylu C, przyk&#x142;adowo</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* USER CODE BEGIN 2 */</span>
+
+<span class="token comment">/* USER CODE END 2 */</span>
+</pre><p>Kod musimy umieszcza&#x107; w tych sekcjach, &#x17C;eby nie zosta&#x142; <strong>permanentnie usuni&#x119;ty</strong> po re-generowaniu kodu.<br>
+Polecam korzysta&#x107; z systemu kontroli wersji (Git).</p>
+</section><section lineno="248" class="slide " data-line="248" data-h="24" data-v="0">
+<h3 class="mume-header" id="struktura-projektu">Struktura projektu</h3>
+
+<p>Wygenerowany projekt powinien wygl&#x105;da&#x107; mniej-wi&#x119;cej w ten spos&#xF3;b:</p>
+<img src="project_structure.png" style="width:20%">
+</section><section lineno="256" class="slide " data-line="256" data-h="25" data-v="0">
+<p>Najbardziej interesuj&#x105; nas pliki</p>
+<ul>
+<li><code>main.c</code> - w tym pliku jest g&#x142;&#xF3;wna funkcja programu, <code>main</code></li>
+<li><code>stm32f4xx_it.c</code> - w tym pliku s&#x105; funkcje przerwa&#x144;</li>
+</ul>
+<p>Opr&#xF3;cz nich, mamy r&#xF3;wnie&#x17C; pliki w kt&#xF3;rych s&#x105; inicjowane i deklarowane uchwyty do obiekt&#xF3;w peryferii oraz niskopoziomowych element&#xF3;w uC. W katalogu <code>Drivers</code> mamy niskopoziomowe sterowniki procesora - CMSIS oraz HAL</p>
+</section><section lineno="265" class="slide " data-line="265" data-h="26" data-v="0">
+<h2 class="mume-header" id="hello-world">Hello, world!</h2>
+
+<p>Zadanie 1: napisa&#x107; program kt&#xF3;ry b&#x119;dzie miga&#x142; diodk&#x105;.</p>
+<p>Funkcje kt&#xF3;re nale&#x17C;y wykorzysta&#x107;: <code>HAL_GPIO_TogglePin</code>, <code>HAL_Delay</code></p>
+<p><code>HAL_GPIO_TogglePin</code> przyjmuje dwa argumenty: port i pin portu kt&#xF3;rego chcemy zmieni&#x107; stan<br>
+<code>HAL_Delay</code> przyjmuje jeden argument: czas w milisekundach</p>
+<p>Przydatne skr&#xF3;ty klawiszowe:</p>
+<ul>
+<li><strong>Ctrl+Shift+F</strong> - Formatowanie kodu</li>
+<li><strong>Ctrl+Tab</strong> - Prze&#x142;&#x105;cz mi&#x119;dzy nag&#x142;&#xF3;wkiem a plikiem &#x17A;r&#xF3;d&#x142;owym</li>
+<li><strong>Ctrl+Space</strong> - Autopodpowiadanie</li>
+</ul>
+</section><section lineno="281" class="slide " data-line="281" data-h="27" data-v="0">
+<h3 class="mume-header" id="solucja-zadanie-1">Solucja: zadanie 1</h3>
+
+<pre data-role="codeBlock" data-info="c" class="language-c">	<span class="token comment">/* Infinite loop */</span>
+	<span class="token comment">/* USER CODE BEGIN WHILE */</span>
+	<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LD2_GPIO_Port<span class="token punctuation">,</span> LD2_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">HAL_Delay</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">/* USER CODE END WHILE */</span>
+
+		<span class="token comment">/* USER CODE BEGIN 3 */</span>
+	<span class="token punctuation">}</span>
+	<span class="token comment">/* USER CODE END 3 *
+</span></pre></section><section lineno="298" class="slide " data-line="298" data-h="28" data-v="0">
+<h2 class="mume-header" id="podstawy-debugowania">Podstawy debugowania</h2>
+
+<p>STM32CubeIDE umo&#x17C;liwia upload i debugowanie programu na mikrokontrolerze.</p>
+<p>&#x17B;eby uruchomi&#x107; program i rozpocza&#x107; debugging, nale&#x17C;y wcisn&#x105;&#x107; <strong>F11</strong> lub przycisk z &quot;robaczkiem&quot; na g&#xF3;rnym pasku. Mo&#x17C;na uprzednio zbudowa&#x107; program (<strong>Ctrl+B</strong> lub &quot;m&#x142;otek&quot; na g&#xF3;rnym pasku) &#x17C;eby sprawdzi&#x107; czy nie ma w nim b&#x142;&#x119;d&#xF3;w.</p>
+<img src="cubeide_buttons.png" style="width:80%">
+</section><section lineno="308" class="slide " data-line="308" data-h="29" data-v="0">
+<p>Po klikni&#x119;ciu <em>Debug</em> mo&#x17C;e nam si&#x119; pokaza&#x107; okienko z wyborem trybu debugowania. Wybieramy <strong>STM32 Cortex-M C/C++ Application</strong></p>
+<img src="cubeide_debug_as.png" style="width:50%">
+<p>Nast&#x119;pnie zostanie wy&#x15B;wietlone okienko z ustawieniami debugowania - nic tutaj nie zmieniamy, klikamy <strong>OK</strong></p>
+</section><section lineno="316" class="slide " data-line="316" data-h="30" data-v="0">
+<p>CubeIDE powinno przej&#x15B;&#x107; do widoku debugowania, kt&#xF3;ry prezentuje si&#x119; nast&#x119;puj&#x105;co:</p>
+<img src="cubeide_debug_view.png" style="width:80%">
+</section><section lineno="322" class="slide " data-line="322" data-h="31" data-v="0">
+<ol>
+<li>Widok w&#x105;tk&#xF3;w procesora oraz stosu wywo&#x142;a&#x144; funkcji</li>
+<li>Pasek z narz&#x119;dziami</li>
+<li>Widok kodu</li>
+<li>Toolbar z tabami do debugowania - m. in. widok zmiennych w aktualnym zakresie, breakpoint&#xF3;w, rejestr&#xF3;w i peryferi&#xF3;w</li>
+<li>Konsola i logi debugowania</li>
+</ol>
+</section><section lineno="330" class="slide " data-line="330" data-h="32" data-v="0">
+<h3 class="mume-header" id="sterowanie-debugowaniem">Sterowanie debugowaniem</h3>
+
+<p>Domy&#x15B;lnie, program automatycznie zatrzyma si&#x119; na pierwszej linijce funkcji <code>main</code>.<br>
+W pasku na g&#xF3;rze mamy kilka przycisk&#xF3;w do sterowania przebiegiem debugowania.</p>
+<img src="cubeide_debug_buttons.png" style="width:60%">
+</section><section lineno="339" class="slide " data-line="339" data-h="33" data-v="0">
+<p>Od lewej:</p>
+<ul>
+<li>Restartuj chip</li>
+<li>Pomi&#x144; wszystkie breakpointy (<strong>Ctrl+Alt+B</strong>)</li>
+<li>Pe&#x142;ny restart procesora i debugowania</li>
+<li>Kontynuuj do nast&#x119;pnego breakpointa (<strong>F8</strong>)</li>
+<li>Zatrzymaj program</li>
+<li>Zako&#x144;cz sesj&#x119; debugowania i zrestartuj procesor (<strong>Ctrl+F2</strong>)</li>
+<li>Roz&#x142;&#x105;cz si&#x119; z debugerem</li>
+<li>Wejd&#x17A; do linijki na kt&#xF3;rej procesor stoi (<strong>F5</strong>)</li>
+<li>Przejd&#x17A; nad linijk&#x105; na kt&#xF3;rej procesor stoi (<strong>F6</strong>)</li>
+<li>Wr&#xF3;&#x107; do wy&#x17C;szego zakresu (funkcji kt&#xF3;ra wywo&#x142;a&#x142;a funkcj&#x119; w kt&#xF3;rej procesor teraz jest) (<strong>F7</strong>)</li>
+</ul>
+<p>&#x17B;eby rozpocz&#x105;&#x107; dzia&#x142;anie programu, klikamy &quot;Kontynuuj do nast&#x119;pnego breakpointa&quot; (<strong>F8</strong>)</p>
+</section><section lineno="354" class="slide " data-line="354" data-h="34" data-v="0">
+<h3 class="mume-header" id="komunikacja-poprzez-debugger">Komunikacja poprzez debugger</h3>
+
+<p>Mikrokontrolery ARM z serii Cortex-M3, Cortex-M4 i Cortex-M7 posiadaj&#x105; modu&#x142; ITM (Instrumented Trace Macrocell), kt&#xF3;ry razem z SWO (Serial Wire Output) pozwala na tracing i komunikacj&#x119; z mikrokontrolerem poprzez debuger. ITM posiada 32 kana&#x142;y, z czego dwa s&#x105; zarezerwowane dla CMSIS: 0 do wysy&#x142;ania danych, 31 dla RTOSa.</p>
+<p>My b&#x119;dziemy wykorzystywa&#x107; kana&#x142; 0 jako nasze standardowe wyj&#x15B;cie, co pozwoli nam wygodnie u&#x17C;ywa&#x107; funkcji <code>printf</code> do wy&#x15B;wietlania komunikat&#xF3;w podczas debugowania.</p>
+</section><section lineno="362" class="slide " data-line="362" data-h="35" data-v="0">
+<p>&#x17B;eby przechwytywa&#x107; dane z ITMa w naszym IDE, nale&#x17C;y w&#x142;&#x105;czy&#x107; SWV (Serial Wire Viewer) w ustawieniach debugowania.</p>
+<p>Wchodzimy w &quot;Debug -&gt; Debug Configurations&quot;, nast&#x119;pnie wybieramy nasz&#x105; konfiguracj&#x119; i przechodzimy do zak&#x142;adki &quot;Debugger&quot;. Zaznaczamy tam checkboxa &quot;Enable&quot; w sekcji &quot;Serial Wire Viewer&quot; i poprawiamy &quot;Core Clock&quot; na zegar naszego mikrokontrolera (HCLK) (mo&#x17C;na sprawdzi&#x107; go w zak&#x142;adce &quot;Clock Configuration&quot; w Device Configuration Toolu - je&#x15B;li go zamkn&#x119;li&#x15B;my, trzeba dwa razy klikn&#x105;&#x107; na plik *.ioc w drzewku projektu)</p>
+<img src="ide_debug_config.png" style="width: 50%">
+</section><section lineno="370" class="slide " data-line="370" data-h="36" data-v="0">
+<img src="ide_swv_enabled.png" style="width:60%">
+</section><section lineno="374" class="slide " data-line="374" data-h="37" data-v="0">
+<p>Nale&#x17C;y r&#xF3;wnie&#x17C; upewni&#x107; si&#x119;, &#x17C;e w Device Configuration Toolu wybrali&#x15B;my tryb debugowania &quot;Trace Asynchronous Sw&quot; - mo&#x17C;na to zmieni&#x107; w zak&#x142;adce &quot;System Code -&gt; SYS -&gt; Debug&quot;, domy&#x15B;lnie jest &quot;Serial Wire&quot;</p>
+<img src="ide_debug_mode.png" style="width: 60%">
+</section><section lineno="380" class="slide " data-line="380" data-h="38" data-v="0">
+<p>Po w&#x142;&#x105;czeniu SWV, mo&#x17C;emy zobaczy&#x107; czy odbieramy dane z mikrokontrolera.</p>
+<p>W g&#x142;&#xF3;wnej p&#x119;tli, po zmianie stanu diody nale&#x17C;y wstawi&#x107; linijk&#x119;</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token function">ITM_SendChar</span><span class="token punctuation">(</span><span class="token string">&apos;x&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>i rozpocz&#x105;&#x107; debugowanie</p>
+</section><section lineno="391" class="slide " data-line="391" data-h="39" data-v="0">
+<p>Przed klikni&#x119;ciem &quot;Continue&quot; nale&#x17C;y stworzy&#x107; okienko z konsol&#x105; SWV.<br>
+Na pasku na g&#xF3;rze wchodzimy w menu &quot;Window&quot; -&gt; &quot;Show View&quot; -&gt; &quot;SWV&quot; -&gt; &quot;SWV ITM Data Console&quot;.<br>
+Nast&#x119;pnie ustawiamy sobie stworzone menu w wygodnej dla nas pozycji.</p>
+<img src="ide_enable_itm_view.png" style="width: 60%">
+</section><section lineno="399" class="slide " data-line="399" data-h="40" data-v="0">
+<p>Po ustawieniu okna, klikamy &quot;Configure trace&quot; i zaznaczamy port 0. W &quot;Data Console&quot; powinna si&#x119; pojawi&#x107; nowa karta z opisem &quot;Port 0&quot;. Klikamy &quot;Start trace&quot; (czerwone k&#xF3;&#x142;ko) i mo&#x17C;emy uruchomi&#x107; program - w karcie powinny zacz&#x105;&#x107; pojawia&#x107; si&#x119; znaki <em>x</em></p>
+<img src="itm_config_trace.png" style="width: 50%">
+</section><section lineno="405" class="slide " data-line="405" data-h="41" data-v="0">
+<img src="itm_working.png" style="width: 70%">
+</section><section lineno="409" class="slide " data-line="409" data-h="42" data-v="0">
+<h4 class="mume-header" id="error-handling">Error handling</h4>
+
+<p>Mikrokontrolery STM32 maj&#x105; wbudowan&#x105; obs&#x142;ug&#x119; krytycznych b&#x142;&#x119;d&#xF3;w. W momencie w kt&#xF3;rym procesor wejdzie w b&#x142;&#x119;dny stan (na przyk&#x142;ad przez odwo&#x142;anie do b&#x142;&#x119;dnego wska&#x17A;nika lub krytyczny b&#x142;&#x105;d peryferi&#xF3;w), procesor automatycznie skoczy do jednej z poni&#x17C;szych funkcji (znajduj&#x105; si&#x119; one w pliku <code>stm32X_it.c</code>, gdzie <code>X</code> to seria procesora, na przyk&#x142;ad <code>f4xx</code> dla STM32F4):</p>
+<ul>
+<li><code>HardFault_Handler</code> - krytyczny b&#x142;&#x105;d kt&#xF3;ry wyst&#x119;puje w momencie w kt&#xF3;rym pojawi si&#x119; nieobs&#x142;u&#x17C;ony (lub niemo&#x17C;liwy do obs&#x142;u&#x17C;enia) stan programu.</li>
+<li><code>MemManage_Handler</code> - wywo&#x142;uje si&#x119; w momencie w kt&#xF3;rym program pr&#xF3;buje dosta&#x107; si&#x119; do chronionej przez MPU (<em>Memory Protection Unit</em>) pami&#x119;ci</li>
+<li><code>BusFault_Handler</code> - wywo&#x142;uje si&#x119; w momencie wyst&#x105;pienia krytycznego b&#x142;&#x119;du na szynie danych</li>
+<li><code>UsageFault_Handler</code> - wywo&#x142;uje si&#x119; w momencie nieprawid&#x142;owego obs&#x142;u&#x17C;enia procesora (na przyk&#x142;ad przy pr&#xF3;bie wykonania niew&#x142;a&#x15B;ciwej instrukcji, lub pr&#xF3;bie niepoprawnego dost&#x119;pu do pami&#x119;ci, albo dzielenia przez zero je&#x15B;li procesor jest odpowiednio skonfigurowany)</li>
+</ul>
+<p>Program domy&#x15B;lnie zawiesi si&#x119; na tym handlerze, &#x17C;eby programista m&#xF3;g&#x142; sprawdzi&#x107; stan pami&#x119;ci i rejestr&#xF3;w.</p>
+</section><section lineno="422" class="slide " data-line="422" data-h="43" data-v="0">
+<h3 class="mume-header" id="bonus-przekierowanie-printf-na-swv">Bonus: Przekierowanie <code>printf</code> na SWV</h3>
+
+<p>Istnieje bardzo prosta metoda na u&#x17C;ywanie <code>printf</code>&apos;a do debugowania naszego kodu poprzez SWV.<br>
+Wystarczy nadpisa&#x107; funkcj&#x119; <code>__io_putchar</code> z kt&#xF3;rej korzysta <code>printf</code> do wy&#x15B;wietlania tekstu w nast&#x119;puj&#x105;cy spos&#xF3;b:</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword">int</span> <span class="token function">__io_putchar</span><span class="token punctuation">(</span><span class="token keyword">int</span> c<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token string">&apos;\n&apos;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Obs&#x142;uga znaku nowej linii, &#x17C;eby nie trzeba by&#x142;o za ka&#x17C;dym razem u&#x17C;ywa&#x107; \r\n</span>
+		<span class="token function">ITM_SendChar</span><span class="token punctuation">(</span><span class="token string">&apos;\r&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token function">ITM_SendChar</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">return</span> c<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Funkcja <code>ITM_SendChar</code> wysy&#x142;a pojedynczy znak po SWV. Je&#x15B;li poprawnie skonfigurowali&#x15B;my debugging, tekst powinien wy&#x15B;wietli&#x107; si&#x119; w konsoli SWV na porcie 0.</p>
+<p><em>Czasami standardowy <code>printf</code> potrafi crashowa&#x107; procesor. W takim przypadku, polecam skorzysta&#x107; z alternatywnej implementacji, na przyk&#x142;ad <a href="https://github.com/mpaland/printf">https://github.com/mpaland/printf</a> (w tej konkretnej, nale&#x17C;y nadpisa&#x107; funkcj&#x119; <code>void _putchar(char character)</code>)</em></p>
+</section><section lineno="445" class="slide " data-line="445" data-h="44" data-v="0">
+<h2 class="mume-header" id="dodatkowe-materia%C5%82y">Dodatkowe materia&#x142;y</h2>
+
+<p><strong>Mastering STM32</strong> (&#x15B;wietna ksi&#x105;&#x17C;ka opisuj&#x105;ca w ludzki spos&#xF3;b dzia&#x142;anie STMa oraz obs&#x142;ug&#x119; peryferi&#xF3;w)<br>
+<a href="https://www.carminenoviello.com/mastering-stm32">https://www.carminenoviello.com/mastering-stm32</a></p>
+<p><strong>Manual programowania procesora</strong> (zaawansowane i szczeg&#xF3;&#x142;owe &#x17A;r&#xF3;d&#x142;o informacji na temat programowania STM&#xF3;w opartych o dan&#x105; seri&#x119; Cortex&#xF3;w):<br>
+PM0214 - Programming Manual - STM32 Cortex-M4 and MPUs programming manual<br>
+<a href="https://www.st.com/content/ccc/resource/technical/document/programming_manual/6c/3a/cb/e7/e4/ea/44/9b/DM00046982.pdf/files/DM00046982.pdf/jcr:content/translations/en.DM00046982.pdf">https://www.st.com/content/ccc/resource/technical/document/programming_manual/6c/3a/cb/e7/e4/ea/44/9b/DM00046982.pdf/files/DM00046982.pdf/jcr:content/translations/en.DM00046982.pdf</a></p>
+<p><strong><a href="https://www.google.com/">https://www.google.com/</a></strong> - w szukajk&#x119; wpisujemy <code>site:st.com filetype:pdf XXX</code>, gdzie <code>XXX</code> to rzecz kt&#xF3;ra nas interesuje. Na stronie ST jest mn&#xF3;stwo materia&#x142;&#xF3;w szkoleniowych w formie dokument&#xF3;w i prezentacji kt&#xF3;re wyja&#x15B;niaj&#x105; mniej lub bardziej szczeg&#xF3;&#x142;owo dzia&#x142;anie peryferi&#xF3;w STM32.<br>
+Je&#x15B;li nie znajdziemy wynik&#xF3;w kt&#xF3;re nas interesuj&#x105;, to pomijamy <code>site:st.com</code> (i/lub <code>filetype:pdf</code>).</p>
+</section>
+      </div>
+    </div>
+    
+      </div>
+      
+      
+    
+    
+      <script>
+        Reveal.initialize({"margin":0.1,"width":1920,"height":1080,"controls":true,"progress":true,"slideNumber":true,"keyboard":true,"overview":true,"dependencies":[]})
+      </script>
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
