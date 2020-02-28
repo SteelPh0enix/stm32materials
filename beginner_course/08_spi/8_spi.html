@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>7_timers</title>
+      <title>8_spi</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -1898,107 +1898,72 @@ p {
 <h1 class="mume-header" id="kurs-stm32">Kurs STM32</h1>
 
 <p><em>Wojciech Olech</em></p>
-<h2 class="mume-header" id="cz%C4%99%C5%9B%C4%87-vii-timery">Cz&#x119;&#x15B;&#x107; VII: Timery</h2>
+<h2 class="mume-header" id="cz%C4%99%C5%9B%C4%87-viii-spi">Cz&#x119;&#x15B;&#x107; VIII: SPI</h2>
 
 </section><section lineno="19" class="slide " data-line="19" data-h="1" data-v="0">
-<p>Timery w mikrokontrolerach maj&#x105; dwie podstawowe funkcje: stworzenie podstawy czasowej (czyli liczenie czasu), oraz generowanie sygna&#x142;&#xF3;w PWM.</p>
-<p>Tworzenie podstawy czasowej jest u&#x17C;yteczne kiedy chcemy wykonywa&#x107; pewn&#x105; czynno&#x15B;&#x107; z okre&#x15B;lonym interwa&#x142;em, chcemy zmierzy&#x107; czas, lub chcemy taktowa&#x107; peryferia/<em>system operacyjny</em> (RTOS) z dan&#x105; cz&#x119;stotliwo&#x15B;ci&#x105;.</p>
-<p>Sygna&#x142; PWM jest bardzo u&#x17C;yteczny do sterowania elementami z okre&#x15B;lon&#x105; moc&#x105; - najcz&#x119;&#x15B;ciej stosowany jest do sterowania silnikami elektrycznymi.</p>
+<h2 class="mume-header" id="spi-wprowadzenie">SPI - wprowadzenie</h2>
+
+<p>SPI (<em>Serial Peripheral Interface</em>) jest szybk&#x105; magistral&#x105; danych, bardzo popularnie wykorzystywan&#x105; jako interfejs do transmisji du&#x17C;ych ilo&#x15B;ci danych z du&#x17C;&#x105; szybko&#x15B;ci&#x105;.</p>
+<p>Popularnie wykorzystywana jako g&#x142;&#xF3;wny interfejs dla wy&#x15B;wietlaczy, przetwornik&#xF3;w ADC i kart pami&#x119;ci</p>
 </section><section lineno="27" class="slide " data-line="27" data-h="2" data-v="0">
-<h2 class="mume-header" id="rodzaje-timer%C3%B3w">Rodzaje timer&#xF3;w</h2>
+<h3 class="mume-header" id="spi-spos%C3%B3b-dzia%C5%82ania">SPI - spos&#xF3;b dzia&#x142;ania</h3>
 
-<p>W mikrokontrolerach STM32 istnieje kilka rodzaj&#xF3;w timer&#xF3;w:</p>
+<p>SPI jest magistral&#x105; master-slave. Oznacza to, &#x17C;e master jest urz&#x105;dzeniem nadrz&#x119;dym kt&#xF3;re mo&#x17C;e inicjowa&#x107; transmisj&#x119;, a slave jest urz&#x105;dzeniem podrz&#x119;dnym kt&#xF3;re pracuje pod opiek&#x105; mastera.</p>
+<p>SPI jest magistral&#x105; synchroniczn&#x105; - oznacza to, &#x17C;e jedn&#x105; z linii pomi&#x119;dzy dwoma urz&#x105;dzenami jest linia zegarowa, taktowana przez mastera.</p>
+<p>Do dzia&#x142;ania wymaga co najmniej czterech linii, oznaczanych jako:</p>
 <ul>
-<li><strong>Prosty timer (<em>Basic timer</em>)</strong>: zazwyczaj 16-bitowy, posiada jedynie funkcjonalno&#x15B;&#x107; tworzenia podstawy czasu (co umo&#x17C;liwia taktowanie innych peryferi&#xF3;w lub triggerowanie przerwa&#x144; z okre&#x15B;lon&#x105; cz&#x119;stotliwo&#x15B;ci&#x105;). Nie posiada &#x17C;adnych pin&#xF3;w I/O.</li>
-<li><strong>Timer og&#xF3;lnego przeznaczenia (<em>General purpose timer</em>)</strong>: 16 lub 32-bitowy timer kt&#xF3;ry posiada funkcjonalno&#x15B;&#x107; prostego timera oraz posiada wyprowadzenia I/O kt&#xF3;re umo&#x17C;liwiaj&#x105; mu m. in. generowanie sygna&#x142;u PWM, pomiar cz&#x119;stotliwo&#x15B;ci zewn&#x119;trznego sygna&#x142;u, obs&#x142;ug&#x119; enkoder&#xF3;w i czujnik&#xF3;w halla.</li>
-<li><strong>Zaawansowany timer (<em>Advanced timer</em>)</strong>: Posiada funkcjonalno&#x15B;&#x107; timer&#xF3;w og&#xF3;lnego przeznaczenia ale dodatkowo zaawansowane feature&apos;y, takie jak generowanie trzech komplementarnych sygna&#x142;&#xF3;w z wstawianiem czasu przestoju (<em>dead time</em>).</li>
-<li><strong>Timer wysokiej rozdzielczo&#x15B;ci (<em>High resolution timer</em>)</strong>: Specjalny timer stosowany w serii STM32F3 kt&#xF3;ry s&#x142;u&#x17C;y stricte do sterowania silnikami.</li>
+<li><strong>SCLK</strong> lub <strong>CLK</strong> - <em>Serial Clock</em> lub <em>Clock</em> - linia zegarowa, taktowana przez mastera</li>
+<li><strong>MOSI</strong> - <em>Master Output, Slave Input</em> - linia danych, po kt&#xF3;rej master wysy&#x142;a, a slave odbiera dane</li>
+<li><strong>MISO</strong> - <em>Master Input, Slave Output</em> - linia danych, po kt&#xF3;rej slave wysy&#x142;a, a master odbiera dane</li>
+<li><strong>SS</strong> lub <strong>CS</strong> - <em>Slave Select</em> lub <em>Chip Select</em> - pin kt&#xF3;ry okre&#x15B;la z kt&#xF3;rym urz&#x105;dzeniem si&#x119; komunikujemy.</li>
 </ul>
-</section><section lineno="38" class="slide " data-line="38" data-h="3" data-v="0">
+<p>Linia zegarowa i linie danych mog&#x105; by&#x107; wsp&#xF3;&#x142;dzielone mi&#x119;dzy wszystkimi slave&apos;ami i masterem. Ka&#x17C;dy slave <strong>musi</strong> mie&#x107; w&#x142;asn&#x105;, osobist&#x105; lini&#x119; <strong>CS</strong>. Oznacza to &#x17C;e do pod&#x142;&#x105;czenia <em>n</em> urz&#x105;dze&#x144; do mastera, potrzebujemy <em>n + 3</em> linii, z czego <strong>CS</strong> cz&#x119;sto jest zwyk&#x142;ym pinem GPIO.</p>
+</section><section lineno="43" class="slide " data-line="43" data-h="3" data-v="0">
+<h3 class="mume-header" id="spi-timing-diagram">SPI - timing diagram</h3>
+
+<img src="spi_timings.jfif" style="width:80%">
+<p>Ramka SPI jest zazwyczaj 8-bitowa. To, co dok&#x142;adnie oznaczaj&#x105; bity w ramkach zale&#x17C;ne jest od specyfikacji protoko&#x142;u komunikacyjnego mi&#x119;dzy urz&#x105;dzeniami.</p>
+</section><section lineno="51" class="slide " data-line="51" data-h="4" data-v="0">
+<h3 class="mume-header" id="spi-opcje-konfiguracji">SPI - opcje konfiguracji</h3>
+
+<p>Typowe opcje kt&#xF3;re nale&#x17C;y skonfigurowa&#x107; w SPI, i kt&#xF3;re musz&#x105; by&#x107; takie same dla mastera i wszystkich slave&apos;&#xF3;w to:</p>
 <ul>
-<li><strong>Timer niskiej mocy (<em>Low-power timer</em>)</strong>: Timer stworzony do zastosowa&#x144; low-power, mo&#x17C;e pracowa&#x107; w prawie ka&#x17C;dym trybie pracy/snu procesora, a nawet bez wewn&#x119;trznego &#x17A;r&#xF3;d&#x142;a zegarowego (co pozwala mu pracowa&#x107; na przyk&#x142;ad jako licznik impuls&#xF3;w). Tego rodzaju timery maj&#x105; mo&#x17C;liwo&#x15B;&#x107; wybudzania mikrokontrolera ze snu.</li>
-<li><strong>Zegar czasu rzeczywistego (<em>Real-Time Clock</em>)</strong>: Nie jest to stricte timer, ale znajduje si&#x119; w tej samej kategorii. Taktowany specjalnym oscylatorem (optymalnie o cz&#x119;stotliwo&#x15B;ci 32.768kHz) pozwala na dok&#x142;adny d&#x142;ugotrwa&#x142;y pomiar czasu rzeczywistego, bez dryftu czasu kt&#xF3;ry wyst&#x119;puje w zegarach taktowanych innymi oscylatorami.</li>
+<li>Szybko&#x15B;&#x107; zegara - wi&#x119;ksza szybko&#x15B;&#x107; zegara = wi&#x119;ksza przepustowo&#x15B;&#x107; magistrali</li>
+<li>Polaryzacja zegara - je&#x15B;li jest <em>niska</em>, to zegar domy&#x15B;lnie ma stan niski (kt&#xF3;ry utrzymuje si&#x119; kiedy linia nie pracuje), a podczas pracy jest cyklicznie podci&#x105;gany do stanu wysokiego. Je&#x15B;li jest <em>wysoka</em>, to zegar domy&#x15B;lnie ma stan wysoki, a podczas pracy jest cyklicznie podci&#x105;gany do stanu niskiego.</li>
+<li>Faza zegara - je&#x15B;li jest ustawiona na 1 zbocze (<em>1 Edge</em>), to oznacza &#x17C;e odczyt/zmiana bitu nast&#x119;puje na pierwszym zboczu zegara (przy polaryzacji niskiej - zbocze narastaj&#x105;ce, przy polaryzacji wysokiej - zbocze opadaj&#x105;ce). Je&#x15B;li jest ustawiona na 2 zbocze, nast&#x119;puje przy drugim zboczu zegara (polaryzacja niska - zbocze opadaj&#x105;ce, polaryzacja wysoka - zbocze narastaj&#x105;ce).</li>
 </ul>
-</section><section lineno="43" class="slide " data-line="43" data-h="4" data-v="0">
-<h2 class="mume-header" id="konfiguracja-timera-licznik-czasu">Konfiguracja timera - licznik czasu</h2>
+</section><section lineno="61" class="slide " data-line="61" data-h="5" data-v="0">
+<p>CPOL - polaryzacja zegara<br>
+CPHA - faza zegara</p>
+<img src="spi_pol.png" style="width:80%">
+<p><em>&#x179;r&#xF3;d&#x142;o: Mastering STM32</em></p>
+</section><section lineno="70" class="slide " data-line="70" data-h="6" data-v="0">
+<h2 class="mume-header" id="tryby-pracy-spi-w-mikrokontrolerach-stm32">Tryby pracy SPI w mikrokontrolerach STM32</h2>
 
-<p>&#x17B;eby uruchomi&#x107; timer, nale&#x17C;y w Device Configuration Toolu wybra&#x107; interesuj&#x105;cy nas timer, a nast&#x119;pnie go skonfiugurowa&#x107; w interesuj&#x105;cym nas trybie. Na start, skonfigurujemy timer tak &#x17C;eby wywo&#x142;ywa&#x142; co kilka sekund przerwanie kt&#xF3;re b&#x119;dzie miga&#x142;o diod&#x105; i wysy&#x142;a&#x142;o wiadomo&#x15B;&#x107; po serialu.</p>
-<p>Dla naszego zastosowania mo&#x17C;emy wybra&#x107; dowolny timer. Wybierzmy TIM10 poniewa&#x17C; jest to prosty timer, nie potrzebujemy niczego lepszego.</p>
-<p>Posiada on kilka p&#xF3;l kt&#xF3;re musimy skonfigurowa&#x107;.</p>
-</section><section lineno="53" class="slide " data-line="53" data-h="5" data-v="0">
-<p>Dwa podstawowe pola jakie nas interesuj&#x105; to</p>
+<p>SPI mo&#x17C;e pracowa&#x107; w kilku trybach, kt&#xF3;re r&#xF3;&#x17C;ni&#x105; si&#x119; mo&#x17C;liwo&#x15B;ciami komunikacji i ilo&#x15B;ci&#x105; linii.</p>
+<p>Standardowym trybem jest full-duplex, w kt&#xF3;rym wymagane s&#x105; 4 linie i transmisja mo&#x17C;e odbywa&#x107; si&#x119; jednocze&#x15B;nie w obie strony.</p>
+<p>Opr&#xF3;cz tego, istnieje tryb half-duplex kt&#xF3;ry pozwala na komunikacj&#x119; z u&#x17C;yciem 3 linii (zegar, SS i jedna linia danych) w obie strony, ale nie ma mo&#x17C;liwo&#x15B;ci wysy&#x142;ania i odbierania danych po obu stronach w tym samym czasie.</p>
+<p>Najbardziej ograniczonymi trybami s&#x105; transmit/receive only, poniewa&#x17C; umo&#x17C;liwiaj&#x105; tylko wysy&#x142;anie/odbi&#xF3;r danych po 3 liniach.</p>
+</section><section lineno="82" class="slide " data-line="82" data-h="7" data-v="0">
+<h3 class="mume-header" id="hardware-nss">Hardware NSS</h3>
+
+<p>STMy wspieraj&#x105; tryb <em>hardware NSS</em>. NSS to pin chip select, mo&#x17C;na skonfigurowa&#x107; go w trybie hardware co spowoduje &#x17C;e automatycznie podczas komunikacji b&#x119;dzie on ustawiany w odpowiedni tryb. Uniemo&#x17C;liwi to jednak u&#x17C;ywanie pinu chip select jako dowolnego pinu GPIO, wi&#x119;c nie nadaje si&#x119; w sytuacjach gdzie hardware&apos;owy pin NSS jest ju&#x17C; zaj&#x119;ty.</p>
+<p>Posiada on dwa tryby: <em>input</em> i <em>output</em>. W trybie <em>output</em>, nasze urz&#x105;dzenie w trybie master mo&#x17C;e dzia&#x142;a&#x107; tylko z jednym slavem. W trybie input, NSS dzia&#x142;a jako standardowy chip select kiedy wybieramy nasze urz&#x105;dzenie jako slave, ale &#x17C;eby pracowa&#x107; w trybie master musimy r&#x119;cznie wysterowa&#x107; ten pin, wi&#x119;c nie blokuje nam opcji multi-mastera (wielu slave&apos;&#xF3;w pod&#x142;&#x105;czonych do naszego mastera)</p>
+</section><section lineno="90" class="slide " data-line="90" data-h="8" data-v="0">
+<h3 class="mume-header" id="komunikacja-z-u%C5%BCyciem-spi">Komunikacja z u&#x17C;yciem SPI</h3>
+
+<p>SPI, podobnie jak UART, pozwala na trzy tryby pracy: polling, na przerwaniach i z u&#x17C;yciem DMA. Dzia&#x142;aj&#x105; one tak samo, jak w przypadku UARTa.</p>
+<p>Istniej&#x105; trzy funkcje ka&#x17C;dego typu jakie mo&#x17C;emy wykorzysta&#x107; do komunikacji:</p>
 <ul>
-<li><strong>Prescaler</strong> - preskaler dzieli nam zegar kt&#xF3;rym taktujemy timer przez jego warto&#x15B;&#x107;. Pozwala on uzyska&#x107; dowoln&#x105; cz&#x119;stotliwo&#x15B;&#x107; taktowania zegara.</li>
-<li><strong>Counter Period</strong> - Okre&#x15B;la on maksymaln&#x105; warto&#x15B;&#x107; licznika przy kt&#xF3;rej zaczyna on liczy&#x107; od zera i przy kt&#xF3;rej wywo&#x142;a si&#x119; <em>update event</em>.</li>
+<li><strong>HAL_SPI_Transmit</strong> - wysy&#x142;anie danych</li>
+<li><strong>HAL_SPI_Receive</strong> - odbi&#xF3;r danych</li>
+<li><strong>HAL_SPI_TransmitReceive</strong> - jednoczesny odbi&#xF3;r i wysy&#x142;anie danych, mo&#x17C;liwy tylko w trybie full-duplex</li>
 </ul>
-<p>&#x17B;eby poprawnie obliczy&#x107; cz&#x119;stotliwo&#x15B;&#x107; wywo&#x142;ania <em>update eventu</em>, czyli przerwania licznika, musimy dodatkowo wiedzie&#x107; z jak&#x105; cz&#x119;stotliwo&#x15B;ci&#x105; jest taktowany nasz timer. Zegary s&#x105; taktowane za pomoc&#x105; zegara APB do kt&#xF3;rego s&#x105; pod&#x142;&#x105;czone, w widoku konfiguracji zegar&#xF3;w s&#x105; to cz&#x119;stotliwo&#x15B;ci z p&#xF3;l &quot;APB1 timer clocks&quot; i &quot;APB2 timer clocks&quot;. Domy&#x15B;lnie powinny by&#x107; one taktowane cz&#x119;stotliwo&#x15B;ci&#x105; rdzenia, czyli 84MHz dla STM32F401.</p>
-</section><section lineno="61" class="slide " data-line="61" data-h="6" data-v="0">
-<p>&#x17B;eby policzy&#x107; cz&#x119;stotliwo&#x15B;&#x107; wywo&#x142;ywania <em>update eventu</em>, nale&#x17C;y skorzysta&#x107; z tego wzoru:</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mtext>UpdateEvent</mtext></msub><mo stretchy="false">[</mo><mtext>Hz</mtext><mo stretchy="false">]</mo><mo>=</mo><mfrac><mtext>TimerClock</mtext><mrow><mo stretchy="false">(</mo><mtext>Prescaler</mtext><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mtext>Period</mtext><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">f_{\text{UpdateEvent}} [\text{Hz}] = \frac{\text{TimerClock}}{(\text{Prescaler} + 1)(\text{Period} + 1)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">UpdateEvent</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord text"><span class="mord">Hz</span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.30744em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord text"><span class="mord">Prescaler</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord text"><span class="mord">Period</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">TimerClock</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>Za&#x142;&#xF3;&#x17C;my &#x17C;e chcemy miga&#x107; diod&#x105; co sekund&#x119;. Nasz zegar timera wynosi 84 000 000Hz, musimy wi&#x119;c dobra&#x107; odpowiedni preskaler i okres zegara.</p>
-<p>Jedna sekunda to 1Hz. Nasz preskaler i okres s&#x105; warto&#x15B;ciami 16-bitowymi, wi&#x119;c maksymalna warto&#x15B;&#x107; to 65535.<br>
-&#x17B;eby otrzyma&#x107; jak&#x105;&#x15B; <em>&#x142;adn&#x105;</em> warto&#x15B;&#x107; zegara dla kt&#xF3;rej &#x142;atwo b&#x119;dzie ustawi&#x107; okres, mo&#x17C;emy podzieli&#x107; g&#x142;&#xF3;wny zegar przez 42000, co da nam 2000Hz. Chc&#x105;c otrzyma&#x107; 1Hz, musimy 2000Hz podzieli&#x107; przez 2000. Te dwie warto&#x15B;ci (minus jeden) to nasz preskaler i okres. Finalnie dostajemy wz&#xF3;r</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mtext>UpdateEvent</mtext></msub><mo stretchy="false">[</mo><mtext>Hz</mtext><mo stretchy="false">]</mo><mo>=</mo><mfrac><mn>84000000</mn><mrow><mo stretchy="false">(</mo><mn>41999</mn><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>1999</mn><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mfrac><mo>=</mo><mn>1</mn><mtext>Hz</mtext></mrow><annotation encoding="application/x-tex">f_{\text{UpdateEvent}} [\text{Hz}] = \frac{84000000}{(41999 + 1)(1999 + 1)} = 1\text{Hz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">UpdateEvent</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord text"><span class="mord">Hz</span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.25744em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord">4</span><span class="mord">1</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord">1</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span><span class="mord">4</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord text"><span class="mord">Hz</span></span></span></span></span></span></p>
-</section><section lineno="74" class="slide " data-line="74" data-h="7" data-v="0">
-<h2 class="mume-header" id="obs%C5%82uga-timera-w-kodzie">Obs&#x142;uga timera w kodzie</h2>
-
-<p>Po ustawieniu timera i wygenerowaniu kodu mo&#x17C;emy przej&#x15B;&#x107; do jego obs&#x142;ugi w kodzie.</p>
-<p>Przerwanie timera powinno zostac wygenerowane w pliku <code>stm32f4xx_it.c</code> Obs&#x142;uguje ono z u&#x17C;yciem HALa generyczne przerwanie timera, wywo&#x142;uj&#x105;c odpowiedni callback handler. W tym przypadku, interesuj&#x105;cy nas callback to <code>void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)</code> kt&#xF3;ry musimy zdefiniowa&#x107; w naszym kodzie.</p>
-<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_TIM_PeriodElapsedCallback</span><span class="token punctuation">(</span>TIM_HandleTypeDef<span class="token operator">*</span> htim<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token comment">// Sprawd&#x17A; czy przerwanie przysz&#x142;o od naszego timera</span>
-	<span class="token keyword">if</span> <span class="token punctuation">(</span>htim <span class="token operator">==</span> <span class="token operator">&amp;</span>htim10<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token comment">// Zmie&#x144; stan diody (dla Nucleo makro GPIO b&#x119;dzie inne)</span>
-      <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>BOARD_LED_GPIO_Port<span class="token punctuation">,</span> BOARD_LED_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</pre></section><section lineno="92" class="slide " data-line="92" data-h="8" data-v="0">
-<p>&#x17B;eby uruchomi&#x107; timer, musimy wywo&#x142;a&#x107; funkcj&#x119; <code>HAL_TIM_Base_Start_IT</code>, na przyk&#x142;ad po inicjalizacji timera.</p>
-<pre data-role="codeBlock" data-info="c" class="language-c">	<span class="token comment">/* Initialize all configured peripherals */</span>
-	<span class="token function">MX_GPIO_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">MX_TIM10_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token comment">/* USER CODE BEGIN 2 */</span>
-	<span class="token function">HAL_TIM_Base_Start_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>htim10<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token comment">/* USER CODE END 2 */</span>
-</pre><p>Mo&#x17C;emy teraz uruchomi&#x107; wrzuci&#x107; nasz program na mikrokontroler i zobaczy&#x107; efekt - dioda powinna zmienia&#x107; sw&#xF3;j stan co sekund&#x119;.</p>
-</section><section lineno="107" class="slide " data-line="107" data-h="9" data-v="0">
-<h3 class="mume-header" id="zmiana-okresu-licznika">Zmiana okresu licznika</h3>
-
-<p>HAL u&#x142;atwia inicjalizacj&#x119;, uruchamianie i podstawow&#x105; obs&#x142;ug&#x119; peryferi&#xF3;w ale jest te&#x17C; abstrakcj&#x105; na wiele rzeczy, o kt&#xF3;rych niekoniecznie mo&#x17C;emy wiedzie&#x107;, patrz&#x105;c pobie&#x17C;nie na to co oferuje. &#x17B;eby dosta&#x107; si&#x119; do niekt&#xF3;rych, bardziej zaawansowanych mo&#x17C;liwo&#x15B;ci peryferi&#xF3;w, trzeba spojrze&#x107; na niskopoziomowe funkcje HALa oraz rejestry.</p>
-<p>Timery maj&#x105; trzy wa&#x17C;ne rejestry kt&#xF3;re nas interesuj&#x105; i kt&#xF3;re steruj&#x105; dzia&#x142;aniem timera:</p>
-<ul>
-<li><strong>PSC</strong> - Prescaler Register, w tym rejestrze trzymana jest warto&#x15B;&#x107; preskalera jak&#x105; ustawili&#x15B;my</li>
-<li><strong>ARR</strong> - Auto-Reload Register, w tym rejestrze trzymana jest warto&#x15B;&#x107; okresu jak&#x105; ustawili&#x15B;my</li>
-<li><strong>CNT</strong> - Counter Register, w tym rejestrze jest trzymana aktualna warto&#x15B;&#x107; licznika timera</li>
-</ul>
-<p>CNT i ARR s&#x105; ze sob&#x105; &#x15B;ci&#x15B;le powi&#x105;zane, bo w momencie w kt&#xF3;rym CNT osi&#x105;ga warto&#x15B;&#x107; zachowan&#x105; w ARR nast&#x119;puje wywo&#x142;anie przerwania licznika (update event, PeriodElapsedCallback).</p>
-</section><section lineno="120" class="slide " data-line="120" data-h="10" data-v="0">
-<p>Zmieniaj&#x105;c ARR i PSC mo&#x17C;emy w takim razie zmienia&#x107; cz&#x119;stotliwo&#x15B;&#x107; licznika (oraz wype&#x142;nienie sygna&#x142;u PWM, ale o tym p&#xF3;&#x17A;niej). Nale&#x17C;y jednak pami&#x119;ta&#x107; o jednej wa&#x17C;nej rzeczy - <strong>overflow</strong>. Nie mo&#x17C;emy zmniejsza&#x107; warto&#x15B;ci ARR w dowolnym momencie, bo mo&#x17C;e si&#x119; okaza&#x107; &#x17C;e zmniejszyli&#x15B;my j&#x105; w chwili kiedy CNT jest wi&#x119;kszy od nowego ARR, co spowoduje overflow i b&#x142;&#x119;dne dzia&#x142;anie programu. Optymalnym rozwi&#x105;zaniem jest zmiana ARR przy wywo&#x142;aniu update eventu, czyli naszego callbacka PeriodElapsedCallback, bo wtedy mamy pewno&#x15B;&#x107; &#x17C;e CNT == 0</p>
-<p>U&#x17C;yjemy do tego HALowego makra <code>__HAL_TIM_SET_AUTORELOAD</code>. <strong>Nie nale&#x17C;y zmienia&#x107; rejestr&#xF3;w r&#x119;cznie dop&#xF3;ki nie mamy 100% pewno&#x15B;ci &#x17C;e musimy to zrobi&#x107;, makra s&#x105; zawsze lepszym rozwi&#x105;zaniem poniewa&#x17C; zawsze poprawnie obs&#x142;u&#x17C;&#x105; wszystkie wymagane rejestry i struktury - <code>__HAL_TIM_SET_AUTORELOAD</code> poza zmian&#x105; ARR zmienia te&#x17C; pole Period w strukturze timera!</strong></p>
-</section><section lineno="126" class="slide " data-line="126" data-h="11" data-v="0">
-<p>Mo&#x17C;emy na przyk&#x142;ad u&#x17C;y&#x107; tego makra &#x17C;eby przyspiesza&#x107; i spowalnia&#x107; szybko&#x15B;&#x107; migania diody. Przetestujmy ten kod:</p>
-<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* USER CODE BEGIN 4 */</span>
-<span class="token keyword">void</span> <span class="token function">HAL_TIM_PeriodElapsedCallback</span><span class="token punctuation">(</span>TIM_HandleTypeDef <span class="token operator">*</span>htim<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token comment">// Sprawd&#x17A; czy przerwanie przysz&#x142;o od naszego timera</span>
-	<span class="token keyword">if</span> <span class="token punctuation">(</span>htim <span class="token operator">==</span> <span class="token operator">&amp;</span>htim10<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>BOARD_LED_GPIO_Port<span class="token punctuation">,</span> BOARD_LED_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-		uint16_t arr_value <span class="token operator">=</span> <span class="token function">__HAL_TIM_GET_AUTORELOAD</span><span class="token punctuation">(</span>htim<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">if</span> <span class="token punctuation">(</span>arr_value <span class="token operator">&gt;=</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			<span class="token function">__HAL_TIM_SET_AUTORELOAD</span><span class="token punctuation">(</span>htim<span class="token punctuation">,</span> arr_value <span class="token operator">-</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr_value <span class="token operator">&gt;=</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			<span class="token function">__HAL_TIM_SET_AUTORELOAD</span><span class="token punctuation">(</span>htim<span class="token punctuation">,</span> arr_value <span class="token operator">-</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-			<span class="token function">__HAL_TIM_SET_AUTORELOAD</span><span class="token punctuation">(</span>htim<span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span>
-	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment">/* USER CODE END 4 */</span>
-</pre></section><section lineno="150" class="slide " data-line="150" data-h="12" data-v="0">
+<p>Opr&#xF3;cz tego, SPI ma standardowe callbacki. Wszystkie funkcje s&#x105; dost&#x119;pne w nag&#x142;&#xF3;wku <code>stm32f4xx_hal_spi.h</code></p>
+</section><section lineno="104" class="slide " data-line="104" data-h="9" data-v="0">
 <h2 class="mume-header" id="dodatkowe-materia%C5%82y">Dodatkowe materia&#x142;y:</h2>
 
-<ul>
-<li>STM32 cross-series timer overview: <a href="https://www.st.com/content/ccc/resource/technical/document/application_note/54/0f/67/eb/47/34/45/40/DM00042534.pdf/files/DM00042534.pdf/jcr:content/translations/en.DM00042534.pdf">https://www.st.com/content/ccc/resource/technical/document/application_note/54/0f/67/eb/47/34/45/40/DM00042534.pdf/files/DM00042534.pdf/jcr:content/translations/en.DM00042534.pdf</a></li>
-</ul>
+<p>SPI w STM32F7: <a href="https://www.st.com/content/ccc/resource/training/technical/product_training/group0/3e/ee/cd/b7/84/4b/45/ee/STM32F7_Peripheral_SPI/files/STM32F7_Peripheral_SPI.pdf/_jcr_content/translations/en.STM32F7_Peripheral_SPI.pdf">https://www.st.com/content/ccc/resource/training/technical/product_training/group0/3e/ee/cd/b7/84/4b/45/ee/STM32F7_Peripheral_SPI/files/STM32F7_Peripheral_SPI.pdf/_jcr_content/translations/en.STM32F7_Peripheral_SPI.pdf</a></p>
 </section>
       </div>
     </div>

@@ -1,0 +1,2203 @@
+<!DOCTYPE html><html><head>
+      <title>7_adc</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <style>
+      /*!
+ * reveal.js
+ * http://revealjs.com
+ * MIT licensed
+ *
+ * Copyright (C) 2018 Hakim El Hattab, http://hakim.se
+ */
+/*********************************************
+ * RESET STYLES
+ *********************************************/
+html, body, .reveal div, .reveal span, .reveal applet, .reveal object, .reveal iframe,
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, .reveal p, .reveal blockquote, .reveal pre,
+.reveal a, .reveal abbr, .reveal acronym, .reveal address, .reveal big, .reveal cite, .reveal code,
+.reveal del, .reveal dfn, .reveal em, .reveal img, .reveal ins, .reveal kbd, .reveal q, .reveal s, .reveal samp,
+.reveal small, .reveal strike, .reveal strong, .reveal sub, .reveal sup, .reveal tt, .reveal var,
+.reveal b, .reveal u, .reveal center,
+.reveal dl, .reveal dt, .reveal dd, .reveal ol, .reveal ul, .reveal li,
+.reveal fieldset, .reveal form, .reveal label, .reveal legend,
+.reveal table, .reveal caption, .reveal tbody, .reveal tfoot, .reveal thead, .reveal tr, .reveal th, .reveal td,
+.reveal article, .reveal aside, .reveal canvas, .reveal details, .reveal embed,
+.reveal figure, .reveal figcaption, .reveal footer, .reveal header, .reveal hgroup,
+.reveal menu, .reveal nav, .reveal output, .reveal ruby, .reveal section, .reveal summary,
+.reveal time, .reveal mark, .reveal audio, .reveal video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  /* font: inherit; */
+  vertical-align: baseline; }
+
+.reveal article, .reveal aside, .reveal details, .reveal figcaption, .reveal figure,
+.reveal footer, .reveal header, .reveal hgroup, .reveal menu, .reveal nav, .reveal section {
+  display: block; }
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+body {
+  position: relative;
+  line-height: 1;
+  background-color: #fff;
+  color: #000; }
+
+/*********************************************
+ * VIEW FRAGMENTS
+ *********************************************/
+.reveal .slides section .fragment {
+  opacity: 0;
+  visibility: hidden;
+  transition: all .2s ease; }
+  .reveal .slides section .fragment.visible {
+    opacity: 1;
+    visibility: inherit; }
+
+.reveal .slides section .fragment.grow {
+  opacity: 1;
+  visibility: inherit; }
+  .reveal .slides section .fragment.grow.visible {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3); }
+
+.reveal .slides section .fragment.shrink {
+  opacity: 1;
+  visibility: inherit; }
+  .reveal .slides section .fragment.shrink.visible {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7); }
+
+.reveal .slides section .fragment.zoom-in {
+  -webkit-transform: scale(0.1);
+          transform: scale(0.1); }
+  .reveal .slides section .fragment.zoom-in.visible {
+    -webkit-transform: none;
+            transform: none; }
+
+.reveal .slides section .fragment.fade-out {
+  opacity: 1;
+  visibility: inherit; }
+  .reveal .slides section .fragment.fade-out.visible {
+    opacity: 0;
+    visibility: hidden; }
+
+.reveal .slides section .fragment.semi-fade-out {
+  opacity: 1;
+  visibility: inherit; }
+  .reveal .slides section .fragment.semi-fade-out.visible {
+    opacity: 0.5;
+    visibility: inherit; }
+
+.reveal .slides section .fragment.strike {
+  opacity: 1;
+  visibility: inherit; }
+  .reveal .slides section .fragment.strike.visible {
+    text-decoration: line-through; }
+
+.reveal .slides section .fragment.fade-up {
+  -webkit-transform: translate(0, 20%);
+          transform: translate(0, 20%); }
+  .reveal .slides section .fragment.fade-up.visible {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+
+.reveal .slides section .fragment.fade-down {
+  -webkit-transform: translate(0, -20%);
+          transform: translate(0, -20%); }
+  .reveal .slides section .fragment.fade-down.visible {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+
+.reveal .slides section .fragment.fade-right {
+  -webkit-transform: translate(-20%, 0);
+          transform: translate(-20%, 0); }
+  .reveal .slides section .fragment.fade-right.visible {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+
+.reveal .slides section .fragment.fade-left {
+  -webkit-transform: translate(20%, 0);
+          transform: translate(20%, 0); }
+  .reveal .slides section .fragment.fade-left.visible {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+
+.reveal .slides section .fragment.fade-in-then-out,
+.reveal .slides section .fragment.current-visible {
+  opacity: 0;
+  visibility: hidden; }
+  .reveal .slides section .fragment.fade-in-then-out.current-fragment,
+  .reveal .slides section .fragment.current-visible.current-fragment {
+    opacity: 1;
+    visibility: inherit; }
+
+.reveal .slides section .fragment.fade-in-then-semi-out {
+  opacity: 0;
+  visibility: hidden; }
+  .reveal .slides section .fragment.fade-in-then-semi-out.visible {
+    opacity: 0.5;
+    visibility: inherit; }
+  .reveal .slides section .fragment.fade-in-then-semi-out.current-fragment {
+    opacity: 1;
+    visibility: inherit; }
+
+.reveal .slides section .fragment.highlight-red,
+.reveal .slides section .fragment.highlight-current-red,
+.reveal .slides section .fragment.highlight-green,
+.reveal .slides section .fragment.highlight-current-green,
+.reveal .slides section .fragment.highlight-blue,
+.reveal .slides section .fragment.highlight-current-blue {
+  opacity: 1;
+  visibility: inherit; }
+
+.reveal .slides section .fragment.highlight-red.visible {
+  color: #ff2c2d; }
+
+.reveal .slides section .fragment.highlight-green.visible {
+  color: #17ff2e; }
+
+.reveal .slides section .fragment.highlight-blue.visible {
+  color: #1b91ff; }
+
+.reveal .slides section .fragment.highlight-current-red.current-fragment {
+  color: #ff2c2d; }
+
+.reveal .slides section .fragment.highlight-current-green.current-fragment {
+  color: #17ff2e; }
+
+.reveal .slides section .fragment.highlight-current-blue.current-fragment {
+  color: #1b91ff; }
+
+/*********************************************
+ * DEFAULT ELEMENT STYLES
+ *********************************************/
+/* Fixes issue in Chrome where italic fonts did not appear when printing to PDF */
+.reveal:after {
+  content: '';
+  font-style: italic; }
+
+.reveal iframe {
+  z-index: 1; }
+
+/** Prevents layering issues in certain browser/transition combinations */
+.reveal a {
+  position: relative; }
+
+.reveal .stretch {
+  max-width: none;
+  max-height: none; }
+
+.reveal pre.stretch code {
+  height: 100%;
+  max-height: 100%;
+  box-sizing: border-box; }
+
+/*********************************************
+ * CONTROLS
+ *********************************************/
+@-webkit-keyframes bounce-right {
+  0%, 10%, 25%, 40%, 50% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+  20% {
+    -webkit-transform: translateX(10px);
+            transform: translateX(10px); }
+  30% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px); } }
+@keyframes bounce-right {
+  0%, 10%, 25%, 40%, 50% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+  20% {
+    -webkit-transform: translateX(10px);
+            transform: translateX(10px); }
+  30% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px); } }
+
+@-webkit-keyframes bounce-down {
+  0%, 10%, 25%, 40%, 50% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); }
+  20% {
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px); }
+  30% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px); } }
+
+@keyframes bounce-down {
+  0%, 10%, 25%, 40%, 50% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); }
+  20% {
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px); }
+  30% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px); } }
+
+.reveal .controls {
+  display: none;
+  position: absolute;
+  top: auto;
+  bottom: 12px;
+  right: 12px;
+  left: auto;
+  z-index: 1;
+  color: #000;
+  pointer-events: none;
+  font-size: 10px; }
+  .reveal .controls button {
+    position: absolute;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    color: currentColor;
+    -webkit-transform: scale(0.9999);
+            transform: scale(0.9999);
+    transition: color 0.2s ease, opacity 0.2s ease, -webkit-transform 0.2s ease;
+    transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+    z-index: 2;
+    pointer-events: auto;
+    font-size: inherit;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent; }
+  .reveal .controls .controls-arrow:before,
+  .reveal .controls .controls-arrow:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2.6em;
+    height: 0.5em;
+    border-radius: 0.25em;
+    background-color: currentColor;
+    transition: all 0.15s ease, background-color 0.8s ease;
+    -webkit-transform-origin: 0.2em 50%;
+            transform-origin: 0.2em 50%;
+    will-change: transform; }
+  .reveal .controls .controls-arrow {
+    position: relative;
+    width: 3.6em;
+    height: 3.6em; }
+    .reveal .controls .controls-arrow:before {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(45deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(45deg); }
+    .reveal .controls .controls-arrow:after {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(-45deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(-45deg); }
+    .reveal .controls .controls-arrow:hover:before {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(40deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(40deg); }
+    .reveal .controls .controls-arrow:hover:after {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(-40deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(-40deg); }
+    .reveal .controls .controls-arrow:active:before {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(36deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(36deg); }
+    .reveal .controls .controls-arrow:active:after {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(-36deg);
+              transform: translateX(0.5em) translateY(1.55em) rotate(-36deg); }
+  .reveal .controls .navigate-left {
+    right: 6.4em;
+    bottom: 3.2em;
+    -webkit-transform: translateX(-10px);
+            transform: translateX(-10px); }
+  .reveal .controls .navigate-right {
+    right: 0;
+    bottom: 3.2em;
+    -webkit-transform: translateX(10px);
+            transform: translateX(10px); }
+    .reveal .controls .navigate-right .controls-arrow {
+      -webkit-transform: rotate(180deg);
+              transform: rotate(180deg); }
+    .reveal .controls .navigate-right.highlight {
+      -webkit-animation: bounce-right 2s 50 both ease-out;
+              animation: bounce-right 2s 50 both ease-out; }
+  .reveal .controls .navigate-up {
+    right: 3.2em;
+    bottom: 6.4em;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px); }
+    .reveal .controls .navigate-up .controls-arrow {
+      -webkit-transform: rotate(90deg);
+              transform: rotate(90deg); }
+  .reveal .controls .navigate-down {
+    right: 3.2em;
+    bottom: 0;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px); }
+    .reveal .controls .navigate-down .controls-arrow {
+      -webkit-transform: rotate(-90deg);
+              transform: rotate(-90deg); }
+    .reveal .controls .navigate-down.highlight {
+      -webkit-animation: bounce-down 2s 50 both ease-out;
+              animation: bounce-down 2s 50 both ease-out; }
+  .reveal .controls[data-controls-back-arrows="faded"] .navigate-left.enabled,
+  .reveal .controls[data-controls-back-arrows="faded"] .navigate-up.enabled {
+    opacity: 0.3; }
+    .reveal .controls[data-controls-back-arrows="faded"] .navigate-left.enabled:hover,
+    .reveal .controls[data-controls-back-arrows="faded"] .navigate-up.enabled:hover {
+      opacity: 1; }
+  .reveal .controls[data-controls-back-arrows="hidden"] .navigate-left.enabled,
+  .reveal .controls[data-controls-back-arrows="hidden"] .navigate-up.enabled {
+    opacity: 0;
+    visibility: hidden; }
+  .reveal .controls .enabled {
+    visibility: visible;
+    opacity: 0.9;
+    cursor: pointer;
+    -webkit-transform: none;
+            transform: none; }
+  .reveal .controls .enabled.fragmented {
+    opacity: 0.5; }
+  .reveal .controls .enabled:hover,
+  .reveal .controls .enabled.fragmented:hover {
+    opacity: 1; }
+
+.reveal:not(.has-vertical-slides) .controls .navigate-left {
+  bottom: 1.4em;
+  right: 5.5em; }
+
+.reveal:not(.has-vertical-slides) .controls .navigate-right {
+  bottom: 1.4em;
+  right: 0.5em; }
+
+.reveal:not(.has-horizontal-slides) .controls .navigate-up {
+  right: 1.4em;
+  bottom: 5em; }
+
+.reveal:not(.has-horizontal-slides) .controls .navigate-down {
+  right: 1.4em;
+  bottom: 0.5em; }
+
+.reveal.has-dark-background .controls {
+  color: #fff; }
+
+.reveal.has-light-background .controls {
+  color: #000; }
+
+.reveal.no-hover .controls .controls-arrow:hover:before,
+.reveal.no-hover .controls .controls-arrow:active:before {
+  -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(45deg);
+          transform: translateX(0.5em) translateY(1.55em) rotate(45deg); }
+
+.reveal.no-hover .controls .controls-arrow:hover:after,
+.reveal.no-hover .controls .controls-arrow:active:after {
+  -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(-45deg);
+          transform: translateX(0.5em) translateY(1.55em) rotate(-45deg); }
+
+@media screen and (min-width: 500px) {
+  .reveal .controls[data-controls-layout="edges"] {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; }
+  .reveal .controls[data-controls-layout="edges"] .navigate-left,
+  .reveal .controls[data-controls-layout="edges"] .navigate-right,
+  .reveal .controls[data-controls-layout="edges"] .navigate-up,
+  .reveal .controls[data-controls-layout="edges"] .navigate-down {
+    bottom: auto;
+    right: auto; }
+  .reveal .controls[data-controls-layout="edges"] .navigate-left {
+    top: 50%;
+    left: 8px;
+    margin-top: -1.8em; }
+  .reveal .controls[data-controls-layout="edges"] .navigate-right {
+    top: 50%;
+    right: 8px;
+    margin-top: -1.8em; }
+  .reveal .controls[data-controls-layout="edges"] .navigate-up {
+    top: 8px;
+    left: 50%;
+    margin-left: -1.8em; }
+  .reveal .controls[data-controls-layout="edges"] .navigate-down {
+    bottom: 8px;
+    left: 50%;
+    margin-left: -1.8em; } }
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  position: absolute;
+  display: none;
+  height: 3px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff; }
+
+.reveal .progress:after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 10px;
+  width: 100%;
+  top: -10px; }
+
+.reveal .progress span {
+  display: block;
+  height: 100%;
+  width: 0px;
+  background-color: currentColor;
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+/*********************************************
+ * SLIDE NUMBER
+ *********************************************/
+.reveal .slide-number {
+  position: absolute;
+  display: block;
+  right: 8px;
+  bottom: 8px;
+  z-index: 31;
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 5px; }
+
+.reveal .slide-number a {
+  color: currentColor; }
+
+.reveal .slide-number-delimiter {
+  margin: 0 3px; }
+
+/*********************************************
+ * SLIDES
+ *********************************************/
+.reveal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -ms-touch-action: none;
+      touch-action: none; }
+
+@media only screen and (orientation: landscape) {
+  .reveal.ua-iphone {
+    position: fixed; } }
+
+.reveal .slides {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+  text-align: center;
+  -webkit-perspective: 600px;
+          perspective: 600px;
+  -webkit-perspective-origin: 50% 40%;
+          perspective-origin: 50% 40%; }
+
+.reveal .slides > section {
+  -ms-perspective: 600px; }
+
+.reveal .slides > section,
+.reveal .slides > section > section {
+  display: none;
+  position: absolute;
+  width: 100%;
+  padding: 20px 0px;
+  pointer-events: auto;
+  z-index: 10;
+  -webkit-transform-style: flat;
+          transform-style: flat;
+  transition: -webkit-transform-origin 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), -webkit-transform 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), visibility 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), opacity 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transition: transform-origin 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), transform 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), visibility 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985), opacity 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+/* Global transition speed settings */
+.reveal[data-transition-speed="fast"] .slides section {
+  transition-duration: 400ms; }
+
+.reveal[data-transition-speed="slow"] .slides section {
+  transition-duration: 1200ms; }
+
+/* Slide-specific transition speed overrides */
+.reveal .slides section[data-transition-speed="fast"] {
+  transition-duration: 400ms; }
+
+.reveal .slides section[data-transition-speed="slow"] {
+  transition-duration: 1200ms; }
+
+.reveal .slides > section.stack {
+  padding-top: 0;
+  padding-bottom: 0;
+  pointer-events: none; }
+
+.reveal .slides > section.present,
+.reveal .slides > section > section.present {
+  display: block;
+  z-index: 11;
+  opacity: 1; }
+
+.reveal .slides > section:empty,
+.reveal .slides > section > section:empty,
+.reveal .slides > section[data-background-interactive],
+.reveal .slides > section > section[data-background-interactive] {
+  pointer-events: none; }
+
+.reveal.center,
+.reveal.center .slides,
+.reveal.center .slides section {
+  min-height: 0 !important; }
+
+/* Don't allow interaction with invisible slides */
+.reveal .slides > section.future,
+.reveal .slides > section > section.future,
+.reveal .slides > section.past,
+.reveal .slides > section > section.past {
+  pointer-events: none; }
+
+.reveal.overview .slides > section,
+.reveal.overview .slides > section > section {
+  pointer-events: auto; }
+
+.reveal .slides > section.past,
+.reveal .slides > section.future,
+.reveal .slides > section > section.past,
+.reveal .slides > section > section.future {
+  opacity: 0; }
+
+/*********************************************
+ * Mixins for readability of transitions
+ *********************************************/
+/*********************************************
+ * SLIDE TRANSITION
+ * Aliased 'linear' for backwards compatibility
+ *********************************************/
+.reveal.slide section {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+
+.reveal .slides > section[data-transition=slide].past,
+.reveal .slides > section[data-transition~=slide-out].past,
+.reveal.slide .slides > section:not([data-transition]).past {
+  -webkit-transform: translate(-150%, 0);
+          transform: translate(-150%, 0); }
+
+.reveal .slides > section[data-transition=slide].future,
+.reveal .slides > section[data-transition~=slide-in].future,
+.reveal.slide .slides > section:not([data-transition]).future {
+  -webkit-transform: translate(150%, 0);
+          transform: translate(150%, 0); }
+
+.reveal .slides > section > section[data-transition=slide].past,
+.reveal .slides > section > section[data-transition~=slide-out].past,
+.reveal.slide .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate(0, -150%);
+          transform: translate(0, -150%); }
+
+.reveal .slides > section > section[data-transition=slide].future,
+.reveal .slides > section > section[data-transition~=slide-in].future,
+.reveal.slide .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate(0, 150%);
+          transform: translate(0, 150%); }
+
+.reveal.linear section {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+
+.reveal .slides > section[data-transition=linear].past,
+.reveal .slides > section[data-transition~=linear-out].past,
+.reveal.linear .slides > section:not([data-transition]).past {
+  -webkit-transform: translate(-150%, 0);
+          transform: translate(-150%, 0); }
+
+.reveal .slides > section[data-transition=linear].future,
+.reveal .slides > section[data-transition~=linear-in].future,
+.reveal.linear .slides > section:not([data-transition]).future {
+  -webkit-transform: translate(150%, 0);
+          transform: translate(150%, 0); }
+
+.reveal .slides > section > section[data-transition=linear].past,
+.reveal .slides > section > section[data-transition~=linear-out].past,
+.reveal.linear .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate(0, -150%);
+          transform: translate(0, -150%); }
+
+.reveal .slides > section > section[data-transition=linear].future,
+.reveal .slides > section > section[data-transition~=linear-in].future,
+.reveal.linear .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate(0, 150%);
+          transform: translate(0, 150%); }
+
+/*********************************************
+ * CONVEX TRANSITION
+ * Aliased 'default' for backwards compatibility
+ *********************************************/
+.reveal .slides section[data-transition=default].stack,
+.reveal.default .slides section.stack {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d; }
+
+.reveal .slides > section[data-transition=default].past,
+.reveal .slides > section[data-transition~=default-out].past,
+.reveal.default .slides > section:not([data-transition]).past {
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0); }
+
+.reveal .slides > section[data-transition=default].future,
+.reveal .slides > section[data-transition~=default-in].future,
+.reveal.default .slides > section:not([data-transition]).future {
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0); }
+
+.reveal .slides > section > section[data-transition=default].past,
+.reveal .slides > section > section[data-transition~=default-out].past,
+.reveal.default .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0);
+          transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0); }
+
+.reveal .slides > section > section[data-transition=default].future,
+.reveal .slides > section > section[data-transition~=default-in].future,
+.reveal.default .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0);
+          transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0); }
+
+.reveal .slides section[data-transition=convex].stack,
+.reveal.convex .slides section.stack {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d; }
+
+.reveal .slides > section[data-transition=convex].past,
+.reveal .slides > section[data-transition~=convex-out].past,
+.reveal.convex .slides > section:not([data-transition]).past {
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0); }
+
+.reveal .slides > section[data-transition=convex].future,
+.reveal .slides > section[data-transition~=convex-in].future,
+.reveal.convex .slides > section:not([data-transition]).future {
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0); }
+
+.reveal .slides > section > section[data-transition=convex].past,
+.reveal .slides > section > section[data-transition~=convex-out].past,
+.reveal.convex .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0);
+          transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0); }
+
+.reveal .slides > section > section[data-transition=convex].future,
+.reveal .slides > section > section[data-transition~=convex-in].future,
+.reveal.convex .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0);
+          transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0); }
+
+/*********************************************
+ * CONCAVE TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=concave].stack,
+.reveal.concave .slides section.stack {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d; }
+
+.reveal .slides > section[data-transition=concave].past,
+.reveal .slides > section[data-transition~=concave-out].past,
+.reveal.concave .slides > section:not([data-transition]).past {
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0); }
+
+.reveal .slides > section[data-transition=concave].future,
+.reveal .slides > section[data-transition~=concave-in].future,
+.reveal.concave .slides > section:not([data-transition]).future {
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0); }
+
+.reveal .slides > section > section[data-transition=concave].past,
+.reveal .slides > section > section[data-transition~=concave-out].past,
+.reveal.concave .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate3d(0, -80%, 0) rotateX(-70deg) translate3d(0, -80%, 0);
+          transform: translate3d(0, -80%, 0) rotateX(-70deg) translate3d(0, -80%, 0); }
+
+.reveal .slides > section > section[data-transition=concave].future,
+.reveal .slides > section > section[data-transition~=concave-in].future,
+.reveal.concave .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate3d(0, 80%, 0) rotateX(70deg) translate3d(0, 80%, 0);
+          transform: translate3d(0, 80%, 0) rotateX(70deg) translate3d(0, 80%, 0); }
+
+/*********************************************
+ * ZOOM TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=zoom],
+.reveal.zoom .slides section:not([data-transition]) {
+  transition-timing-function: ease; }
+
+.reveal .slides > section[data-transition=zoom].past,
+.reveal .slides > section[data-transition~=zoom-out].past,
+.reveal.zoom .slides > section:not([data-transition]).past {
+  visibility: hidden;
+  -webkit-transform: scale(16);
+          transform: scale(16); }
+
+.reveal .slides > section[data-transition=zoom].future,
+.reveal .slides > section[data-transition~=zoom-in].future,
+.reveal.zoom .slides > section:not([data-transition]).future {
+  visibility: hidden;
+  -webkit-transform: scale(0.2);
+          transform: scale(0.2); }
+
+.reveal .slides > section > section[data-transition=zoom].past,
+.reveal .slides > section > section[data-transition~=zoom-out].past,
+.reveal.zoom .slides > section > section:not([data-transition]).past {
+  -webkit-transform: translate(0, -150%);
+          transform: translate(0, -150%); }
+
+.reveal .slides > section > section[data-transition=zoom].future,
+.reveal .slides > section > section[data-transition~=zoom-in].future,
+.reveal.zoom .slides > section > section:not([data-transition]).future {
+  -webkit-transform: translate(0, 150%);
+          transform: translate(0, 150%); }
+
+/*********************************************
+ * CUBE TRANSITION
+ *
+ * WARNING:
+ * this is deprecated and will be removed in a
+ * future version.
+ *********************************************/
+.reveal.cube .slides {
+  -webkit-perspective: 1300px;
+          perspective: 1300px; }
+
+.reveal.cube .slides section {
+  padding: 30px;
+  min-height: 700px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  box-sizing: border-box;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d; }
+
+.reveal.center.cube .slides section {
+  min-height: 0; }
+
+.reveal.cube .slides section:not(.stack):before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  -webkit-transform: translateZ(-20px);
+          transform: translateZ(-20px); }
+
+.reveal.cube .slides section:not(.stack):after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 90%;
+  height: 30px;
+  left: 5%;
+  bottom: 0;
+  background: none;
+  z-index: 1;
+  border-radius: 4px;
+  box-shadow: 0px 95px 25px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translateZ(-90px) rotateX(65deg);
+          transform: translateZ(-90px) rotateX(65deg); }
+
+.reveal.cube .slides > section.stack {
+  padding: 0;
+  background: none; }
+
+.reveal.cube .slides > section.past {
+  -webkit-transform-origin: 100% 0%;
+          transform-origin: 100% 0%;
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(-90deg);
+          transform: translate3d(-100%, 0, 0) rotateY(-90deg); }
+
+.reveal.cube .slides > section.future {
+  -webkit-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(90deg);
+          transform: translate3d(100%, 0, 0) rotateY(90deg); }
+
+.reveal.cube .slides > section > section.past {
+  -webkit-transform-origin: 0% 100%;
+          transform-origin: 0% 100%;
+  -webkit-transform: translate3d(0, -100%, 0) rotateX(90deg);
+          transform: translate3d(0, -100%, 0) rotateX(90deg); }
+
+.reveal.cube .slides > section > section.future {
+  -webkit-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transform: translate3d(0, 100%, 0) rotateX(-90deg);
+          transform: translate3d(0, 100%, 0) rotateX(-90deg); }
+
+/*********************************************
+ * PAGE TRANSITION
+ *
+ * WARNING:
+ * this is deprecated and will be removed in a
+ * future version.
+ *********************************************/
+.reveal.page .slides {
+  -webkit-perspective-origin: 0% 50%;
+          perspective-origin: 0% 50%;
+  -webkit-perspective: 3000px;
+          perspective: 3000px; }
+
+.reveal.page .slides section {
+  padding: 30px;
+  min-height: 700px;
+  box-sizing: border-box;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d; }
+
+.reveal.page .slides section.past {
+  z-index: 12; }
+
+.reveal.page .slides section:not(.stack):before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-transform: translateZ(-20px);
+          transform: translateZ(-20px); }
+
+.reveal.page .slides section:not(.stack):after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 90%;
+  height: 30px;
+  left: 5%;
+  bottom: 0;
+  background: none;
+  z-index: 1;
+  border-radius: 4px;
+  box-shadow: 0px 95px 25px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translateZ(-90px) rotateX(65deg); }
+
+.reveal.page .slides > section.stack {
+  padding: 0;
+  background: none; }
+
+.reveal.page .slides > section.past {
+  -webkit-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transform: translate3d(-40%, 0, 0) rotateY(-80deg);
+          transform: translate3d(-40%, 0, 0) rotateY(-80deg); }
+
+.reveal.page .slides > section.future {
+  -webkit-transform-origin: 100% 0%;
+          transform-origin: 100% 0%;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
+
+.reveal.page .slides > section > section.past {
+  -webkit-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transform: translate3d(0, -40%, 0) rotateX(80deg);
+          transform: translate3d(0, -40%, 0) rotateX(80deg); }
+
+.reveal.page .slides > section > section.future {
+  -webkit-transform-origin: 0% 100%;
+          transform-origin: 0% 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
+
+/*********************************************
+ * FADE TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=fade],
+.reveal.fade .slides section:not([data-transition]),
+.reveal.fade .slides > section > section:not([data-transition]) {
+  -webkit-transform: none;
+          transform: none;
+  transition: opacity 0.5s; }
+
+.reveal.fade.overview .slides section,
+.reveal.fade.overview .slides > section > section {
+  transition: none; }
+
+/*********************************************
+ * NO TRANSITION
+ *********************************************/
+.reveal .slides section[data-transition=none],
+.reveal.none .slides section:not([data-transition]) {
+  -webkit-transform: none;
+          transform: none;
+  transition: none; }
+
+/*********************************************
+ * PAUSED MODE
+ *********************************************/
+.reveal .pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 100;
+  transition: all 1s ease; }
+
+.reveal .pause-overlay .resume-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: #ccc;
+  border-radius: 2px;
+  padding: 6px 14px;
+  border: 2px solid #ccc;
+  font-size: 16px;
+  background: transparent;
+  cursor: pointer; }
+  .reveal .pause-overlay .resume-button:hover {
+    color: #fff;
+    border-color: #fff; }
+
+.reveal.paused .pause-overlay {
+  visibility: visible;
+  opacity: 1; }
+
+/*********************************************
+ * FALLBACK
+ *********************************************/
+.no-transforms {
+  overflow-y: auto; }
+
+.no-transforms .reveal .slides {
+  position: relative;
+  width: 80%;
+  height: auto !important;
+  top: 0;
+  left: 50%;
+  margin: 0;
+  text-align: center; }
+
+.no-transforms .reveal .controls,
+.no-transforms .reveal .progress {
+  display: none !important; }
+
+.no-transforms .reveal .slides section {
+  display: block !important;
+  opacity: 1 !important;
+  position: relative !important;
+  height: auto;
+  min-height: 0;
+  top: 0;
+  left: -50%;
+  margin: 70px 0;
+  -webkit-transform: none;
+          transform: none; }
+
+.no-transforms .reveal .slides section section {
+  left: 0; }
+
+.reveal .no-transition,
+.reveal .no-transition * {
+  transition: none !important; }
+
+/*********************************************
+ * PER-SLIDE BACKGROUNDS
+ *********************************************/
+.reveal .backgrounds {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  -webkit-perspective: 600px;
+          perspective: 600px; }
+
+.reveal .slide-background {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  background-color: transparent;
+  transition: all 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+.reveal .slide-background-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.reveal .slide-background.stack {
+  display: block; }
+
+.reveal .slide-background.present {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2; }
+
+.print-pdf .reveal .slide-background {
+  opacity: 1 !important;
+  visibility: visible !important; }
+
+/* Video backgrounds */
+.reveal .slide-background video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  top: 0;
+  left: 0;
+  -o-object-fit: cover;
+     object-fit: cover; }
+
+.reveal .slide-background[data-background-size="contain"] video {
+  -o-object-fit: contain;
+     object-fit: contain; }
+
+/* Immediate transition style */
+.reveal[data-background-transition=none] > .backgrounds .slide-background,
+.reveal > .backgrounds .slide-background[data-background-transition=none] {
+  transition: none; }
+
+/* Slide */
+.reveal[data-background-transition=slide] > .backgrounds .slide-background,
+.reveal > .backgrounds .slide-background[data-background-transition=slide] {
+  opacity: 1;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+
+.reveal[data-background-transition=slide] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=slide] {
+  -webkit-transform: translate(-100%, 0);
+          transform: translate(-100%, 0); }
+
+.reveal[data-background-transition=slide] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=slide] {
+  -webkit-transform: translate(100%, 0);
+          transform: translate(100%, 0); }
+
+.reveal[data-background-transition=slide] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=slide] {
+  -webkit-transform: translate(0, -100%);
+          transform: translate(0, -100%); }
+
+.reveal[data-background-transition=slide] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=slide] {
+  -webkit-transform: translate(0, 100%);
+          transform: translate(0, 100%); }
+
+/* Convex */
+.reveal[data-background-transition=convex] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=convex] {
+  opacity: 0;
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0); }
+
+.reveal[data-background-transition=convex] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=convex] {
+  opacity: 0;
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0); }
+
+.reveal[data-background-transition=convex] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=convex] {
+  opacity: 0;
+  -webkit-transform: translate3d(0, -100%, 0) rotateX(90deg) translate3d(0, -100%, 0);
+          transform: translate3d(0, -100%, 0) rotateX(90deg) translate3d(0, -100%, 0); }
+
+.reveal[data-background-transition=convex] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=convex] {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 100%, 0) rotateX(-90deg) translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0) rotateX(-90deg) translate3d(0, 100%, 0); }
+
+/* Concave */
+.reveal[data-background-transition=concave] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=concave] {
+  opacity: 0;
+  -webkit-transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0); }
+
+.reveal[data-background-transition=concave] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=concave] {
+  opacity: 0;
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0); }
+
+.reveal[data-background-transition=concave] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=concave] {
+  opacity: 0;
+  -webkit-transform: translate3d(0, -100%, 0) rotateX(-90deg) translate3d(0, -100%, 0);
+          transform: translate3d(0, -100%, 0) rotateX(-90deg) translate3d(0, -100%, 0); }
+
+.reveal[data-background-transition=concave] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=concave] {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 100%, 0) rotateX(90deg) translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0) rotateX(90deg) translate3d(0, 100%, 0); }
+
+/* Zoom */
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background,
+.reveal > .backgrounds .slide-background[data-background-transition=zoom] {
+  transition-timing-function: ease; }
+
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background.past,
+.reveal > .backgrounds .slide-background.past[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(16);
+          transform: scale(16); }
+
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background.future,
+.reveal > .backgrounds .slide-background.future[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(0.2);
+          transform: scale(0.2); }
+
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background > .slide-background.past,
+.reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(16);
+          transform: scale(16); }
+
+.reveal[data-background-transition=zoom] > .backgrounds .slide-background > .slide-background.future,
+.reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition=zoom] {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(0.2);
+          transform: scale(0.2); }
+
+/* Global transition speed settings */
+.reveal[data-transition-speed="fast"] > .backgrounds .slide-background {
+  transition-duration: 400ms; }
+
+.reveal[data-transition-speed="slow"] > .backgrounds .slide-background {
+  transition-duration: 1200ms; }
+
+/*********************************************
+ * OVERVIEW
+ *********************************************/
+.reveal.overview {
+  -webkit-perspective-origin: 50% 50%;
+          perspective-origin: 50% 50%;
+  -webkit-perspective: 700px;
+          perspective: 700px; }
+  .reveal.overview .slides {
+    -moz-transform-style: preserve-3d; }
+  .reveal.overview .slides section {
+    height: 100%;
+    top: 0 !important;
+    opacity: 1 !important;
+    overflow: hidden;
+    visibility: visible !important;
+    cursor: pointer;
+    box-sizing: border-box; }
+  .reveal.overview .slides section:hover,
+  .reveal.overview .slides section.present {
+    outline: 10px solid rgba(150, 150, 150, 0.4);
+    outline-offset: 10px; }
+  .reveal.overview .slides section .fragment {
+    opacity: 1;
+    transition: none; }
+  .reveal.overview .slides section:after,
+  .reveal.overview .slides section:before {
+    display: none !important; }
+  .reveal.overview .slides > section.stack {
+    padding: 0;
+    top: 0 !important;
+    background: none;
+    outline: none;
+    overflow: visible; }
+  .reveal.overview .backgrounds {
+    -webkit-perspective: inherit;
+            perspective: inherit;
+    -moz-transform-style: preserve-3d; }
+  .reveal.overview .backgrounds .slide-background {
+    opacity: 1;
+    visibility: visible;
+    outline: 10px solid rgba(150, 150, 150, 0.1);
+    outline-offset: 10px; }
+  .reveal.overview .backgrounds .slide-background.stack {
+    overflow: visible; }
+
+.reveal.overview .slides section,
+.reveal.overview-deactivating .slides section {
+  transition: none; }
+
+.reveal.overview .backgrounds .slide-background,
+.reveal.overview-deactivating .backgrounds .slide-background {
+  transition: none; }
+
+/*********************************************
+ * RTL SUPPORT
+ *********************************************/
+.reveal.rtl .slides,
+.reveal.rtl .slides h1,
+.reveal.rtl .slides h2,
+.reveal.rtl .slides h3,
+.reveal.rtl .slides h4,
+.reveal.rtl .slides h5,
+.reveal.rtl .slides h6 {
+  direction: rtl;
+  font-family: sans-serif; }
+
+.reveal.rtl pre,
+.reveal.rtl code {
+  direction: ltr; }
+
+.reveal.rtl ol,
+.reveal.rtl ul {
+  text-align: right; }
+
+.reveal.rtl .progress span {
+  float: right; }
+
+/*********************************************
+ * PARALLAX BACKGROUND
+ *********************************************/
+.reveal.has-parallax-background .backgrounds {
+  transition: all 0.8s ease; }
+
+/* Global transition speed settings */
+.reveal.has-parallax-background[data-transition-speed="fast"] .backgrounds {
+  transition-duration: 400ms; }
+
+.reveal.has-parallax-background[data-transition-speed="slow"] .backgrounds {
+  transition-duration: 1200ms; }
+
+/*********************************************
+ * LINK PREVIEW OVERLAY
+ *********************************************/
+.reveal .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease; }
+
+.reveal .overlay.visible {
+  opacity: 1;
+  visibility: visible; }
+
+.reveal .overlay .spinner {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  z-index: 10;
+  background-image: url(data:image/gif;base64,R0lGODlhIAAgAPMAAJmZmf%2F%2F%2F6%2Bvr8nJybW1tcDAwOjo6Nvb26ioqKOjo7Ozs%2FLy8vz8%2FAAAAAAAAAAAACH%2FC05FVFNDQVBFMi4wAwEAAAAh%2FhpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh%2BQQJCgAAACwAAAAAIAAgAAAE5xDISWlhperN52JLhSSdRgwVo1ICQZRUsiwHpTJT4iowNS8vyW2icCF6k8HMMBkCEDskxTBDAZwuAkkqIfxIQyhBQBFvAQSDITM5VDW6XNE4KagNh6Bgwe60smQUB3d4Rz1ZBApnFASDd0hihh12BkE9kjAJVlycXIg7CQIFA6SlnJ87paqbSKiKoqusnbMdmDC2tXQlkUhziYtyWTxIfy6BE8WJt5YJvpJivxNaGmLHT0VnOgSYf0dZXS7APdpB309RnHOG5gDqXGLDaC457D1zZ%2FV%2FnmOM82XiHRLYKhKP1oZmADdEAAAh%2BQQJCgAAACwAAAAAIAAgAAAE6hDISWlZpOrNp1lGNRSdRpDUolIGw5RUYhhHukqFu8DsrEyqnWThGvAmhVlteBvojpTDDBUEIFwMFBRAmBkSgOrBFZogCASwBDEY%2FCZSg7GSE0gSCjQBMVG023xWBhklAnoEdhQEfyNqMIcKjhRsjEdnezB%2BA4k8gTwJhFuiW4dokXiloUepBAp5qaKpp6%2BHo7aWW54wl7obvEe0kRuoplCGepwSx2jJvqHEmGt6whJpGpfJCHmOoNHKaHx61WiSR92E4lbFoq%2BB6QDtuetcaBPnW6%2BO7wDHpIiK9SaVK5GgV543tzjgGcghAgAh%2BQQJCgAAACwAAAAAIAAgAAAE7hDISSkxpOrN5zFHNWRdhSiVoVLHspRUMoyUakyEe8PTPCATW9A14E0UvuAKMNAZKYUZCiBMuBakSQKG8G2FzUWox2AUtAQFcBKlVQoLgQReZhQlCIJesQXI5B0CBnUMOxMCenoCfTCEWBsJColTMANldx15BGs8B5wlCZ9Po6OJkwmRpnqkqnuSrayqfKmqpLajoiW5HJq7FL1Gr2mMMcKUMIiJgIemy7xZtJsTmsM4xHiKv5KMCXqfyUCJEonXPN2rAOIAmsfB3uPoAK%2B%2BG%2Bw48edZPK%2BM6hLJpQg484enXIdQFSS1u6UhksENEQAAIfkECQoAAAAsAAAAACAAIAAABOcQyEmpGKLqzWcZRVUQnZYg1aBSh2GUVEIQ2aQOE%2BG%2BcD4ntpWkZQj1JIiZIogDFFyHI0UxQwFugMSOFIPJftfVAEoZLBbcLEFhlQiqGp1Vd140AUklUN3eCA51C1EWMzMCezCBBmkxVIVHBWd3HHl9JQOIJSdSnJ0TDKChCwUJjoWMPaGqDKannasMo6WnM562R5YluZRwur0wpgqZE7NKUm%2BFNRPIhjBJxKZteWuIBMN4zRMIVIhffcgojwCF117i4nlLnY5ztRLsnOk%2BaV%2BoJY7V7m76PdkS4trKcdg0Zc0tTcKkRAAAIfkECQoAAAAsAAAAACAAIAAABO4QyEkpKqjqzScpRaVkXZWQEximw1BSCUEIlDohrft6cpKCk5xid5MNJTaAIkekKGQkWyKHkvhKsR7ARmitkAYDYRIbUQRQjWBwJRzChi9CRlBcY1UN4g0%2FVNB0AlcvcAYHRyZPdEQFYV8ccwR5HWxEJ02YmRMLnJ1xCYp0Y5idpQuhopmmC2KgojKasUQDk5BNAwwMOh2RtRq5uQuPZKGIJQIGwAwGf6I0JXMpC8C7kXWDBINFMxS4DKMAWVWAGYsAdNqW5uaRxkSKJOZKaU3tPOBZ4DuK2LATgJhkPJMgTwKCdFjyPHEnKxFCDhEAACH5BAkKAAAALAAAAAAgACAAAATzEMhJaVKp6s2nIkolIJ2WkBShpkVRWqqQrhLSEu9MZJKK9y1ZrqYK9WiClmvoUaF8gIQSNeF1Er4MNFn4SRSDARWroAIETg1iVwuHjYB1kYc1mwruwXKC9gmsJXliGxc%2BXiUCby9ydh1sOSdMkpMTBpaXBzsfhoc5l58Gm5yToAaZhaOUqjkDgCWNHAULCwOLaTmzswadEqggQwgHuQsHIoZCHQMMQgQGubVEcxOPFAcMDAYUA85eWARmfSRQCdcMe0zeP1AAygwLlJtPNAAL19DARdPzBOWSm1brJBi45soRAWQAAkrQIykShQ9wVhHCwCQCACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiRMDjI0Fd30%2FiI2UA5GSS5UDj2l6NoqgOgN4gksEBgYFf0FDqKgHnyZ9OX8HrgYHdHpcHQULXAS2qKpENRg7eAMLC7kTBaixUYFkKAzWAAnLC7FLVxLWDBLKCwaKTULgEwbLA4hJtOkSBNqITT3xEgfLpBtzE%2FjiuL04RGEBgwWhShRgQExHBAAh%2BQQJCgAAACwAAAAAIAAgAAAE7xDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfZiCqGk5dTESJeaOAlClzsJsqwiJwiqnFrb2nS9kmIcgEsjQydLiIlHehhpejaIjzh9eomSjZR%2BipslWIRLAgMDOR2DOqKogTB9pCUJBagDBXR6XB0EBkIIsaRsGGMMAxoDBgYHTKJiUYEGDAzHC9EACcUGkIgFzgwZ0QsSBcXHiQvOwgDdEwfFs0sDzt4S6BK4xYjkDOzn0unFeBzOBijIm1Dgmg5YFQwsCMjp1oJ8LyIAACH5BAkKAAAALAAAAAAgACAAAATwEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GGl6NoiPOH16iZKNlH6KmyWFOggHhEEvAwwMA0N9GBsEC6amhnVcEwavDAazGwIDaH1ipaYLBUTCGgQDA8NdHz0FpqgTBwsLqAbWAAnIA4FWKdMLGdYGEgraigbT0OITBcg5QwPT4xLrROZL6AuQAPUS7bxLpoWidY0JtxLHKhwwMJBTHgPKdEQAACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GAULDJCRiXo1CpGXDJOUjY%2BYip9DhToJA4RBLwMLCwVDfRgbBAaqqoZ1XBMHswsHtxtFaH1iqaoGNgAIxRpbFAgfPQSqpbgGBqUD1wBXeCYp1AYZ19JJOYgH1KwA4UBvQwXUBxPqVD9L3sbp2BNk2xvvFPJd%2BMFCN6HAAIKgNggY0KtEBAAh%2BQQJCgAAACwAAAAAIAAgAAAE6BDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfYIDMaAFdTESJeaEDAIMxYFqrOUaNW4E4ObYcCXaiBVEgULe0NJaxxtYksjh2NLkZISgDgJhHthkpU4mW6blRiYmZOlh4JWkDqILwUGBnE6TYEbCgevr0N1gH4At7gHiRpFaLNrrq8HNgAJA70AWxQIH1%2BvsYMDAzZQPC9VCNkDWUhGkuE5PxJNwiUK4UfLzOlD4WvzAHaoG9nxPi5d%2BjYUqfAhhykOFwJWiAAAIfkECQoAAAAsAAAAACAAIAAABPAQyElpUqnqzaciSoVkXVUMFaFSwlpOCcMYlErAavhOMnNLNo8KsZsMZItJEIDIFSkLGQoQTNhIsFehRww2CQLKF0tYGKYSg%2BygsZIuNqJksKgbfgIGepNo2cIUB3V1B3IvNiBYNQaDSTtfhhx0CwVPI0UJe0%2Bbm4g5VgcGoqOcnjmjqDSdnhgEoamcsZuXO1aWQy8KAwOAuTYYGwi7w5h%2BKr0SJ8MFihpNbx%2B4Erq7BYBuzsdiH1jCAzoSfl0rVirNbRXlBBlLX%2BBP0XJLAPGzTkAuAOqb0WT5AH7OcdCm5B8TgRwSRKIHQtaLCwg1RAAAOwAAAAAAAAAAAA%3D%3D);
+  visibility: visible;
+  opacity: 0.6;
+  transition: all 0.3s ease; }
+
+.reveal .overlay header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 2;
+  border-bottom: 1px solid #222; }
+
+.reveal .overlay header a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 36px;
+  padding: 0 10px;
+  float: right;
+  opacity: 0.6;
+  box-sizing: border-box; }
+
+.reveal .overlay header a:hover {
+  opacity: 1; }
+
+.reveal .overlay header a .icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-position: 50% 50%;
+  background-size: 100%;
+  background-repeat: no-repeat; }
+
+.reveal .overlay header a.close .icon {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABkklEQVRYR8WX4VHDMAxG6wnoJrABZQPYBCaBTWAD2g1gE5gg6OOsXuxIlr40d81dfrSJ9V4c2VLK7spHuTJ/5wpM07QXuXc5X0opX2tEJcadjHuV80li/FgxTIEK/5QBCICBD6xEhSMGHgQPgBgLiYVAB1dpSqKDawxTohFw4JSEA3clzgIBPCURwE2JucBR7rhPJJv5OpJwDX+SfDjgx1wACQeJG1aChP9K/IMmdZ8DtESV1WyP3Bt4MwM6sj4NMxMYiqUWHQu4KYA/SYkIjOsm3BXYWMKFDwU2khjCQ4ELJUJ4SmClRArOCmSXGuKma0fYD5CbzHxFpCSGAhfAVSSUGDUk2BWZaff2g6GE15BsBQ9nwmpIGDiyHQddwNTMKkbZaf9fajXQca1EX44puJZUsnY0ObGmITE3GVLCbEhQUjGVt146j6oasWN+49Vph2w1pZ5EansNZqKBm1txbU57iRRcZ86RWMDdWtBJUHBHwoQPi1GV+JCbntmvok7iTX4/Up9mgyTc/FJYDTcndgH/AA5A/CHsyEkVAAAAAElFTkSuQmCC); }
+
+.reveal .overlay header a.external .icon {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAcElEQVRYR+2WSQoAIQwEzf8f7XiOMkUQxUPlGkM3hVmiQfQR9GYnH1SsAQlI4DiBqkCMoNb9y2e90IAEJPAcgdznU9+engMaeJ7Azh5Y1U67gAho4DqBqmB1buAf0MB1AlVBek83ZPkmJMGc1wAR+AAqod/B97TRpQAAAABJRU5ErkJggg==); }
+
+.reveal .overlay .viewport {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  top: 40px;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
+.reveal .overlay.overlay-preview .viewport iframe {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease; }
+
+.reveal .overlay.overlay-preview.loaded .viewport iframe {
+  opacity: 1;
+  visibility: visible; }
+
+.reveal .overlay.overlay-preview.loaded .viewport-inner {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 45%;
+  width: 100%;
+  text-align: center;
+  letter-spacing: normal; }
+
+.reveal .overlay.overlay-preview .x-frame-error {
+  opacity: 0;
+  transition: opacity 0.3s ease 0.3s; }
+
+.reveal .overlay.overlay-preview.loaded .x-frame-error {
+  opacity: 1; }
+
+.reveal .overlay.overlay-preview.loaded .spinner {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(0.2);
+          transform: scale(0.2); }
+
+.reveal .overlay.overlay-help .viewport {
+  overflow: auto;
+  color: #fff; }
+
+.reveal .overlay.overlay-help .viewport .viewport-inner {
+  width: 600px;
+  margin: auto;
+  padding: 20px 20px 80px 20px;
+  text-align: center;
+  letter-spacing: normal; }
+
+.reveal .overlay.overlay-help .viewport .viewport-inner .title {
+  font-size: 20px; }
+
+.reveal .overlay.overlay-help .viewport .viewport-inner table {
+  border: 1px solid #fff;
+  border-collapse: collapse;
+  font-size: 16px; }
+
+.reveal .overlay.overlay-help .viewport .viewport-inner table th,
+.reveal .overlay.overlay-help .viewport .viewport-inner table td {
+  width: 200px;
+  padding: 14px;
+  border: 1px solid #fff;
+  vertical-align: middle; }
+
+.reveal .overlay.overlay-help .viewport .viewport-inner table th {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+/*********************************************
+ * PLAYBACK COMPONENT
+ *********************************************/
+.reveal .playback {
+  position: absolute;
+  left: 15px;
+  bottom: 20px;
+  z-index: 30;
+  cursor: pointer;
+  transition: all 400ms ease;
+  -webkit-tap-highlight-color: transparent; }
+
+.reveal.overview .playback {
+  opacity: 0;
+  visibility: hidden; }
+
+/*********************************************
+ * ROLLING LINKS
+ *********************************************/
+.reveal .roll {
+  display: inline-block;
+  line-height: 1.2;
+  overflow: hidden;
+  vertical-align: top;
+  -webkit-perspective: 400px;
+          perspective: 400px;
+  -webkit-perspective-origin: 50% 50%;
+          perspective-origin: 50% 50%; }
+
+.reveal .roll:hover {
+  background: none;
+  text-shadow: none; }
+
+.reveal .roll span {
+  display: block;
+  position: relative;
+  padding: 0 2px;
+  pointer-events: none;
+  transition: all 400ms ease;
+  -webkit-transform-origin: 50% 0%;
+          transform-origin: 50% 0%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+
+.reveal .roll:hover span {
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transform: translate3d(0px, 0px, -45px) rotateX(90deg);
+          transform: translate3d(0px, 0px, -45px) rotateX(90deg); }
+
+.reveal .roll span:after {
+  content: attr(data-title);
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0 2px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform-origin: 50% 0%;
+          transform-origin: 50% 0%;
+  -webkit-transform: translate3d(0px, 110%, 0px) rotateX(-90deg);
+          transform: translate3d(0px, 110%, 0px) rotateX(-90deg); }
+
+/*********************************************
+ * SPEAKER NOTES
+ *********************************************/
+.reveal aside.notes {
+  display: none; }
+
+.reveal .speaker-notes {
+  display: none;
+  position: absolute;
+  width: 25vw;
+  height: 100%;
+  top: 0;
+  left: 100%;
+  padding: 14px 18px 14px 18px;
+  z-index: 1;
+  font-size: 18px;
+  line-height: 1.4;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: #222;
+  background-color: #f5f5f5;
+  overflow: auto;
+  box-sizing: border-box;
+  text-align: left;
+  font-family: Helvetica, sans-serif;
+  -webkit-overflow-scrolling: touch; }
+  .reveal .speaker-notes .notes-placeholder {
+    color: #ccc;
+    font-style: italic; }
+  .reveal .speaker-notes:focus {
+    outline: none; }
+  .reveal .speaker-notes:before {
+    content: 'Speaker notes';
+    display: block;
+    margin-bottom: 10px;
+    opacity: 0.5; }
+
+.reveal.show-notes {
+  max-width: 75vw;
+  overflow: visible; }
+
+.reveal.show-notes .speaker-notes {
+  display: block; }
+
+@media screen and (min-width: 1600px) {
+  .reveal .speaker-notes {
+    font-size: 20px; } }
+
+@media screen and (max-width: 1024px) {
+  .reveal.show-notes {
+    border-left: 0;
+    max-width: none;
+    max-height: 70%;
+    overflow: visible; }
+  .reveal.show-notes .speaker-notes {
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 42.8571428571%; } }
+
+@media screen and (max-width: 600px) {
+  .reveal.show-notes {
+    max-height: 60%; }
+  .reveal.show-notes .speaker-notes {
+    top: 100%;
+    height: 66.6666666667%; }
+  .reveal .speaker-notes {
+    font-size: 14px; } }
+
+/*********************************************
+ * ZOOM PLUGIN
+ *********************************************/
+.zoomed .reveal *,
+.zoomed .reveal *:before,
+.zoomed .reveal *:after {
+  -webkit-backface-visibility: visible !important;
+          backface-visibility: visible !important; }
+
+.zoomed .reveal .progress,
+.zoomed .reveal .controls {
+  opacity: 0; }
+
+.zoomed .reveal .roll span {
+  background: none; }
+
+.zoomed .reveal .roll span:after {
+  visibility: hidden; }
+
+      
+      </style>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/theme/white.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/lib/js/head.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/js/reveal.js"></script>
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript+abap+actionscript+ada+apacheconf+apl+applescript+asciidoc+aspnet+autoit+autohotkey+bash+basic+batch+c+brainfuck+bro+bison+csharp+cpp+coffeescript+ruby+css-extras+d+dart+django+diff+docker+eiffel+elixir+erlang+fsharp+fortran+gherkin+git+glsl+go+graphql+groovy+haml+handlebars+haskell+haxe+http+icon+inform7+ini+j+jade+java+jolie+json+julia+keyman+kotlin+latex+less+livescript+lolcode+lua+makefile+markdown+matlab+mel+mizar+monkey+nasm+nginx+nim+nix+nsis+objectivec+ocaml+oz+parigp+parser+pascal+perl+php+php-extras+powershell+processing+prolog+properties+protobuf+puppet+pure+python+q+qore+r+jsx+reason+rest+rip+roboconf+crystal+rust+sas+sass+scss+scala+scheme+smalltalk+smarty+sql+stylus+swift+tcl+textile+twig+typescript+vbnet+verilog+vhdl+vim+wiki+xojo+yaml */
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+/* highlight */
+pre[data-line] {
+	position: relative;
+	padding: 1em 0 1em 3em;
+  }
+  pre[data-line] .line-highlight-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: transparent;
+	display: block;
+	width: 100%;
+  }
+  
+  pre[data-line] .line-highlight {
+	position: absolute;
+	left: 0;
+	right: 0;
+	padding: inherit 0;
+	margin-top: 1em;
+	background: hsla(24, 20%, 50%,.08);
+	background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+	pointer-events: none;
+	line-height: inherit;
+	white-space: pre;
+  }
+  
+  pre[data-line] .line-highlight:before, 
+  pre[data-line] .line-highlight[data-end]:after {
+	content: attr(data-start);
+	position: absolute;
+	top: .4em;
+	left: .6em;
+	min-width: 1em;
+	padding: 0 .5em;
+	background-color: hsla(24, 20%, 50%,.4);
+	color: hsl(24, 20%, 95%);
+	font: bold 65%/1.5 sans-serif;
+	text-align: center;
+	vertical-align: .3em;
+	border-radius: 999px;
+	text-shadow: none;
+	box-shadow: 0 1px white;
+  }
+  
+  pre[data-line] .line-highlight[data-end]:after {
+	content: attr(data-end);
+	top: auto;
+	bottom: .4em;
+  }.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/*  .markdown-preview.markdown-preview {
+
+  left: 0 !important;
+  transform: none !important;
+
+  font-family: 'Fira Sans',
+  sans-serif;
+
+  background-color: #222222;
+  color           : #aaaaaa;
+
+  strong {
+    color: #bbbbbb;
+  }
+
+  .media-row {
+    display        : flex;
+    flex-direction : row;
+    justify-content: space-around;
+  }
+
+  .media-img {
+    height: 40px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #bbbbbb;
+  }
+
+  a {
+    color: #df6400;
+  }
+
+  footer {
+    font-size: 75%;
+  }
+
+  pre,
+  code {
+
+    font-family     : 'Fira Mono', monospace;
+    background-color: #363636;
+    color           : #c5c5c5;
+
+    .punctuation {
+      color: #e48f3f;
+    }
+
+    .operator {
+      color: #ffc038;
+    }
+
+    .macro,
+    .directive,
+    .macro>.string {
+      color: #00b43c !important;
+    }
+
+    .function {
+      color: #ff6b58;
+    }
+
+    .keyword {
+      color: #e8eb56;
+    }
+
+    .string {
+      color: #64cce6;
+    }
+  }
+} */
+p {
+  font-size: 100%;
+}
+.mume-header {
+  font-size: 200%;
+}
+
+      </style>
+    </head>
+    <body for="html-export" data-presentation-mode>
+      <div class="mume markdown-preview  " data-presentation-mode>
+      
+    <div style="display:none;"></div>
+    <div class="reveal">
+      <div class="slides">
+        <section lineno="11" class="slide " data-line="11" data-h="0" data-v="0">
+<h1 class="mume-header" id="kurs-stm32">Kurs STM32</h1>
+
+<p><em>Wojciech Olech</em></p>
+<h2 class="mume-header" id="cz%C4%99%C5%9B%C4%87-vii-przetwornik-analogowo-cyfrowy-adc">Cz&#x119;&#x15B;&#x107; VII: Przetwornik analogowo-cyfrowy (ADC)</h2>
+
+</section><section lineno="19" class="slide " data-line="19" data-h="1" data-v="0">
+<h3 class="mume-header" id="adc">ADC</h3>
+
+<p>ADC (przetwornik analogowo-cyfrowy) s&#x142;u&#x17C;y do odczytywania napi&#x119;cia analogowego i konwersji jego warto&#x15B;ci na liczb&#x119;, w celu jej przetworzenia.</p>
+<p>Najwa&#x17C;niejsze charakterystyki ADC to:</p>
+<ul>
+<li>Rozdzielczo&#x15B;&#x107; - wyra&#x17C;ana w bitach, im wi&#x119;ksza tym lepiej poniewa&#x17C; pozwala na dok&#x142;adniejszy odczyt.</li>
+<li>Maksymalna szybko&#x15B;&#x107; samplowania (czas samplowania) - im szybciej, tym lepiej, ale zazwyczaj wraz ze wzrostem szybko&#x15B;ci tracimy dok&#x142;adno&#x15B;&#x107; pomiaru</li>
+</ul>
+<p>Dodatkowo, czasami ma r&#xF3;wnie&#x17C; znaczenie nieliniowo&#x15B;&#x107; i szumy przetwornika.</p>
+</section><section lineno="31" class="slide " data-line="31" data-h="2" data-v="0">
+<h4 class="mume-header" id="popularne-rodzaje-przetwornik%C3%B3w-adc">Popularne rodzaje przetwornik&#xF3;w ADC</h4>
+
+<ul>
+<li>Direct-conversion (flash) ADC: Sk&#x142;ada si&#x119; z komparator&#xF3;w sampluj&#x105;cych sygna&#x142; r&#xF3;wnolegle. Bardzo szybki (sample rate mierzony w GHz), ale wymaga du&#x17C;ej ilo&#x15B;ci komparator&#xF3;w (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>N</mi></msup><mo>&#x2212;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^N - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.924661em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>), ma du&#x17C;&#x105; pojemno&#x15B;&#x107; wej&#x15B;ciow&#x105;, wymaga du&#x17C;o mocy i jest podatny na b&#x142;&#x119;dy.</li>
+</ul>
+<img src="flash_adc.jpg">
+</section><section lineno="39" class="slide " data-line="39" data-h="3" data-v="0">
+<ul>
+<li>Successive approximation (SAR) ADC: Dzia&#x142;a na zasadzie sukcesywnej komparacji warto&#x15B;ci wej&#x15B;ciowej z warto&#x15B;ci&#x105; generowan&#x105; przez wewn&#x119;trzne &#x17A;r&#xF3;d&#x142;o sygna&#x142;u (DAC) krok po kroku. Wej&#x15B;ciowy sygna&#x142; jest por&#xF3;wnywany z generowanymi przez DAC warto&#x15B;ciami, kt&#xF3;re z kolei s&#x105; generowane na podstawie uprzednio zmierzonych warto&#x15B;ci zaczynaj&#x105;c od <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>V</mi><mrow><mi>r</mi><mi>e</mi><mi>f</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\frac{1}{2}V_{ref}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>.</li>
+</ul>
+<img src="sar_adc.png">
+</section><section lineno="45" class="slide " data-line="45" data-h="4" data-v="0">
+<ul>
+<li>Przetwornik Sigma-delta (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">&#x3A3;</mi><mi mathvariant="normal">&#x394;</mi></mrow><annotation encoding="application/x-tex">\Sigma\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">&#x3A3;</span><span class="mord">&#x394;</span></span></span></span>) - modulatory sigma-delta generuj&#x105; impulsy o cz&#x119;stotliwo&#x15B;ci proporcjonalnej do napi&#x119;cia wej&#x15B;ciowego, a nast&#x119;pnie je zliczaj&#x105;, co pozwala otrzyma&#x107; warto&#x15B;&#x107; liczbow&#x105;. Charakteryzuj&#x105; si&#x119; one niskim szumem i wysok&#x105; dok&#x142;adno&#x15B;ci&#x105; pomiar&#xF3;w.</li>
+</ul>
+<img src="delta_sigma_adc.png">
+</section><section lineno="51" class="slide " data-line="51" data-h="5" data-v="0">
+<p>Ka&#x17C;dy przetwornik analogowo-cyfrowy wymaga do dzia&#x142;ania <strong>napi&#x119;cia wej&#x15B;ciowego</strong> i <strong>napi&#x119;cia referencyjnego</strong> (lub kilku napi&#x119;&#x107; referencyjnych). Napi&#x119;cie referencyjne okre&#x15B;la maksymaln&#x105; (lub minimaln&#x105;, w przypadku bipolarnych przetwornik&#xF3;w) warto&#x15B;&#x107; napi&#x119;cia jak&#x105; dany przetwornik mo&#x17C;e zmierzy&#x107;, oraz jego dok&#x142;adno&#x15B;&#x107; (a co za tym idzie, b&#x142;&#x105;d kwantyzacji)</p>
+</section><section lineno="55" class="slide " data-line="55" data-h="6" data-v="0">
+<p>Rozdzielczo&#x15B;&#x107; napi&#x119;ciow&#x105; przetwornika okre&#x15B;la si&#x119; wzorem <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>r</mi><mi>e</mi><mi>s</mi></mrow></msub><mo>=</mo><msub><mi>V</mi><mrow><mi>r</mi><mi>e</mi><mi>f</mi></mrow></msub><mo>&#x22C5;</mo><msup><mn>2</mn><mrow><mo>&#x2212;</mo><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">V_{res} = V_{ref} \cdot 2^{-n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x22C5;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">&#x2212;</span><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span></span>, gdzie <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>r</mi><mi>e</mi><mi>f</mi></mrow></msub></mrow><annotation encoding="application/x-tex">V_{ref}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> to napi&#x119;cie referencyjne, a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> to rozdzielczo&#x15B;&#x107; przetwornika.</p>
+<p>Przyk&#x142;adowo, dla 8-bitowego przetwornika ADC z napi&#x119;ciem referencyjnym 5V rozdzielczo&#x15B;&#x107; napi&#x119;ciowa b&#x119;dzie wynosi&#x107; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>r</mi><mi>e</mi><mi>s</mi></mrow></msub><mo>=</mo><mn>5</mn><mo>&#x22C5;</mo><msup><mn>2</mn><mrow><mo>&#x2212;</mo><mn>8</mn></mrow></msup><mo>=</mo><mn>5</mn><mo>&#x22C5;</mo><mfrac><mn>1</mn><mn>1024</mn></mfrac><mo>&#x2248;</mo><mn>4.9</mn><mtext>mV</mtext></mrow><annotation encoding="application/x-tex">V_{res} = 5 \cdot 2^{-8} = 5 \cdot \frac{1}{1024} \approx 4.9\text{mV}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x22C5;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">&#x2212;</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x22C5;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">2</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&#x2248;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">.</span><span class="mord">9</span><span class="mord text"><span class="mord">mV</span></span></span></span></span></p>
+<p>Oznacza to, &#x17C;e najmniej znacz&#x105;cy bit (LSB) ma wag&#x119; oko&#x142;o <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4.9</mn><mtext>mV</mtext></mrow><annotation encoding="application/x-tex">4.9\text{mV}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">.</span><span class="mord">9</span><span class="mord text"><span class="mord">mV</span></span></span></span></span>, czyli przetwornik mo&#x17C;e mierzy&#x107; warto&#x15B;ci z krokiem <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4.9</mn><mtext>mV</mtext></mrow><annotation encoding="application/x-tex">4.9\text{mV}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">.</span><span class="mord">9</span><span class="mord text"><span class="mord">mV</span></span></span></span></span>. Je&#x15B;li podamy mu do zmierzenia warto&#x15B;&#x107; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mtext>mV</mtext></mrow><annotation encoding="application/x-tex">100\text{mV}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord text"><span class="mord">mV</span></span></span></span></span>, to zwr&#xF3;ci warto&#x15B;&#x107; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>, co po ponownym przeliczeniu na napi&#x119;cie b&#x119;dzie wynosi&#x107; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mo>&#x22C5;</mo><mn>4.9</mn><mtext>mV</mtext><mo>=</mo><mn>98</mn><mtext>mV</mtext></mrow><annotation encoding="application/x-tex">20 \cdot 4.9\text{mV} = 98\text{mV}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x22C5;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">.</span><span class="mord">9</span><span class="mord text"><span class="mord">mV</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">9</span><span class="mord">8</span><span class="mord text"><span class="mord">mV</span></span></span></span></span>, co daje nam b&#x142;&#x105;d kwantyzacji o wielko&#x15B;ci <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mtext>mV</mtext></mrow><annotation encoding="application/x-tex">2\text{mV}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord text"><span class="mord">mV</span></span></span></span></span> dla tego pomiaru.</p>
+<p>B&#x142;&#x105;d kwantyzacji mo&#x17C;na zmniejszy&#x107; zwi&#x119;kszaj&#x105;c rozdzielczo&#x15B;&#x107; napi&#x119;ciow&#x105; poprzez zmniejszanie napi&#x119;cia referencyjnego lub zwi&#x119;kszanie ilo&#x15B;ci bit&#xF3;w.</p>
+</section><section lineno="65" class="slide " data-line="65" data-h="7" data-v="0">
+<p>W mikrokontrolerach STM32 najcz&#x119;&#x15B;ciej u&#x17C;ywany jest przetwornik z sukcesywn&#x105; aproksymacj&#x105; (SAR) o maksymalnej rozdzielczo&#x15B;ci 12 bit&#xF3;w. Wyj&#x105;tkiem jest seria STM32F37x, gdzie jest u&#x17C;ywany przetwornik z modulacj&#x105; Sigma-Delta o maksymalnej rozdzielczo&#x15B;ci 16 bit&#xF3;w.</p>
+<p>ADC w STM32 mo&#x17C;e mierzy&#x107; napi&#x119;cie w dw&#xF3;ch trybach: <strong>single-ended</strong> i <strong>differential</strong>.</p>
+<p>Tryb single-ended mierzy warto&#x15B;&#x107; z u&#x17C;yciem jednego kana&#x142;u, pomi&#x119;dzy nim a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>r</mi><mi>e</mi><mi>f</mi></mrow></msub></mrow><annotation encoding="application/x-tex">V_{ref}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span><br>
+Tryb differential mierzy napi&#x119;cie pomi&#x119;dzy dwoma kana&#x142;ami.</p>
+</section><section lineno="74" class="slide " data-line="74" data-h="8" data-v="0">
+<h3 class="mume-header" id="konfiguracja-adc-w-device-managerze">Konfiguracja ADC w Device Managerze</h3>
+
+<p>&#x17B;eby w&#x142;&#x105;czy&#x107; przetwornik ADC w Device Managerze, nale&#x17C;y w zak&#x142;adce &quot;Analog&quot; w&#x142;&#x105;czy&#x107; interesuj&#x105;ce nas kana&#x142;y. Mo&#x17C;na sprawdzi&#x107; kt&#xF3;ry pin nale&#x17C;y do danego kana&#x142;u konkretnego ADC poprzez klikni&#x119;cie na niego w widoku pinoutu, ale <strong>zmiana trybu pinu w tym widoku nie w&#x142;&#x105;czy danego kana&#x142;u, nadal nale&#x17C;y to zrobi&#x107; w konfiguracji ADC</strong>.</p>
+<img src="adc_pinout_view.png" style="width:40%">
+</section><section lineno="82" class="slide " data-line="82" data-h="9" data-v="0">
+<h4 class="mume-header" id="ustawienia-adc">Ustawienia ADC</h4>
+
+<p>Po skonfigurowaniu jednego z kana&#x142;&#xF3;w ADC mo&#x17C;emy zmieni&#x107; jego ustawienia.</p>
+<ul>
+<li>Clock Prescaler - preskaler zegara jakim b&#x119;dzie taktowany <strong>ca&#x142;y ADC</strong> (nie pojedynczy kana&#x142;). Im wi&#x119;kszy, tym wolniej b&#x119;dzie przebiega&#x142; pomiar. <strong>Asynchroniczny</strong> preskaler pozwala na taktowanie ADC innym zegarem ni&#x17C; HCLK (g&#x142;&#xF3;wny zegar mikrokontrolera), <strong>synchroniczny</strong> preskaler wymusza taktowanie ADC zegarem HCLK.</li>
+<li>Resolution - rozdzielczo&#x15B;&#x107; bitowa ADC, im mniejsza tym szybciej nast&#x119;puje konwersja pomiar&#xF3;w przez SAR, dzi&#x119;ki czemu ro&#x15B;nie cz&#x119;stotliwo&#x15B;&#x107; pr&#xF3;bkowania.</li>
+<li>Continuous Conversion Mode - mo&#x17C;emy skonfigurowa&#x107; ADC &#x17C;eby zap&#x119;tli&#x142; pr&#xF3;bkowanie, co spowoduje &#x17C;e po rozpocz&#x119;ciu pomiaru b&#x119;dzie on wykonywany w k&#xF3;&#x142;ko do momentu jego r&#x119;cznego zatrzymania.</li>
+<li>Overrun behaviour - je&#x15B;li dane z aktualnego pomiaru nie zostan&#x105; odczytane przez procesor przed rozpocz&#x119;ciem nowego pomiaru, nast&#x105;pi <em>overrun</em>. Mo&#x17C;emy wybra&#x107; czy po jego nast&#x105;pieniu stare dane maj&#x105; zosta&#x107; zachowane czy nadpisane.</li>
+<li>Enable Regular Oversampling - niekt&#xF3;re serie STM32 maj&#x105; wbudowane w ADC oversamplery kt&#xF3;re mierz&#x105; analogow&#x105; warto&#x15B;&#x107; kilkukrotnie a nast&#x119;pnie j&#x105; obrabiaj&#x105; (na przyk&#x142;ad u&#x15B;redniaj&#x105;), co przek&#x142;ada si&#x119; na dok&#x142;adniejsze pomiary. To pole aktywuje oversampler.</li>
+</ul>
+</section><section lineno="94" class="slide " data-line="94" data-h="10" data-v="0">
+<ul>
+<li>Number of Conversions - ilo&#x15B;&#x107; konwersji przeprowadzanych przez ADC. Nale&#x17C;y pami&#x119;ta&#x107; &#x17C;eby j&#x105; zwi&#x119;kszy&#x107; i ka&#x17C;d&#x105; konwersj&#x119; (Rank) odpowiednio skonfigurowa&#x107;, poniewa&#x17C; je&#x15B;li tego nie zrobimy to domy&#x15B;lnie ADC wykona tylko jedn&#x105; konwersj&#x119; na pierwszym skonfigurowanym przez nas kanale.</li>
+<li>Rank - tutaj mo&#x17C;emy skonfigurowa&#x107; kana&#x142; (Channel) i czas samplowania (Sampling Time).</li>
+</ul>
+</section><section lineno="99" class="slide " data-line="99" data-h="11" data-v="0">
+<h3 class="mume-header" id="zadanie-1-pomiar-wewn%C4%99trznej-temperatury-mikrokontrolera">Zadanie 1: Pomiar wewn&#x119;trznej temperatury mikrokontrolera</h3>
+
+<p>Na start, zmierzymy warto&#x15B;&#x107; czujnika temperatury wbudowanego w mikrokontroler. W konfiguracjach ADC szukamy checkboxa <em>Temperature Sensor Channel</em> i go zaznaczamy.</p>
+<p>Czujnik temperatury jest do&#x15B;&#x107; specyficznym elementem procesora z kilku powod&#xF3;w</p>
+<ul>
+<li>Zwraca on temperatur&#x119; <strong>wewn&#x105;trz</strong> opakowania. Oznacza to &#x17C;e nie mo&#x17C;emy go wykorzysta&#x107; do pomiaru temperatury otoczenia. Jest on r&#xF3;wnie&#x17C; do&#x15B;&#x107; niedok&#x142;adny.</li>
+<li>Wymaga odpowiedniego czasu pomiaru &#x17C;eby uzyska&#x107; poprawn&#x105; temperatur&#x119;.</li>
+</ul>
+<p>W niekt&#xF3;rych mikrokontrolerach, w bibliotekach HALa znajduj&#x105; si&#x119; makra kt&#xF3;re umo&#x17C;liwiaj&#x105; konwersj&#x119; napi&#x119;cia na temperatur&#x119;. Warto&#x15B;ci kalibracyjne czujnika s&#x105; zapisane w pami&#x119;ci mikrokontrolera na etapie jego produkcji. W przypadku STM32F401 nie mamy tych makr, dlatego b&#x119;dziemy musieli wykona&#x107; konwersj&#x119; r&#x119;cznie.</p>
+<p>Wymagania dotycz&#x105;ce timing&#xF3;w oraz adresy warto&#x15B;ci kalibracyjnych mo&#x17C;na znale&#x17A;&#x107; w datasheecie mikrokontrolera (sekcje &quot;Temperature Sensor Characteristics&quot; oraz &quot;Analog to digital converter (ADC) -&gt; Temperature sensor&quot;)</p>
+</section><section lineno="114" class="slide " data-line="114" data-h="12" data-v="0">
+<p>Zaczniemy od zebrania czystych danych z czujnika. W tym celu, musimy skonfigurowa&#x107; ADC &#x17C;eby czas samplowania by&#x142; wi&#x119;kszy lub r&#xF3;wny czasowi podanemu w datasheecie.</p>
+<p>Na stronie 112 datasheeta (<a href="https://www.st.com/resource/en/datasheet/stm32f401re.pdf">https://www.st.com/resource/en/datasheet/stm32f401re.pdf</a>) mo&#x17C;na znale&#x17A;&#x107; charakterystyki czujnika temperatury. Interesuje nas w tej chwili <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mtext>S_temp</mtext></msub><mo>=</mo><mn>10</mn><mi>&#x3BC;</mi><mtext>s</mtext></mrow><annotation encoding="application/x-tex">T_{\text{S\_temp}} = 10\mu \text{s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05033em;vertical-align:-0.367em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">S_temp</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.367em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord mathdefault">&#x3BC;</span><span class="mord text"><span class="mord">s</span></span></span></span></span> - minimalny czas samplowania pomiaru. Czas uruchamiania kana&#x142;u <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mtext>START</mtext></msub></mrow><annotation encoding="application/x-tex">t_{\text{START}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">START</span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> nas nie interesuje, poniewa&#x17C; HAL si&#x119; nim zajmuje.</p>
+<p>&#x17B;eby uzyska&#x107; ten minimalny czas samplowania pomiaru, musimy odpowiednio dobra&#x107; ilo&#x15B;&#x107; cykli w kt&#xF3;rych ADC b&#x119;dzie mierzy&#x107; warto&#x15B;&#x107; czujnika.</p>
+</section><section lineno="122" class="slide " data-line="122" data-h="13" data-v="0">
+<p>Czas trwania jednego cyklu jest czasem jednego taktu zegara ADC. ADC taktowany jest zazwyczaj dzielonym zegarem APB do kt&#xF3;rego jest pod&#x142;&#x105;czony - w przypadku STM32F401RE jest to PCLK2.</p>
+<p>PCLK2 domy&#x15B;lnie skonfigurowany jest na cz&#x119;stotliwo&#x15B;&#x107; 84MHz - nale&#x17C;y to sprawdzi&#x107; w zak&#x142;adce drzewa zegar&#xF3;w Device Configuratora, a w ustawieniach ADC ma preskaler ustawiony na 4, co oznacza &#x17C;e cz&#x119;stotliwo&#x15B;&#x107; ADC b&#x119;dzie wynosi&#x107; 21MHz, ergo jeden cykl potrwa <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>47.6</mn><mtext>ns</mtext></mrow><annotation encoding="application/x-tex">47.6\text{ns}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">7</span><span class="mord">.</span><span class="mord">6</span><span class="mord text"><span class="mord">ns</span></span></span></span></span>. &#x17B;eby uzyska&#x107; czas samplowania wi&#x119;kszy ni&#x17C; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mi>&#x3BC;</mi><mtext>s</mtext></mrow><annotation encoding="application/x-tex">10\mu \text{s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord mathdefault">&#x3BC;</span><span class="mord text"><span class="mord">s</span></span></span></span></span>, potrzebujemy co najmniej</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>10</mn><mi>&#x3BC;</mi><mtext>s</mtext></mrow><mrow><mn>47.6</mn><mtext>ns</mtext></mrow></mfrac><mo>=</mo><mn>211</mn><mtext>&#xA0;cykli</mtext></mrow><annotation encoding="application/x-tex">\frac{10\mu \text{s}}{47.6\text{ns}} = 211~\text{cykli}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord">7</span><span class="mord">.</span><span class="mord">6</span><span class="mord text"><span class="mord">ns</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">0</span><span class="mord mathdefault">&#x3BC;</span><span class="mord text"><span class="mord">s</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">2</span><span class="mord">1</span><span class="mord">1</span><span class="mspace nobreak">&#xA0;</span><span class="mord text"><span class="mord">cykli</span></span></span></span></span></span></p>
+</section><section lineno="130" class="slide " data-line="130" data-h="14" data-v="0">
+<p>Na ilo&#x15B;&#x107; cykli jednej konwersji sk&#x142;ada si&#x119; ilo&#x15B;&#x107; cykli wybranych w danym kanale + sta&#x142;a ilo&#x15B;&#x107; cykli zale&#x17C;na od skonfigurowanej rozdzielczo&#x15B;ci ADC. T&#x105; drug&#x105; informacj&#x119; mo&#x17C;na znale&#x17A;&#x107; w reference manualu procesora, lub CubeMXie, gdzie jest nieco przek&#x142;amana poniewa&#x17C; CubeMX podaje o 3 cykle za du&#x17C;o (15 cykli dla 12-bit ADC to 12 cykli dla wybranej rozdzielczo&#x15B;ci, + minimalna ilo&#x15B;&#x107; cykli konwersji, czyli 3)</p>
+<p>Je&#x15B;li chcemy mierzy&#x107; warto&#x15B;&#x107; temperatury z rozdzielczo&#x15B;ci&#x105; 12 bit&#xF3;w, to musimy w naszym przypadku skonfigurowa&#x107; kana&#x142; ADC na minimum 199 cykli. Najbli&#x17C;sza ilo&#x15B;&#x107; cykli wi&#x119;ksza od 199, kt&#xF3;r&#x105; mo&#x17C;emy skonfigurowa&#x107;, to 480.</p>
+<p>Ta ilo&#x15B;&#x107; cykli bardzo odstaje od naszego obliczonego minimum, dlatego je&#x15B;li chcieliby&#x15B;my skorzysta&#x107; z mniejszej ilo&#x15B;ci cykli, musimy zmniejszy&#x107; cz&#x119;stotliwo&#x15B;&#x107; ADC, zwi&#x119;kszaj&#x105;c dzielnik lub zmniejszaj&#x105;c cz&#x119;stotliwo&#x15B;&#x107; zegara PCLK2. Nam jednak nie robi to r&#xF3;&#x17C;nicy, wi&#x119;c zostawiamy to w ten spos&#xF3;b.</p>
+</section><section lineno="138" class="slide " data-line="138" data-h="15" data-v="0">
+<p>Mo&#x17C;emy teraz przej&#x15B;&#x107; do pisania kodu.<br>
+Na start, spr&#xF3;bujemy odczyta&#x107; warto&#x15B;&#x107; temperatury w trybie <em>polling</em>. &#x17B;eby wykona&#x107; pomiar ADC nale&#x17C;y w tym przypadku skorzysta&#x107; z funkcji <code>HAL_ADC_Start</code> do kt&#xF3;rej podajemy adres uchwytu do struktury ADC.</p>
+<p>Nast&#x119;pnie, mo&#x17C;emy sprawdzi&#x107; czy ADC zako&#x144;czy&#x142; konwersj&#x119; poprzez odczyt flagi <code>ADC_FLAG_EOC</code> za pomoc&#x105; makra <code>__HAL_ADC_GET_FLAG</code>, lub zaczeka&#x107; na koniec konwersji z u&#x17C;yciem funkcji <code>HAL_ADC_PollForConversion</code></p>
+<p>Nast&#x119;pnie, odczytujemy warto&#x15B;&#x107; za pomoc&#x105; funkcji <code>HAL_ADC_GetValue</code></p>
+</section><section lineno="147" class="slide " data-line="147" data-h="16" data-v="0">
+<p>Poni&#x17C;szy kod co sekund&#x119; b&#x119;dzie mierzy&#x107; i wy&#x15B;wietla&#x107; warto&#x15B;&#x107; z ADC pod&#x142;&#x105;czonego do czujnika temperatury.</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* USER CODE BEGIN WHILE */</span>
+uint32_t temperatureRaw <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token comment">/* USER CODE END WHILE */</span>
+	<span class="token comment">/* USER CODE BEGIN 3 */</span>
+	<span class="token function">HAL_ADC_Start</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hadc1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">HAL_ADC_PollForConversion</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hadc1<span class="token punctuation">,</span> HAL_MAX_DELAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	temperatureRaw <span class="token operator">=</span> <span class="token function">HAL_ADC_GetValue</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hadc1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Temperature sensor raw value: %ld\n&quot;</span><span class="token punctuation">,</span> temperatureRaw<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">HAL_Delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* USER CODE END 3 */</span>
+</pre></section><section lineno="166" class="slide " data-line="166" data-h="17" data-v="0">
+<p>&#x17B;eby przekonwertowa&#x107; t&#x105; warto&#x15B;&#x107; na temperatur&#x119;, musimy j&#x105; najpierw zamieni&#x107; na napi&#x119;cie. Wiedz&#x105;c &#x17C;e <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>V</mtext><mtext>ref</mtext></msub><mo>=</mo><mn>3.3</mn><mtext>V</mtext></mrow><annotation encoding="application/x-tex">\text{V}_\text{ref} = 3.3\text{V}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">V</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">ref</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">.</span><span class="mord">3</span><span class="mord text"><span class="mord">V</span></span></span></span></span>, a rozdzielczo&#x15B;&#x107; ADC <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>A</mtext><mtext>res</mtext></msub></mrow><annotation encoding="application/x-tex">\text{A}_\text{res}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">A</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">res</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> wynosi 12 bit&#xF3;w (co mo&#x17C;na sprawdzi&#x107; r&#xF3;wnie&#x17C; w kodzie, z u&#x17C;yciem makra <code>ADC_GET_RESOLUTION</code>), wystarczy skorzysta&#x107; z nast&#x119;puj&#x105;cego wzoru:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>V</mtext><mtext>measured</mtext></msub><mo>=</mo><mfrac><mtext>raw&#xA0;value</mtext><mrow><msup><mn>2</mn><msub><mtext>A</mtext><mtext>res</mtext></msub></msup><mo>&#x2212;</mo><mn>1</mn></mrow></mfrac><mo>&#x22C5;</mo><msub><mtext>V</mtext><mtext>ref</mtext></msub></mrow><annotation encoding="application/x-tex">\text{V}_\text{measured} = \frac{\text{raw value}}{2^{\text{A}_\text{res}} - 1} \cdot \text{V}_\text{ref}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">V</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">measured</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.767331em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">A</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord text mtight"><span class="mord mtight">res</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">raw&#xA0;value</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x22C5;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">V</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">ref</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword">float</span> <span class="token function">convertRawValueToVoltage</span><span class="token punctuation">(</span>uint32_t rawValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span> rawValue <span class="token operator">/</span> <span class="token number">4095.f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">3.3f</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></section><section lineno="178" class="slide " data-line="178" data-h="18" data-v="0">
+<p>Nast&#x119;pnie, mo&#x17C;na wykona&#x107; aproksymacj&#x119; temperatury na dwa sposoby.<br>
+W datasheecie procesora, mamy podane nast&#x119;puj&#x105;ce warto&#x15B;ci</p>
+<ul>
+<li><em>Average slope</em> - ilo&#x15B;&#x107; zmerzonych milivolt&#xF3;w per stopie&#x144; celcjusza na czujniku</li>
+<li><em>Voltage at 25*C</em> - napi&#x119;cie na czujniku przy 25 stopniach celcjusza</li>
+<li><strong>Temperature sensor calibration values</strong> - adresy warto&#x15B;ci kalibracyjnych, czyli napi&#x119;&#x107; zmierzonych na czujniku podczas produkcji, przy 30*C i 110*C, kt&#xF3;re zosta&#x142;y zapisane na sta&#x142;e w pami&#x119;ci procesora</li>
+</ul>
+<p>My skorzystamy z <em>average slope</em> i <em>voltage at 25*C</em>. B&#x119;dzie to potencjalnie mniej dok&#x142;adne ni&#x17C; u&#x17C;ycie warto&#x15B;ci kalibracyjnych, ale &#x142;atwiejsze w zastosowaniu.</p>
+<p>W przypadku STM32F401RE, <em>average slope</em> wynosi <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.5</mn><mtext>mV/*C</mtext></mrow><annotation encoding="application/x-tex">2.5\text{mV/*C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span><span class="mord text"><span class="mord">mV/*C</span></span></span></span></span>, a napi&#x119;cie przy 25*C wynosi 0.76V</p>
+</section><section lineno="190" class="slide " data-line="190" data-h="19" data-v="0">
+<p>Napiszemy wi&#x119;c nast&#x119;puj&#x105;c&#x105; funkcj&#x119; kt&#xF3;ra zamieni napi&#x119;cie na temperatur&#x119; i przetestujemy j&#x105; w praktyce:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>T</mtext><mtext>cpu</mtext></msub><mo>=</mo><mfrac><mrow><mo stretchy="false">(</mo><msub><mtext>V</mtext><mtext>measured</mtext></msub><mo>&#x2212;</mo><msub><mtext>V</mtext><mtext>25</mtext></msub><mo stretchy="false">)</mo></mrow><mtext>AvgSlope</mtext></mfrac><mo>+</mo><mn>25</mn></mrow><annotation encoding="application/x-tex">\text{T}_\text{cpu} = \frac{(\text{V}_\text{measured} - \text{V}_\text{25})}{\text{AvgSlope}} + 25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">cpu</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.30744em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">AvgSlope</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord"><span class="mord text"><span class="mord">V</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">measured</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord text"><span class="mord">V</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">25</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">5</span></span></span></span></span></p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword">float</span> <span class="token keyword">const</span> avgSlope <span class="token operator">=</span> <span class="token number">0.025</span><span class="token punctuation">;</span> <span class="token comment">// Average slope [V]</span>
+<span class="token keyword">float</span> <span class="token keyword">const</span> voltageAt25 <span class="token operator">=</span> <span class="token number">0.76</span><span class="token punctuation">;</span> <span class="token comment">// Temperatura przy 25*C [V]</span>
+
+<span class="token keyword">float</span> <span class="token function">convertVoltageToTemperature</span><span class="token punctuation">(</span><span class="token keyword">float</span> voltage<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>voltage <span class="token operator">-</span> voltageAt25<span class="token punctuation">)</span> <span class="token operator">/</span> avgSlope<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">25.f</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></section><section lineno="205" class="slide " data-line="205" data-h="20" data-v="0">
+<p>Nasza finalna p&#x119;tla programu mo&#x17C;e wygl&#x105;da&#x107; tak</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">//	/* USER CODE BEGIN WHILE */</span>
+uint32_t temperatureRaw <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> temperatureVoltage <span class="token operator">=</span> <span class="token number">0.f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> cpuTemperature <span class="token operator">=</span> <span class="token number">0.f</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token comment">/* USER CODE END WHILE */</span>
+	<span class="token comment">/* USER CODE BEGIN 3 */</span>
+	<span class="token function">HAL_ADC_Start</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hadc1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">HAL_ADC_PollForConversion</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hadc1<span class="token punctuation">,</span> HAL_MAX_DELAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	temperatureRaw <span class="token operator">=</span> <span class="token function">HAL_ADC_GetValue</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hadc1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	temperatureVoltage <span class="token operator">=</span> <span class="token function">convertRawValueToVoltage</span><span class="token punctuation">(</span>temperatureRaw<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	cpuTemperature <span class="token operator">=</span> <span class="token function">convertVoltageToTemperature</span><span class="token punctuation">(</span>temperatureVoltage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">printf</span><span class="token punctuation">(</span>
+			<span class="token string">&quot;Temperature sensor raw value: %ld, voltage: %.3fV, temperature: %.3f*C\n&quot;</span><span class="token punctuation">,</span>
+			temperatureRaw<span class="token punctuation">,</span> temperatureVoltage<span class="token punctuation">,</span> cpuTemperature<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">HAL_Delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* USER CODE END 3 */</span>
+</pre></section><section lineno="231" class="slide " data-line="231" data-h="21" data-v="0">
+<h3 class="mume-header" id="pomiar-adc-w-trybie-przerwa%C5%84">Pomiar ADC w trybie przerwa&#x144;</h3>
+
+<p>Pomiar w trybie przerwa&#x144; nie r&#xF3;&#x17C;ni si&#x119; metodologi&#x105; od trybu polling, jedyna r&#xF3;&#x17C;nica jest taka, &#x17C;e wywo&#x142;uje przerwanie na ko&#x144;cu, wi&#x119;c nie blokuje programu. Uruchamiamy pomiar w trybie przerwa&#x144; za pomoc&#x105; <code>HAL_ADC_Start_IT</code> i musimy pami&#x119;ta&#x107; &#x17C;eby w&#x142;&#x105;czy&#x107; globalne przerwanie ADC w Device Configuration Toolu, &#x17C;eby HAL m&#xF3;g&#x142; obs&#x142;u&#x17C;y&#x107; przerwanie ADC i wywo&#x142;a&#x107; odpowiedni handler.</p>
+<p>Handlery wywo&#x142;ywane przez HALa s&#x105; nast&#x119;puj&#x105;ce:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_ADC_ConvCpltCallback</span><span class="token punctuation">(</span>ADC_HandleTypeDef<span class="token operator">*</span> hadc<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Koniec konwersji</span>
+<span class="token keyword">void</span> <span class="token function">HAL_ADC_ConvHalfCpltCallback</span><span class="token punctuation">(</span>ADC_HandleTypeDef<span class="token operator">*</span> hadc<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Po&#x142;owa konwersji sko&#x144;czona</span>
+<span class="token keyword">void</span> <span class="token function">HAL_ADC_LevelOutOfWindowCallback</span><span class="token punctuation">(</span>ADC_HandleTypeDef<span class="token operator">*</span> hadc<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Zmierzona warto&#x15B;&#x107; jest poza zakresem (?)</span>
+<span class="token keyword">void</span> <span class="token function">HAL_ADC_ErrorCallback</span><span class="token punctuation">(</span>ADC_HandleTypeDef <span class="token operator">*</span>hadc<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// B&#x142;&#x105;d ADC</span>
+</pre></section><section lineno="246" class="slide " data-line="246" data-h="22" data-v="0">
+<h4 class="mume-header" id="cykliczny-pomiar-temperatury-z-u%C5%BCyciem-timera">Cykliczny pomiar temperatury z u&#x17C;yciem timera</h4>
+
+<p>ADC posiada wbudowan&#x105; funkcjonalno&#x15B;&#x107; wykonywania pomiaru na podstawie zewn&#x119;trznego triggera. Tym triggerem mo&#x17C;e by&#x107; event zegara, na przyk&#x142;ad <em>Capture Compare</em>, lub bezpo&#x15B;rednio <em>Trigger Output</em> (czyli wyj&#x15B;cie zegara-mastera).</p>
+<p>ADC w STM32F401 mo&#x17C;emy taktowa&#x107; na przyk&#x142;ad za pomoc&#x105; wyj&#x15B;cia timera 2 lub 3. Timer nale&#x17C;y skonfigurowa&#x107; z odpowiednim preskalerem i counterem (nie musimy konfigurowa&#x107; kana&#x142;&#xF3;w, chyba &#x17C;e korzystamy z trybu <em>capture compare</em>) a w ustawieniach ADC nale&#x17C;y w <strong>External Trigger Conversion Source</strong> wybra&#x107; opcj&#x119; <em>Timer 2 Trigger Out event</em>. Nale&#x17C;y si&#x119; te&#x17C; upewni&#x107;, &#x17C;eby  cykliczny pomiar w ustawieniach ADC by&#x142; wy&#x142;&#x105;czony, poniewa&#x17C; je&#x15B;li tego nie zrobimy to timer wywo&#x142;a tylko start pomiaru kt&#xF3;ry potem b&#x119;dzie dzia&#x142;a&#x142; samodzielnie.</p>
+</section><section lineno="254" class="slide " data-line="254" data-h="23" data-v="0">
+<p>Przyk&#x142;adowo, skonfigurujmy TIM2 na 1-sekundowe cykle UEV (przy zegarze 84MHz mo&#x17C;na w tym celu ustawi&#x107; preskaler na 41999 i counter na 1999), oraz w sekcji <strong>Trigger Output (TRGO) Parameters</strong> zmie&#x144;my <em>Trigger Event Selection</em> na <em>Update Event</em>, &#x17C;eby timer wyzwala&#x142; trigger na podstawie UEV. W ustawieniach ADC w&#x142;&#x105;czmy obs&#x142;ug&#x119; przerwa&#x144; i przejd&#x17A;my do kodu.</p>
+<p>W kodzie musimy jedynie przenie&#x15B;&#x107; odczyt warto&#x15B;ci z ADC oraz jej konwersj&#x119; na temperatur&#x119; do handlera <code>HAL_ADC_ConvCpltCallback</code>, oraz uruchomi&#x107; timer i ADC w trybie przerwa&#x144;.</p>
+</section><section lineno="260" class="slide " data-line="260" data-h="24" data-v="0">
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_ADC_ConvCpltCallback</span><span class="token punctuation">(</span>ADC_HandleTypeDef <span class="token operator">*</span>hadc<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	temperatureRaw <span class="token operator">=</span> <span class="token function">HAL_ADC_GetValue</span><span class="token punctuation">(</span>hadc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	temperatureVoltage <span class="token operator">=</span> <span class="token function">convertRawValueToVoltage</span><span class="token punctuation">(</span>temperatureRaw<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	cpuTemperature <span class="token operator">=</span> <span class="token function">convertVoltageToTemperature</span><span class="token punctuation">(</span>temperatureVoltage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span>
+			<span class="token string">&quot;Temperature sensor raw value: %ld, voltage: %.3fV, temperature: %.3f*C\n&quot;</span><span class="token punctuation">,</span>
+			temperatureRaw<span class="token punctuation">,</span> temperatureVoltage<span class="token punctuation">,</span> cpuTemperature<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LD2_GPIO_Port<span class="token punctuation">,</span> LD2_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// [...]</span>
+<span class="token comment">// W funkcji main:</span>
+  <span class="token comment">/* USER CODE BEGIN 2 */</span>
+	<span class="token function">HAL_TIM_Base_Start</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>htim2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">HAL_ADC_Start_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hadc1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></section><section lineno="280" class="slide " data-line="280" data-h="25" data-v="0">
+<h4 class="mume-header" id="tryby-pracy-adc">Tryby pracy ADC</h4>
+
+<p>ADC ma kilka r&#xF3;&#x17C;nych tryb&#xF3;w pracy, do tej pory korzystali&#x15B;my z jednego - trybu pojedynczej konwersji. W dokumencie opisuj&#x105;cym tryby pracy ADC w STM32 (link na ostatnim slajdzie) jest przedstawiona pe&#x142;na lista mo&#x17C;liwo&#x15B;ci, z kt&#xF3;rych opisz&#x119; najcz&#x119;&#x15B;ciej u&#x17C;ywane</p>
+<p><em>Grafiki u&#x17C;yte w poni&#x17C;szych slajdach s&#x105; wzi&#x119;te z wspomnianego PDFa</em></p>
+</section><section lineno="288" class="slide " data-line="288" data-h="26" data-v="0">
+<h5 class="mume-header" id="single-channel-single-conversion">Single-channel, single-conversion</h5>
+
+<p>Ten tryb ju&#x17C; poznali&#x15B;my, polega na wykonaniu pojedynczego pomiaru na jednym kanale.</p>
+<img src="singlechannel_singleconv.png" style="width:20%">
+</section><section lineno="296" class="slide " data-line="296" data-h="27" data-v="0">
+<h5 class="mume-header" id="multichannel-single-conversion-scan-mode">Multichannel, single conversion (scan mode)</h5>
+
+<p>Ten tryb pozwala na wykonanie jednorazowego pomiaru kilku kana&#x142;&#xF3;w po kolei.<br>
+Je&#x15B;li mikrokontroler na to pozwala, mo&#x17C;na wybra&#x107; kolejno&#x15B;&#x107; mierzonych kana&#x142;&#xF3;w - pomiar jest wykonywany od Rank 1, do Rank <em>n</em>, ale mo&#x17C;na okre&#x15B;li&#x107; kt&#xF3;ry kana&#x142; jest mierzony w danym ranku. Zazwyczaj mo&#x17C;na te&#x17C; okre&#x15B;li&#x107; ilo&#x15B;&#x107; cykli dla ka&#x17C;dego ranka osobno, a czasami te&#x17C; ilo&#x15B;&#x107; pomiar&#xF3;w ka&#x17C;dego ranka.</p>
+<img src="multichannel_singleconv.png" style="width:80%">
+</section><section lineno="305" class="slide " data-line="305" data-h="28" data-v="0">
+<h5 class="mume-header" id="single-channel-continuous-mode">Single-channel, continuous mode</h5>
+
+<p>Ten tryb pozwala na cykliczne wykonywanie pomiar&#xF3;w jednego kana&#x142;u (bez u&#x17C;ycia timera). Kolejny pomiar automatycznie jest wykonywany po zako&#x144;czeniu poprzedniego, do momentu r&#x119;cznego zatrzymania pomiar&#xF3;w.</p>
+<img src="singlechannel_cont.png" style="width:20%">
+</section><section lineno="313" class="slide " data-line="313" data-h="29" data-v="0">
+<h5 class="mume-header" id="multichannel-continuous-mode">Multichannel, continuous mode</h5>
+
+<p>Jak sama nazwa wskazuje, ten tryb pozwala na cykliczny pomiar kilku kana&#x142;&#xF3;w. Tak samo jak w trybie single-channel continuous, po zako&#x144;czeniu pomiaru automatycznie wykonuje si&#x119; nast&#x119;pny.</p>
+<img src="multichannel_cont.png" style="width:20%">
+</section><section lineno="321" class="slide " data-line="321" data-h="30" data-v="0">
+<h5 class="mume-header" id="injected-conversion">Injected conversion</h5>
+
+<p>Ten tryb pozwala kana&#x142;om kt&#xF3;re s&#x105; w nim skonfigurowane wykona&#x107; pomiary z wy&#x17C;szym priorytetem ni&#x17C; normalnie. Oznacza to, &#x17C;e pomiar w trybie <em>injected</em> zatrzyma aktualnie wykonywany przez ADC pomiar, wykona si&#x119;, a potem wznowi dzia&#x142;anie ADC w trybie normalnym. Wstrzykiwanie pomiar&#xF3;w mo&#x17C;e odby&#x107; si&#x119; software&apos;owo, na podstawie timera lub zewn&#x119;trznego przerwania.</p>
+<img src="injconv.png" style="width:80%">
+</section><section lineno="329" class="slide " data-line="329" data-h="31" data-v="0">
+<h5 class="mume-header" id="wywo%C5%82ywanie-konwersji-zewn%C4%99trznym-przerwaniem">Wywo&#x142;ywanie konwersji zewn&#x119;trznym przerwaniem</h5>
+
+<p>ADC w STM32F401 ma do dyspozycji dwie linie przerwa&#x144; zewn&#x119;trznych (EXTI) do triggerowania pomiar&#xF3;w.<br>
+Wybranie opcji &quot;External trigger for injected conversions&quot; umo&#x17C;liwi wykonywanie wstrzykiwanych pomiar&#xF3;w po wykryciu przerwania na linii EXTI15, a &quot;External trigger for regular conversion&quot; umo&#x17C;liwi wykonanie pomiar&#xF3;w standardowych po wykryciu przerwania na linii EXTI11.</p>
+<p>Te tryby uniemo&#x17C;liwiaj&#x105; uruchamianie pomiar&#xF3;w software&apos;owo (za pomoc&#x105; funkcji ADC, bo mo&#x17C;na to &quot;oszuka&#x107;&quot; przez r&#x119;czne wywo&#x142;ywanie przerwa&#x144; EXTI) oraz za pomoc&#x105; timer&#xF3;w.</p>
+<img src="exti_trigger.png" style="width:50%">
+</section><section lineno="340" class="slide " data-line="340" data-h="32" data-v="0">
+<h3 class="mume-header" id="pomiar-adc-z-u%C5%BCyciem-dma">Pomiar ADC z u&#x17C;yciem DMA</h3>
+
+<p>ADC jest peryferium kt&#xF3;re ma bardzo dobr&#x105; kompatybilno&#x15B;&#x107; z DMA, kt&#xF3;re pozwala &#x142;atwo stosowa&#x107; zaawansowane tryby pracy konwertera, dlatego pozosta&#x142;e funkcjonalno&#x15B;ci przedstawi&#x119; na przyk&#x142;adach z u&#x17C;ywaniem DMA.</p>
+<p>DMA pozwala na &#x142;atwe u&#x17C;ywanie ADC w trybie konwersji wielokana&#x142;owej, oraz umo&#x17C;liwia bardzo wysokie cz&#x119;stotliwo&#x15B;ci wykonywania pomiar&#xF3;w bez obci&#x105;&#x17C;ania procesora, co w trybie przerwa&#x144; bywa niemo&#x17C;liwe ze wzgl&#x119;du na obci&#x105;&#x17C;enie procesora przez obs&#x142;ug&#x119; ADC.</p>
+</section><section lineno="348" class="slide " data-line="348" data-h="33" data-v="0">
+<h4 class="mume-header" id="kilkukrotne-pr%C3%B3bkowanie-kana%C5%82u-z-u%C5%9Brednianiem-case-study">Kilkukrotne pr&#xF3;bkowanie kana&#x142;u z u&#x15B;rednianiem - case study</h4>
+
+<p>Zaczniemy od wykorzystania DMA do wielokrotnego pr&#xF3;bkowania kana&#x142;u i obliczania &#x15B;redniej z pomiar&#xF3;w.<br>
+W tym celu, wystarczy z odpowiednio skonfigurowanym ADC uruchomi&#x107; konwersj&#x119; DMA z odpowiedniej wielko&#x15B;ci buforem.</p>
+<p>&#x17B;eby DMA mia&#x142;o si&#x119; czym zaj&#x105;&#x107; podczas obr&#xF3;bki danych z pomiaru, za&#x142;&#xF3;&#x17C;my &#x17C;e b&#x119;dziemy pobiera&#x107; tak&#x105; ilo&#x15B;&#x107; pr&#xF3;bek, kt&#xF3;ra zajmie stosunkowo du&#x17C;o czasu. Wiedz&#x105;c &#x17C;e pojedynczy cykl przy taktowaniu ADC 21MHz trwa 47.6ns, i &#x17C;e jeden pomiar zajmuje 492 cykli, mo&#x17C;emy obliczy&#x107; &#x17C;e pojedynczy pomiar temperatury trwa <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>23.4</mn><mi>&#x3BC;</mi><mtext>s</mtext></mrow><annotation encoding="application/x-tex">23.4\mu \text{s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">2</span><span class="mord">3</span><span class="mord">.</span><span class="mord">4</span><span class="mord mathdefault">&#x3BC;</span><span class="mord text"><span class="mord">s</span></span></span></span></span>. W 1 ci&#x105;gu 1 milisekundy mo&#x17C;emy wi&#x119;c wykona&#x107; 42 pomiary. Uznajmy &#x17C;e jest to dobra warto&#x15B;&#x107; jako ilo&#x15B;&#x107; pomiar&#xF3;w do u&#x15B;rednienia.</p>
+<p>Jeden pomiar z ADC zajmuje 12 bit&#xF3;w, ale nie mo&#x17C;emy wys&#x142;a&#x107; 12 bit&#xF3;w po &#x17C;adnej magistrali danych, wi&#x119;c b&#x119;dziemy wysy&#x142;a&#x107; 16-bitowe warto&#x15B;ci gdzie 4 ostatnie bity b&#x119;d&#x105; nieu&#x17C;ywane. Do komunikacji u&#x17C;yjemy UARTa.</p>
+</section><section lineno="359" class="slide " data-line="359" data-h="34" data-v="0">
+<p>Musimy dobra&#x107; odpowiedni baud rate UARTa w celu wysy&#x142;ania pomiar&#xF3;w - za ma&#x142;y baud rate b&#x119;dzie w&#x105;skim gard&#x142;em, kt&#xF3;re spowoduje &#x17C;e b&#x119;dziemy traci&#x107; dane z pomiar&#xF3;w.</p>
+<img src="uart_timing.png" style="width:80%">
+<p>Zak&#x142;adaj&#x105;c &#x17C;e b&#x119;dziemy wysy&#x142;a&#x107; 2-bajtow&#x105; pr&#xF3;bk&#x119; co milisekund&#x119;, b&#x119;dziemy potrzebowali szybko&#x15B;ci transmisji r&#xF3;wnej minimum 2kB/s. Wiedz&#x105;c &#x17C;e baud rate UARTa jest podany w <strong>bitach</strong> na sekund&#x119; i zak&#x142;adaj&#x105;c &#x17C;e jedna ramka UARTa ma wielko&#x15B;&#x107; 8 bit&#xF3;w na dane + 1 stop bit + 1 start bit, co daje 10 bit&#xF3;w na ramk&#x119;, nasz baud rate musi wynosi&#x107; minimum 10 * 2048 = 20480bps.</p>
+<p>Domy&#x15B;lny baud rate (115200bps) umo&#x17C;liwia w tej konfiguracji transfer z pr&#x119;dko&#x15B;ci&#x105; 11.520kbps, co jest dla nas w zupe&#x142;no&#x15B;ci wystarczaj&#x105;ce. Wysy&#x142;anie bajtu co milisekund&#x119; nie b&#x119;dzie te&#x17C; mocno obci&#x105;&#x17C;a&#x107; procesora, wi&#x119;c u&#x17C;yjemy UARTa w trybie polling.</p>
+</section><section lineno="369" class="slide " data-line="369" data-h="35" data-v="0">
+<p>Nast&#x119;pnie, konfigurujemy DMA dla ADC z domy&#x15B;lnymi ustawieniami.</p>
+<p>W ustawieniach parametr&#xF3;w ADC nale&#x17C;y w&#x142;&#x105;czy&#x107; opcj&#x119; <strong>Continuous Conversion Mode</strong>, &#x17C;eby ADC m&#xF3;g&#x142; wykonywa&#x107; pomiary cyklicznie, do momentu zape&#x142;nienia bufora.</p>
+<p>Mo&#x17C;emy przyst&#x105;pi&#x107; do pisania kodu. Za&#x142;&#xF3;&#x17C;my &#x17C;e kod obr&#xF3;bki i wysy&#x142;ania danych zawrzemy w przerwaniu zako&#x144;czenia konwersji ADC. Przy 84MHz <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>f</mtext><mtext>CPU</mtext></msub></mrow><annotation encoding="application/x-tex">\text{f}_\text{CPU}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">f</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">CPU</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, u&#x15B;rednienie 42 pr&#xF3;bek i zapisanie ich do pami&#x119;ci co milisekund&#x119; nie powinno by&#x107; powa&#x17C;nym obci&#x105;&#x17C;eniem.</p>
+</section><section lineno="377" class="slide " data-line="377" data-h="36" data-v="0">
+<p>Przyk&#x142;adowa funkcja obs&#x142;ugi przerwania mo&#x17C;e wygl&#x105;da&#x107; nast&#x119;puj&#x105;co:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token macro property">#<span class="token directive keyword">define</span> ADC_SAMPLES_COUNT 42</span>
+<span class="token comment">// Bufor musi mie&#x107; typ uint32_t ze wzgl&#x119;du na to &#x17C;e taki rodzaj bufora przyjmuje</span>
+<span class="token comment">// HAL_ADC_Start_DMA. Warto&#x15B;ci w nim b&#x119;d&#x105; 16-bitowe.</span>
+uint32_t temperatureRawBuffer<span class="token punctuation">[</span>ADC_SAMPLES_COUNT<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// [...]</span>
+
+<span class="token keyword">void</span> <span class="token function">HAL_ADC_ConvCpltCallback</span><span class="token punctuation">(</span>ADC_HandleTypeDef <span class="token operator">*</span>hadc<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	uint16_t temperatureRawAvg <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>size_t i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ADC_SAMPLES_COUNT<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		temperatureRawAvg <span class="token operator">+=</span> temperatureRawBuffer<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	temperatureRawAvg <span class="token operator">/=</span> ADC_SAMPLES_COUNT<span class="token punctuation">;</span>
+	<span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>temperatureRawAvg<span class="token punctuation">,</span> <span class="token keyword">sizeof</span> temperatureRawAvg<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></section><section lineno="399" class="slide " data-line="399" data-h="37" data-v="0">
+<p>&#x17B;eby uruchomi&#x107; ADC, u&#x17C;ywamy funkcji <code>HAL_ADC_Start_DMA</code> do kt&#xF3;rej przekazujemy bufor z jego wielko&#x15B;ci&#x105;. DMA go zape&#x142;ni i wywo&#x142;a przerwanie ko&#x144;ca konwersji.</p>
+<p>Je&#x15B;li wszystko zrobili&#x15B;my poprawnie, ADC powinien wykona&#x107; pojedynczy pomiar 42 pr&#xF3;bek, a nast&#x119;pnie powinny one zosta&#x107; u&#x15B;rednione i wys&#x142;ane po UART w formie 16-bitowego unsigned inta. Mo&#x17C;na zobaczy&#x107; t&#x105; warto&#x15B;&#x107; z u&#x17C;yciem RealTerma (w menu Display As nale&#x17C;y wybra&#x107; opcj&#x119; <em>uint16</em>)</p>
+</section><section lineno="405" class="slide " data-line="405" data-h="38" data-v="0">
+<h4 class="mume-header" id="ci%C4%85g%C5%82y-pomiar-kana%C5%82u-z-u%C5%9Brednianiem">Ci&#x105;g&#x142;y pomiar kana&#x142;u z u&#x15B;rednianiem</h4>
+
+<p>&#x17B;eby mierzy&#x107; warto&#x15B;ci z ADC w trybie ci&#x105;g&#x142;ym, wystarczy zmieni&#x107; tryb DMA na cykliczny (<em>circular</em>) i w ustawieniach ADC w&#x142;&#x105;czy&#x107; opcj&#x119; <strong>DMA Continuous Requests</strong>, &#x17C;eby DMA by&#x142; powiadamiany o ka&#x17C;dym zako&#x144;czeniu cyklu pomiarowego.</p>
+<p>Efekt powinien by&#x107; nast&#x119;puj&#x105;cy:<br>
+<img src="realterm_output.png" style="width:80%"></p>
+</section><section lineno="414" class="slide " data-line="414" data-h="39" data-v="0">
+<h3 class="mume-header" id="scan-mode">Scan Mode</h3>
+
+<p>Tryb skanu, to tryb w kt&#xF3;rym ADC wykonuje pomiary wszystkich skonfigurowanych rank&#xF3;w po kolei. Je&#x15B;li u&#x17C;ywamy DMA to wyniki pomiar&#xF3;w zostaj&#x105; od razu skopiowane do bufora. Mo&#x17C;na &#x142;&#x105;czy&#x107; ten tryb z poprzednio opisanymi dwoma trybami (ci&#x105;g&#x142;y pomiar i pomiar <em>n</em> pr&#xF3;bek).</p>
+<p>&#x17B;eby w&#x142;&#x105;czy&#x107; tryb skanu, nale&#x17C;y aktywowa&#x107; wi&#x119;cej ni&#x17C; jeden kana&#x142;, zwi&#x119;kszy&#x107; ilo&#x15B;&#x107; wykonywanych pomiar&#xF3;w w opcji <strong>Number Of Conversions</strong> i skonfigurowa&#x107; ka&#x17C;dy z rank&#xF3;w (wybra&#x107; odpowiedni kana&#x142; i czas samplowania)</p>
+<p>Nast&#x119;pnie nale&#x17C;y stworzy&#x107; bufor o wielko&#x15B;ci <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtext>Ilo</mtext><mover accent="true"><mtext>s</mtext><mo>&#x2CA;</mo></mover><mover accent="true"><mtext>c</mtext><mo>&#x2CA;</mo></mover><mtext>&#xA0;kana&#x142;</mtext><mover accent="true"><mtext>o</mtext><mo>&#x2CA;</mo></mover><mtext>w</mtext></mrow><mo>&#x22C5;</mo><mrow><mtext>Ilo</mtext><mover accent="true"><mtext>s</mtext><mo>&#x2CA;</mo></mover><mover accent="true"><mtext>c</mtext><mo>&#x2CA;</mo></mover><mtext>&#xA0;pomiar</mtext><mover accent="true"><mtext>o</mtext><mo>&#x2CA;</mo></mover><mtext>w&#xA0;kt</mtext><mover accent="true"><mtext>o</mtext><mo>&#x2CA;</mo></mover><mtext>re&#xA0;chcemy&#xA0;wykona</mtext><mover accent="true"><mtext>c</mtext><mo>&#x2CA;</mo></mover><mtext>&#xA0;w&#xA0;jednym&#xA0;przebiegu</mtext></mrow></mrow><annotation encoding="application/x-tex">\text{Ilo&#x15B;&#x107; kana&#x142;&#xF3;w} \cdot \text{Ilo&#x15B;&#x107; pomiar&#xF3;w kt&#xF3;re chcemy wykona&#x107; w jednym przebiegu}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Ilo</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">s</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">&#x2CA;</span></span></span></span></span></span></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">c</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">&#x2CA;</span></span></span></span></span></span></span><span class="mord">&#xA0;kana</span><span class="mord latin_fallback">&#x142;</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">o</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">&#x2CA;</span></span></span></span></span></span></span><span class="mord">w</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x22C5;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">Ilo</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">s</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">&#x2CA;</span></span></span></span></span></span></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">c</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">&#x2CA;</span></span></span></span></span></span></span><span class="mord">&#xA0;pomiar</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">o</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">&#x2CA;</span></span></span></span></span></span></span><span class="mord">w&#xA0;kt</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">o</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">&#x2CA;</span></span></span></span></span></span></span><span class="mord">re&#xA0;chcemy&#xA0;wykona</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">c</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">&#x2CA;</span></span></span></span></span></span></span><span class="mord">&#xA0;w&#xA0;jednym&#xA0;przebiegu</span></span></span></span></span> i uruchomi&#x107; cykl pomiarowy.</p>
+</section><section lineno="424" class="slide " data-line="424" data-h="40" data-v="0">
+<h3 class="mume-header" id="dodatkowe-materia%C5%82y">Dodatkowe materia&#x142;y</h3>
+
+<p><strong>Reference Manual do serii mikrokontrolera kt&#xF3;rego u&#x17C;ywamy</strong></p>
+<p>Tryby pracy ADC w STM32: <a href="https://www.st.com/content/ccc/resource/technical/document/application_note/c4/63/a9/f4/ae/f2/48/5d/CD00258017.pdf/files/CD00258017.pdf/jcr:content/translations/en.CD00258017.pdf">https://www.st.com/content/ccc/resource/technical/document/application_note/c4/63/a9/f4/ae/f2/48/5d/CD00258017.pdf/files/CD00258017.pdf/jcr:content/translations/en.CD00258017.pdf</a></p>
+<p>Jak uzyska&#x107; jak najlepsz&#x105; dok&#x142;adno&#x15B;&#x107; przetwarzania oraz szczeg&#xF3;&#x142;owy opis pracy przetwornika ADC w STM32: <a href="https://www.st.com/content/ccc/resource/technical/document/application_note/group0/3f/4c/a4/82/bd/63/4e/92/CD00211314/files/CD00211314.pdf/jcr:content/translations/en.CD00211314.pdf">https://www.st.com/content/ccc/resource/technical/document/application_note/group0/3f/4c/a4/82/bd/63/4e/92/CD00211314/files/CD00211314.pdf/jcr:content/translations/en.CD00211314.pdf</a></p>
+<p>Tryby pracy ADC w STM32F30x: <a href="https://www.st.com/content/ccc/resource/technical/document/application_note/48/64/0d/61/be/65/48/ae/DM00069390.pdf/files/DM00069390.pdf/jcr:content/translations/en.DM00069390.pdf">https://www.st.com/content/ccc/resource/technical/document/application_note/48/64/0d/61/be/65/48/ae/DM00069390.pdf/files/DM00069390.pdf/jcr:content/translations/en.DM00069390.pdf</a></p>
+<p>Przetwarzanie audio z u&#x17C;yciem STM32L4: <a href="https://www.st.com/content/ccc/resource/technical/document/application_note/group0/24/d3/31/a0/9d/5a/4a/de/DM00367673/files/DM00367673.pdf/jcr:content/translations/en.DM00367673.pdf">https://www.st.com/content/ccc/resource/technical/document/application_note/group0/24/d3/31/a0/9d/5a/4a/de/DM00367673/files/DM00367673.pdf/jcr:content/translations/en.DM00367673.pdf</a></p>
+</section>
+      </div>
+    </div>
+    
+      </div>
+      
+      
+    
+    
+      <script>
+        Reveal.initialize({"margin":0.1,"width":1920,"height":1080,"controls":true,"progress":true,"slideNumber":true,"keyboard":true,"overview":true,"dependencies":[]})
+      </script>
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

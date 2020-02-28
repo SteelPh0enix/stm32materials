@@ -2094,6 +2094,22 @@ uint8_t <span class="token keyword">const</span><span class="token operator">*</
 <p>W ten spos&#xF3;b stworzyli&#x15B;my echo server kt&#xF3;ry obs&#x142;uguje UARTa za pomoc&#x105; bufora ko&#x142;owego.</p>
 <p>Jest to jeden z najbardziej ergonomicznych sposob&#xF3;w obs&#x142;ugi UARTa. Dzia&#x142;a on r&#xF3;wnie&#x17C; w momencie w kt&#xF3;rym zatrzymamy procesor za pomoc&#x105; debugera - je&#x15B;li UART odbierze komunikat, to po wznowieniu pracy przerwanie <em>idle line</em> zostanie obs&#x142;u&#x17C;one przez procesor kt&#xF3;ry b&#x119;dzie w stanie odczyta&#x107; komunikat poniewa&#x17C; DMA go w tle skopiowa&#x142;o do bufora.</p>
 </section><section lineno="306" class="slide " data-line="306" data-h="27" data-v="0">
+<h3 class="mume-header" id="r%C4%99czne-u%C5%BCywanie-dma">R&#x119;czne u&#x17C;ywanie DMA</h3>
+
+<p>W przypadku kiedy chcemy wykona&#x107; customow&#x105; operacj&#x119; z u&#x17C;yciem DMA, z pomoc&#x105; przychodz&#x105; dwie funkcje:</p>
+<ul>
+<li><code>HAL_DMA_Start</code> - uruchamia transfer z u&#x17C;yciem DMA w trybie polling</li>
+<li><code>HAL_DMA_Start_IT</code> - uruchamia transfer z u&#x17C;yciem DMA w trybie przerwa&#x144;</li>
+</ul>
+<p>W trybie polling, &#x17C;eby dowiedzie&#x107; si&#x119; czy transfer si&#x119; zako&#x144;czy&#x142; nale&#x17C;y sprawdzi&#x107; status DMA lub u&#x17C;y&#x107; funkcji <code>HAL_DMA_PollForTransfer</code> kt&#xF3;ra zablokuje program do momentu zako&#x144;czenia operacji. Nie ma to zazwyczaj wi&#x119;kszego sensu, poniewa&#x17C; mija si&#x119; to z celem u&#x17C;ywania DMA, dlatego zazwyczaj wykorzystuje si&#x119; DMA w trybie przerwa&#x144;.</p>
+</section><section lineno="317" class="slide " data-line="317" data-h="28" data-v="0">
+<p>&#x17B;eby skonfigurowa&#x107; r&#x119;cznie transfer DMA, musimy u&#x17C;y&#x107; funkcji <code>HAL_DMA_Init</code> kt&#xF3;ra przyjmuje adres struktury <code>DMA_InitTypeDef</code>, kt&#xF3;ra zawiera informacje na temat konfiguracji kana&#x142;&#xF3;w DMA, trybu pracy i adresy funkcji callback&#xF3;w.</p>
+</section><section lineno="321" class="slide " data-line="321" data-h="29" data-v="0">
+<h3 class="mume-header" id="podsumowanie-kiedy-u%C5%BCywa%C4%87-dma">Podsumowanie: kiedy u&#x17C;ywa&#x107; DMA?</h3>
+
+<p>Wtedy, kiedy jeste&#x15B;my w stanie i przyniesie nam to widoczne korzy&#x15B;ci. DMA pozwala na odci&#x105;&#x17C;enie procesora, co z kolei pozwala mu na wykonanie wi&#x119;kszej ilo&#x15B;ci zada&#x144; jednocze&#x15B;nie, lub zmniejsza pob&#xF3;r mocy je&#x15B;li nie musi nic robi&#x107; podczas pracy DMA.</p>
+<p>Nie b&#x119;dziemy zawsze w stanie go u&#x17C;y&#x107;, nie tylko przez fakt &#x17C;e istniej&#x105; sprz&#x119;towe ograniczenia (ilo&#x15B;&#x107; i u&#x142;o&#x17C;enie kana&#x142;&#xF3;w, nie wszystkie peryferia wspieraj&#x105; DMA), ale r&#xF3;wnie&#x17C; przez to &#x17C;e czasami nie przyniesie nam to benefit&#xF3;w - na przyk&#x142;ad kiedy mamy do czynienia z obs&#x142;ug&#x105; ma&#x142;ych ilo&#x15B;ci danych i jednoczesnym wykonywaniem logiki w po&#x142;&#x105;czeniu z I/O, ale w wi&#x119;kszo&#x15B;ci przypadk&#xF3;w odci&#x105;&#x17C;enie procesora przez DMA jest zalecanym rozwi&#x105;zaniem.</p>
+</section><section lineno="329" class="slide " data-line="329" data-h="30" data-v="0">
 <h2 class="mume-header" id="dodatkowe-materia%C5%82y">Dodatkowe materia&#x142;y</h2>
 
 <ul>
