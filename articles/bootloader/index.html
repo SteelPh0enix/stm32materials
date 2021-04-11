@@ -954,7 +954,7 @@ Jest to zwi&#x105;zane z napi&#x119;ciem zasilania mikrokontrolera i (w moim prz
 
   <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> calculatedChecksum <span class="token operator">=</span> <span class="token function">HAL_CRC_Calculate</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hcrc<span class="token punctuation">,</span>
                                                         <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token operator">*</span><span class="token punctuation">)</span> APPLICATION_ADDRESS<span class="token punctuation">,</span>
-                                                        firmwareSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                                        firmwareSize <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>calculatedChecksum <span class="token operator">==</span> expectedChecksum<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </pre><p>I wywo&#x142;ajmy j&#x105; odpowiednio w funkcji <code>main</code>:</p>
