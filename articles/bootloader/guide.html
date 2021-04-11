@@ -1,0 +1,1247 @@
+<!DOCTYPE html><html><head>
+      <title>guide</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header undefined" id="tworzenie-bootloadera-na-platform%C4%99-stm32-z-kontrol%C4%85-poprawno%C5%9Bci-pliku-binarnego">Tworzenie bootloadera na platform&#x119; STM32 z kontrol&#x105; poprawno&#x15B;ci pliku binarnego</h1>
+
+<p>Autor: <strong>Wojciech Olech</strong></p>
+<h2 class="mume-header undefined" id="spis-tre%C5%9Bci">Spis tre&#x15B;ci</h2>
+
+<ul>
+<li><a href="#0-czym-jest-bootloader">0. Czym jest bootloader?</a></li>
+<li><a href="#1-tworzenie-projektu">1. Tworzenie projektu</a></li>
+<li><a href="#2-konfiguracja-mikrokontrolera">2. Konfiguracja mikrokontrolera</a>
+<ul>
+<li><a href="#21-bootloader">2.1 Bootloader</a></li>
+<li><a href="#22-aplikacja">2.2 Aplikacja</a></li>
+</ul>
+</li>
+<li><a href="#3-rodzielanie-pami%C4%99ci-mi%C4%99dzy-bootloader-a-aplikacj%C4%99">3. Rodzielanie pami&#x119;ci mi&#x119;dzy bootloader a aplikacj&#x119;</a></li>
+<li><a href="#4-tworzenie-przyk%C5%82adowej-aplikacji">4. Tworzenie przyk&#x142;adowej aplikacji</a>
+<ul>
+<li><a href="#41-uruchamianie-przesuni%C4%99tej-aplikacji">4.1. Uruchamianie przesuni&#x119;tej aplikacji</a></li>
+<li><a href="#42-start-programu-memory-mapping-i-tablica-wektor%C3%B3w-przerwa%C5%84">4.2. Start programu, <em>memory mapping</em> i tablica wektor&#xF3;w przerwa&#x144;</a></li>
+</ul>
+</li>
+<li><a href="#5-tworzenie-bootloadera">5. Tworzenie bootloadera</a>
+<ul>
+<li><a href="#51-deinicjalizacja-peryferi%C3%B3w">5.1. Deinicjalizacja peryferi&#xF3;w</a></li>
+<li><a href="#52-skok-do-aplikacji">5.2. Skok do aplikacji</a></li>
+<li><a href="#53-stworzenie-api-bootloadera">5.3. Stworzenie API bootloadera</a></li>
+<li><a href="#54-szkielet-api">5.4. Szkielet API</a></li>
+<li><a href="#55-odbi%C3%B3r-i-flashowanie-firmwareu">5.5. Odbi&#xF3;r i flashowanie firmware&apos;u</a></li>
+<li><a href="#56-sprawdzanie-sumy-kontrolnej">5.6. Sprawdzanie sumy kontrolnej</a></li>
+</ul>
+</li>
+<li><a href="#6-tworzenie-skryptu-do-programowania">6. Tworzenie skryptu do programowania</a>
+<ul>
+<li><a href="#61-instalacja-pythona-i-zale%C5%BCno%C5%9Bci">6.1. Instalacja Pythona i zale&#x17C;no&#x15B;ci</a></li>
+<li><a href="#62-wyb%C3%B3r-pliku-z-aktualizacj%C4%85">6.2. Wyb&#xF3;r pliku z aktualizacj&#x105;</a></li>
+<li><a href="#63-obliczanie-sumy-kontrolnej">6.3. Obliczanie sumy kontrolnej</a></li>
+<li><a href="#64-komunikacja-z-stmem">6.4. Komunikacja z STMem</a></li>
+<li><a href="#65-implementacja-api">6.5. Implementacja API</a></li>
+<li><a href="#66-test-programatora">6.6 Test programatora</a></li>
+</ul>
+</li>
+<li><a href="#7-podsumowanie-i-wykorzystane-materia%C5%82y">7. Podsumowanie i wykorzystane materia&#x142;y</a></li>
+</ul>
+<h2 class="mume-header" id="0-czym-jest-bootloader">0. Czym jest bootloader?</h2>
+
+<p>Bootloader to program kt&#xF3;ry znajduje si&#x119; w specjalnie wydzielonej sekcji pami&#x119;ci, najcz&#x119;&#x15B;ciej na jej pocz&#x105;tku. Dzi&#x119;ki bootloaderowi mo&#x17C;liwa jest aktualizacja programu na mikrokontrolerze za pomoc&#x105; dowolnych interfejs&#xF3;w (na przyk&#x142;ad UART, I2C, SPI, SD, Ethernet), bez potrzeby u&#x17C;ywania dedykowanych interfejs&#xF3;w do programowania (SWD, JTAG). Dodatkowo, bootloader mo&#x17C;e weryfikowa&#x107; poprawno&#x15B;&#x107; programu przed jego aktualizacj&#x105; (lub po), zarz&#x105;dza&#x107; szyfrowaniem pami&#x119;ci lub blokowaniem jej.</p>
+<h2 class="mume-header" id="1-tworzenie-projektu">1. Tworzenie projektu</h2>
+
+<p>Potrzebujemy dw&#xF3;ch projekt&#xF3;w - jeden dla bootloadera, drugi dla g&#x142;&#xF3;wnej aplikacji.<br>
+Projekt bootloadera powinien by&#x107; jak najbardziej minimalistyczny pod wzgl&#x119;dem wielko&#x15B;ci kodu, &#x17C;eby m&#xF3;c wydzieli&#x107; jak najmniejsz&#x105; cz&#x119;&#x15B;&#x107; pami&#x119;ci FLASH dla niego.</p>
+<p>W projekcie bootloadera nale&#x17C;y w&#x142;&#x105;czy&#x107; tylko wy&#x142;&#x105;cznie wymagane do dzia&#x142;ania bootloadera peryferia i <strong>nale&#x17C;y upewni&#x107; si&#x119;, &#x17C;e wszystkie peryferia kt&#xF3;re by&#x142;y aktywowane przez bootloader s&#x105; deinicjalizowane przed wskoczeniem w g&#x142;&#xF3;wny program</strong>. Peryferia kt&#xF3;re s&#x105; inicjowane przez Cube&apos;a jednorazowo i nie s&#x105; u&#x17C;ywane w kodzie mo&#x17C;na prze&#x142;&#x105;czy&#x107; na LL w <em>Project Manager -&gt; Advanced Settings</em>, w celu zmniejszenia zaj&#x119;to&#x15B;ci pami&#x119;ci FLASH (poniewa&#x17C; osobi&#x15B;cie preferuj&#x119; HALa, ale je&#x15B;li wolisz pracowa&#x107; na LL to mo&#x17C;esz i prze&#x142;&#x105;czy&#x107; w ten spos&#xF3;b wszystkie peryferia).</p>
+<h2 class="mume-header" id="2-konfiguracja-mikrokontrolera">2. Konfiguracja mikrokontrolera</h2>
+
+<p>Wszystko co opisuj&#x119; w tym artykule wykonywane jest na p&#x142;ytce Nucleo-F401RE. <strong>Je&#x15B;li chcesz stworzy&#x107; bootloader dla mikrokontrolera innej serii, to z racji pewnych r&#xF3;&#x17C;nic w budowie i rdzeniach, nale&#x17C;y zwraca&#x107; uwag&#x119; na pewne szczeg&#xF3;&#x142;y kt&#xF3;re mog&#x105; by&#x107; dla danego mikrokontrolera specyficzne i inne od przedstawionych tutaj</strong> - na przyk&#x142;ad inne roz&#x142;o&#x17C;enie pami&#x119;ci, inne tryby bootowania, inny rozk&#x142;ad pami&#x119;ci FLASH lub inne szeroko&#x15B;ci szyn danych. Cz&#x119;&#x15B;&#x107; informacji b&#x119;dzie uniwersalna, ale tam gdzie mog&#x105; pojawi&#x107; si&#x119; r&#xF3;&#x17C;nice odsy&#x142;am do konsultacji z datasheetem, reference manualem oraz programming manualem danego mikrokontrolera.</p>
+<h3 class="mume-header" id="21-bootloader">2.1 Bootloader</h3>
+
+<p>Bootloader wykorzysta nast&#x119;puj&#x105;ce peryferia:</p>
+<ul>
+<li>GPIO - obs&#x142;uga przycisku i diody LED na p&#x142;ytce, obs&#x142;ugiwane za pomoc&#x105; HALa;</li>
+<li>RCC - obs&#x142;uga zegar&#xF3;w i oscylator&#xF3;w, obs&#x142;ugiwane za pomoc&#x105; LL;</li>
+<li>USART - komunikacja, <strong>baud rate 921600</strong>, obs&#x142;ugiwany za pomoc&#x105; HALa;</li>
+<li>CRC - weryfikacja poprawno&#x15B;ci pliku binarnego, obs&#x142;ugiwany za pomoc&#x105; HALa.</li>
+</ul>
+<h3 class="mume-header" id="22-aplikacja">2.2 Aplikacja</h3>
+
+<p>Przyk&#x142;adowa aplikacja b&#x119;dzie wykorzystywa&#x107; te same peryferia, w podobnej konfiguracji, z wyj&#x105;tkiem CRC kt&#xF3;re nie b&#x119;dzie w niej potrzebne. <strong>Baud rate r&#xF3;wnie&#x17C; zmienimy na 921600, dla wygody</strong></p>
+<p>W przyk&#x142;adowej aplikacji b&#x119;dziemy wy&#x15B;wietla&#x107; wiadomo&#x15B;ci poprzez UART oraz obs&#x142;ugiwa&#x107; przycisk w celu zmiany stanu diody LED.</p>
+<h2 class="mume-header" id="3-rodzielanie-pami%C4%99ci-mi%C4%99dzy-bootloader-a-aplikacj%C4%99">3. Rodzielanie pami&#x119;ci mi&#x119;dzy bootloader a aplikacj&#x119;</h2>
+
+<p>Bootloader i program g&#x142;&#xF3;wny b&#x119;d&#x105; jednocze&#x15B;nie istnie&#x107; na g&#x142;&#xF3;wnym FLASHu procesora. Bootloader umie&#x15B;cimy na pocz&#x105;tku pami&#x119;ci, dzi&#x119;ki czemu b&#x119;dzie startowa&#x107; przed programem g&#x142;&#xF3;wnym, wykonywa&#x107; aktualizacj&#x119; je&#x15B;li jest dost&#x119;pna i uruchamia&#x107; go. &#x17B;eby m&#xF3;c wykona&#x107; taki manewr, nale&#x17C;y odpowiednio skonfigurowa&#x107; skrypty linkera obu program&#xF3;w, co pozwoli na ich poprawny linka&#x17C;, flashing oraz debugging.</p>
+<p>Skrypty linkera znajduj&#x105; si&#x119; w g&#x142;&#xF3;wnym katalogu projektu - jeden dla pami&#x119;ci FLASH, drugi dla RAM, w naszym przypadku zmodyfikujemy ten odpowiedzialny za FLASH o nazwie <code>STM32F401RETX_FLASH.ld</code>. Zaczniemy od skryptu linkera dla bootloadera. Otwieramy go i szukamy nast&#x119;puj&#x105;cej sekcji:</p>
+<pre data-role="codeBlock" data-info="ld" class="language-ld"><code>/* Memories definition */
+MEMORY
+{
+  RAM    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 96K
+  FLASH    (rx)    : ORIGIN = 0x8000000,   LENGTH = 512K
+}
+</code></pre><p>&quot;Czysty&quot; bootloader po wygenerowaniu i skompilowaniu zajmuje oko&#x142;o 10KB pami&#x119;ci FLASH, na 512KB dost&#x119;pne. Zmniejszymy wi&#x119;c wielko&#x15B;&#x107; programu w skrypcie linkera, &#x17C;eby widzie&#x107; czy przypadkiem jej nie przekroczyli&#x15B;my. <strong>Przy okre&#x15B;laniu wielko&#x15B;ci i przesuni&#x119;&#x107; FLASHa, nale&#x17C;y mie&#x107; na uwadze szeroko&#x15B;&#x107; szyny danych, <em>alignment</em> tablicy wektor&#xF3;w przerwa&#x144; (o czym szczeg&#xF3;&#x142;owo pisz&#x119; ni&#x17C;ej) i podzia&#x142; pami&#x119;ci flash na sektory</strong>. W przypadku mikrokontrolera STM32F401RE, szyna FLASH jest wielko&#x15B;ci 128 bit&#xF3;w, czyli 16 bajt&#xF3;w, a <em>alignment</em> tablicy wektor&#xF3;w przerwa&#x144; wynosi 0x200 (512 bajt&#xF3;w). Szeroko&#x15B;&#x107; szyny danych r&#xF3;wna 128 bitom, co oznacza, &#x17C;e podczas jednej operacji odczytu zostanie odczytane 16 bajt&#xF3;w, co jest traktowane jako jeden &quot;wiersz&quot; pami&#x119;ci. Z tego powodu, przesuni&#x119;cia i wielko&#x15B;ci program&#xF3;w musz&#x105; by&#x107; podzielne przez 16 w naszym przypadku. Znaczenie <em>alignmentu</em> przesuni&#x119;cia tablicy przerwa&#x144; jest troch&#x119; bardziej z&#x142;o&#x17C;one i opisuj&#x119; je ni&#x17C;ej.<br>
+Dodatkowo, pami&#x119;&#x107; FLASH w mikrokontrolerach STM32 jest podzielona na strony - konkretny podzia&#x142; mo&#x17C;na sprawdzi&#x107; w <em>reference manualu</em> mikrokontrolera. W przypadku STM32F401RE, wygl&#x105;da on nast&#x119;puj&#x105;co:</p>
+<p><img src="./img/flash_pages.png" alt="flash pages"></p>
+<p>Jest to dla nas wa&#x17C;ne ze wzgl&#x119;du na to, w jaki spos&#xF3;b przebiega programowanie pami&#x119;ci FLASH. W przypadku tego rodzaju pami&#x119;ci, programowanie odbywa si&#x119; poprzez zmian&#x119; warto&#x15B;ci kom&#xF3;rek pami&#x119;ci z logicznej <code>1</code> na logiczne <code>0</code>. Jedynym sposobem na zmian&#x119; warto&#x15B;ci kom&#xF3;rki z <code>0</code> na <code>1</code> jest przeprowadzenie operacji kasowania, kt&#xF3;r&#x105; mo&#x17C;na zrobi&#x107; albo na sektorze pami&#x119;ci (<em>sector erase</em>), albo na ca&#x142;ej pami&#x119;ci (<em>mass erase</em>). <em>Mass erase</em> nas nie interesuje, bo wi&#x105;&#x17C;e si&#x119; on z usuni&#x119;ciem bootloadera, wi&#x119;c b&#x119;dziemy musieli przeprowadzi&#x107; czyszczenie tylko tych sektor&#xF3;w pami&#x119;ci, w kt&#xF3;rych znajduje si&#x119; aplikacja - musimy wi&#x119;c zadba&#x107; o to, &#x17C;eby zarezerwowa&#x107; pe&#x142;ne sektory dla bootloadera.</p>
+<p>Dajmy bootloaderowi na ten moment 32KB pami&#x119;ci - dwa pe&#x142;ne pierwsze sektory. W tym celu, nale&#x17C;y ustawi&#x107; warto&#x15B;&#x107; <code>LENGTH</code> dla sekcji <code>FLASH</code> na 32. RAM mo&#x17C;e by&#x107; wsp&#xF3;&#x142;dzielony bez &#x17C;adnego problemu, wi&#x119;c jego nie modyfikujemy. Nie modyfikujemy tutaj adresu <code>ORIGIN</code>, poniewa&#x17C; chcemy &#x17C;eby bootloader uruchamia&#x142; si&#x119; bezpo&#x15B;rednio po zasileniu mikrokontrolera - domy&#x15B;lny adres <code>0x0800 0000</code> to adres pocz&#x105;tkowy FLASHa. Definicja pami&#x119;ci dla bootloadera powinna wygl&#x105;da&#x107; po tym zabiegu nast&#x119;puj&#x105;co:</p>
+<pre data-role="codeBlock" data-info="ld" class="language-ld"><code>/* Memories definition */
+MEMORY
+{
+  RAM    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 96K
+  FLASH    (rx)    : ORIGIN = 0x8000000,   LENGTH = 32K
+}
+</code></pre><p>Efekt mo&#x17C;na zobaczy&#x107; po zbudowaniu bootloadera w oknie <em>Build Analysis</em>:<br>
+<img src="./img/build_analysis_bootloader.png" alt="Bootloader build analysis"><br>
+<em>Je&#x15B;li wielko&#x15B;&#x107; FLASHa w tym oknie si&#x119; nie zmieni&#x142;a, upewnij si&#x119; &#x17C;e zmodyfikowa&#x142;e&#x15B; poprawny plik!</em></p>
+<p>Nast&#x119;pnie, musimy przerobi&#x107; skrypt linkera naszego g&#x142;&#xF3;wnego programu w celu <em>przesuni&#x119;cia</em> go o 32KB pami&#x119;ci, dzi&#x119;ki czemu nie b&#x119;dzie nadpisywa&#x107; bootloadera przy r&#x119;cznym flashowaniu i b&#x119;dzie poprawnie u&#x142;o&#x17C;ony. W tym celu, nale&#x17C;y zmieni&#x107; zar&#xF3;wno <code>ORIGIN</code> jak i <code>LENGTH</code> sekcji <code>FLASH</code> w skrypcie linkera. Do <code>ORIGIN</code> r&#xF3;wnego <code>0x8000000</code> dodajemy <code>32*1024 = 32768 = 0x8000</code>, co daje nam <code>0x8008000</code>. <code>LENGTH</code> zmiejszamy o 32K, co daje nam <code>512K - 32K = 480K</code>.</p>
+<p>Definicja pami&#x119;ci dla aplikacji powinna po tym zabiegu wygl&#x105;da&#x107; nast&#x119;puj&#x105;co:</p>
+<pre data-role="codeBlock" data-info="ld" class="language-ld"><code>/* Memories definition */
+MEMORY
+{
+  RAM    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 96K
+  FLASH    (rx)    : ORIGIN = 0x8008000,   LENGTH = 480K
+}
+</code></pre><p>Efekt powinien by&#x107; widoczny po zbudowaniu aplikacji, w oknie <em>Build Analysis</em></p>
+<p><img src="./img/build_analysis_app.png" alt="Application build analysis"></p>
+<h2 class="mume-header" id="4-tworzenie-przyk%C5%82adowej-aplikacji">4. Tworzenie przyk&#x142;adowej aplikacji</h2>
+
+<p>Zanim przejdziemy do stworzenia bootloadera, stw&#xF3;rzmy przyk&#x142;adow&#x105; docelow&#x105; aplikacj&#x119;, dzi&#x119;ki kt&#xF3;rej b&#x119;dziemy mogli zweryfikowa&#x107; czy skok z bootloadera do programu wykonuje si&#x119; poprawnie. Ruszymy te&#x17C; tutaj kilka wa&#x17C;nych kwestii i problem&#xF3;w zwi&#x105;zanych z umieszczaniem programu w niestandardowej lokalizacji pami&#x119;ci.</p>
+<p>Do przyk&#x142;adowej aplikacji dodajmy troch&#x119; kodu - prze&#x142;adujemy <code>_write</code>, &#x17C;eby da&#x142;o si&#x119; korzysta&#x107; z funkcji <code>printf</code> poprzez USART oraz zrobimy obs&#x142;ug&#x119; przycisku i diody LED. Poni&#x17C;szy kod nale&#x17C;y wklei&#x107; w odpowiednie sekcje w pliku <code>main.c</code>:</p>
+<p>Nag&#x142;&#xF3;wek <code>stdio.h</code> trzeba doda&#x107; do sekcji Includes:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* USER CODE BEGIN Includes */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token comment">/* USER CODE END Includes *
+</span></pre><p>Zmienna-counter kt&#xF3;r&#x105; b&#x119;dziemy zlicza&#x107; ile razy zosta&#x142; wci&#x15B;ni&#x119;ty przycisk, doda&#x107; do sekcji PV (Private Variables):</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* USER CODE BEGIN PV */</span>
+<span class="token keyword">unsigned</span> buttonCounter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment">/* USER CODE END PV *
+</span></pre><p><code>printf</code> na &quot;dzie&#x144; dobry&quot; w celu sprawdzenia czy nasz program si&#x119; uruchomi&#x142;, do funkcji <code>main</code> pod inicjalizacj&#x105;:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/* USER CODE BEGIN 2 */</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Hello, world!\r\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">/* USER CODE END 2 */</span>
+</pre><p>Prze&#x142;adowanie funkcji <code>_write</code> z <code>syscall.c</code> w celu printowania danych poprzez USART, oraz obs&#x142;uga przerwania przycisku. <strong>Nale&#x17C;y upewni&#x107; si&#x119;, &#x17C;e zosta&#x142;o w&#x142;&#x105;czone odpowiednie przerwanie w ustawieniach NVIC w CubeMX! (w tym przypadku - EXTI line[15:10] interrupts)</strong>.</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* USER CODE BEGIN 4 */</span>
+<span class="token keyword">int</span> <span class="token function">_write</span><span class="token punctuation">(</span><span class="token keyword">int</span> file<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> ptr<span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span> ptr<span class="token punctuation">,</span> len<span class="token punctuation">,</span> HAL_MAX_DELAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> len<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">HAL_GPIO_EXTI_Callback</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> pin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>pin <span class="token operator">==</span> B1_Pin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LD2_GPIO_Port<span class="token punctuation">,</span> LD2_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buttonCounter<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Button has been pressed %d time(s) already!\r\n&quot;</span><span class="token punctuation">,</span> buttonCounter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* USER CODE END 4 */</span>
+</pre><h3 class="mume-header" id="41-uruchamianie-przesuni%C4%99tej-aplikacji">4.1. Uruchamianie przesuni&#x119;tej aplikacji</h3>
+
+<p>Po skompilowaniu programu mo&#x17C;na spr&#xF3;bowa&#x107; go przetestowa&#x107;. W tym celu, u&#x17C;ywamy funkcji <strong>Debug</strong>. Funkcja <em>Run</em> nie zadzia&#x142;a poprawnie, ze wzgl&#x119;du na przesuni&#x119;cie naszego programu. Przy pr&#xF3;bie u&#x17C;ycia funkcji <em>Run</em>, STM32CubeProgrammer poprawnie uploaduje program pod adres <code>0x0800 8000</code>, ale procesor automatycznie wystartuje z adresu <code>0x0800 0000</code> - czyli domy&#x15B;lnego, pod kt&#xF3;rym znajduje si&#x119; poprzedni program (lub jego cz&#x119;&#x15B;&#x107;). To samo stanie si&#x119; po resecie mikrokontrolera. Funkcja <em>Debug</em> automatycznie skoczy do adresu startowego naszego programu, wi&#x119;c b&#x119;dzie mo&#x17C;na sprawdzi&#x107; jego dzia&#x142;anie.</p>
+<p>Je&#x15B;li wszystko jest okej, po pod&#x142;&#x105;czeniu si&#x119; dowolnym serial monitorem, uruchomieniu debugu i programu powinni&#x15B;my otrzyma&#x107; na serial monitorze nasz&#x105; powitaln&#x105; wiadomo&#x15B;&#x107;:</p>
+<p><img src="./img/hello_world.png" alt="hello, world!"></p>
+<p><em>Je&#x15B;li ta wiadomo&#x15B;&#x107; si&#x119; nie wy&#x15B;wietla i jeste&#x15B; absolutnie pewny/a &#x17C;e wszystko jest skonfigurowane poprawnie oraz kod jest prawid&#x142;owy, to jest mo&#x17C;liwe &#x17C;e zbugowa&#x142; ci si&#x119; wbudowany <code>printf</code>. Miewam takie problemy od czasu do czasu i nie wiem sk&#x105;d si&#x119; bior&#x105;, natomiast jednym z rozwi&#x105;za&#x144; jest u&#x17C;ycie alternatywnej implementacji <code>printf</code>a - na przyk&#x142;ad tej, kt&#xF3;rej u&#x17C;ywam od d&#x142;u&#x17C;szego czasu i kt&#xF3;r&#x105; mog&#x119; rekomendowa&#x107;: <a href="https://github.com/mpaland/printf">https://github.com/mpaland/printf</a>. W sekcji &quot;Usage&quot; opisane jest dodawanie tej biblioteki do projektu. Alternatywnie, zamie&#x144; tego <code>printf</code>a na zwyk&#x142;y <code>HAL_UART_Transmit</code></em></p>
+<p>Ale, nawet je&#x15B;li poprawnie skonfigurowali&#x15B;my przycisk i NVIC, to po jego klikni&#x119;ciu nie zobaczymy nic w terminalu ani nie za&#x15B;wieci si&#x119; dioda na p&#x142;ytce. Je&#x15B;li po klikni&#x119;ciu przycisku zatrzymamy program, to zobaczymy &#x17C;e jeste&#x15B;my <em>gdzie&#x15B;</em> gdzie debuger nie do ko&#x144;ca wie co si&#x119; dzieje (lub znajdziemy si&#x119; w hardfaulcie).</p>
+<p><img src="./img/vtable_error.png" alt="vtable error"></p>
+<p>Jest to spowodowane tym, &#x17C;e nie przesun&#x119;li&#x15B;my <strong>tablicy wektor&#xF3;w przerwa&#x144;</strong>. Tablica wektor&#xF3;w przerwa&#x144;  okre&#x15B;la adresy pod kt&#xF3;re procesor automatycznie skacze w momencie z&#x142;apania aktywnego przerwania, oraz pocz&#x105;tkow&#x105; warto&#x15B;&#x107; wska&#x17A;nika stosu. Jej definicja znajduje si&#x119; w pliku startowym <code>startup_stm32f401retx.s</code>, kt&#xF3;ry jest w katalogu <code>Core/Startup</code>. Domy&#x15B;lnie, adres tej tablicy to <code>0x0000 0000</code> a adres przesuni&#x119;cia znajduje si&#x119; w <code>SCB</code> (<em>System Control Block</em>) - jednostce kontrolnej rdzenia, a konkretnie w rejestrze <code>VTOR</code> - <em>Vector Table Offset Register</em>. Definicja tej jednostki znajduje si&#x119; w pliku <code>core_cm4.h</code> w katalogu <code>Drivers/CMSIS/Include</code>.</p>
+<p>Nie b&#x119;dziemy jednak modyfikowa&#x107; tego rejestru bezpo&#x15B;rednio (mimo tego &#x17C;e jak najbardziej mo&#x17C;na tak robi&#x107; i wiele bootloader&#xF3;w modyfikuje ten rejestr przed skokiem, zamiast robi&#x107; to w aplikacji). Zmodyfikujemy kod startowy aplikacji, &#x17C;eby zrobi&#x142;a to automatycznie przy jej starcie.</p>
+<h3 class="mume-header" id="42-start-programu-memory-mapping-i-tablica-wektor%C3%B3w-przerwa%C5%84">4.2. Start programu, <em>memory mapping</em> i tablica wektor&#xF3;w przerwa&#x144;</h3>
+
+<p>&#x17B;eby zrozumie&#x107; dlaczego tak si&#x119; dzieje, wypada wiedzie&#x107; co si&#x119; dzieje podczas uruchomienia mikrokontrolera i w jaki spos&#xF3;b.</p>
+<p>Ca&#x142;y proces zaczyna si&#x119; od wyboru trybu bootowania. S&#x142;u&#x17C;&#x105; do tego piny (lub bity) BOOTn, w przypadku STM32F401RE s&#x105; to dwa piny BOOT0 i BOOT1 (BOOT0 to dedykowany pin, a BOOT1 to PB2 kt&#xF3;ry po starcie procesora mo&#x17C;e by&#x107; u&#x17C;ywany jako normalny pin). Mo&#x17C;liwe konfiguracje bootowania mo&#x17C;na podejrze&#x107; w tabelce kt&#xF3;ra znajduje si&#x119; w reference manualu mikrokontrolera, w naszym przypadku jest to sekcja <em>2.4 Boot configuration</em></p>
+<p><img src="./img/boot_modes.png" alt="boot modes"></p>
+<p>Warto&#x15B;ci tych pin&#xF3;w s&#x105; samplowane po dostarczeniu zasilania do mikrokontrolera (oraz po wyj&#x15B;ciu z trybu Standby).</p>
+<p>Nast&#x119;pnie, na podstawie wybranego trybu, nast&#x119;puje remapping pami&#x119;ci. Pozwala on na zmapowanie pewnego obszaru pami&#x119;ci pod inny adres ni&#x17C; ten, z kt&#xF3;rego normalnie jest dost&#x119;pny. Dzi&#x119;ki temu, kod programu zostaje wykonany poprzez szyn&#x119; I-Bus, zamiast wolniejszej szyny S-Bus, co zwi&#x119;ksza wydajno&#x15B;&#x107;, oraz mo&#x17C;na okre&#x15B;li&#x107; z kt&#xF3;rej pami&#x119;ci ma startowa&#x107; mikrokontroler.</p>
+<p><img src="./img/memory_mapping.png" alt="memory mapping"></p>
+<p>Jak wida&#x107; na powy&#x17C;szej tabelce, pod adresem <code>0x0000 0000</code> jest zmapowana wybrana pami&#x119;&#x107; startowa. Oczywi&#x15B;cie wszystkie te sekcje nadal s&#x105; dost&#x119;pne pod ich oryginalnymi adresami (wi&#x119;c m&#xF3;wi&#x105;c wy&#x17C;ej &#x17C;e &quot;<em>program startuje z adresu <code>0x0800 0000</code></em>&quot; technicznie nie sk&#x142;ama&#x142;em), ale od aliasu pod <code>0x0000 0000</code> mikrokontroler rozpoczyna wykonywanie swojego kodu.</p>
+<p>Co w takim razie jest pod adresem <code>0x0000 0000</code> w naszym programie kt&#xF3;ry wrzucamy na mikrokontroler? Znajduje si&#x119; tam adres szczytu stosu, a jedno s&#x142;owo p&#xF3;&#x17A;niej, pod adresem <code>0x0000 0004</code>, mamy tablic&#x119; wektor&#xF3;w przerwa&#x144;, a pierwszy na li&#x15B;cie jest zawsze <em>Reset Handler</em>. <em>Reset Handler</em> jest odpowiedzialny za przygotowanie pami&#x119;ci mikrokontrolera do poprawnej pracy, inicjalizacj&#x119; systemu (FPU, zewn&#x119;trznych pami&#x119;ci oraz tablicy wektor&#xF3;w przerwa&#x144;), inicjalizacj&#x119; biblioteki C oraz przej&#x15B;cie do funkcji <code>main</code> naszego programu. Mikrokontroler po (re)starcie zawsze za&#x142;aduje zawarto&#x15B;&#x107; pami&#x119;ci pod adresem pocz&#x105;tkowym programu do rejestru stosu, a wykonywanie programu zaczyna od kolejnego s&#x142;owa w tej pami&#x119;ci.</p>
+<p>Implementacja <em>Reset Handlera</em> znajduje si&#x119; w pliku <code>startup_stm32f401retx.s</code> (katalog <code>Core/Startup</code>) o kt&#xF3;rym wy&#x17C;ej ju&#x17C; wspomina&#x142;em. W tym pliku znajduje si&#x119; r&#xF3;wnie&#x17C; tablica wektor&#xF3;w przerwa&#x144;, razem z nazwami funkcji j&#x119;zyka C (lub C++) kt&#xF3;re s&#x105; odpowiedzialne za ich obs&#x142;ug&#x119;. Te nazwy zostan&#x105; zmienione na adresy funkcji w procesie linkowania programu.</p>
+<p>Tutaj wyja&#x15B;nia si&#x119; nasz problem z przerwaniami. Mikrokontroler ustawia domy&#x15B;lnie start tablicy wektor&#xF3;w przerwa&#x144; na adres <code>0x0000 0000</code> (co powoduje &#x17C;e <em>Reset Handler</em> jest pierwsz&#x105; rzecz&#x105; jak&#x105; mikrokontroler wykona po uruchomieniu i za&#x142;adowaniu adresu stosu), wi&#x119;c wszystkie przerwania b&#x119;d&#x105; zaczyna&#x107; si&#x119; od kolejnych adres&#xF3;w po <code>0x0000 0000</code>. W momencie w kt&#xF3;rym jakiekolwiek przerwanie zostaje wywo&#x142;ane, procesor automatycznie skacze do adresu <code>0x0000 0000</code> + offset adresu przerwania i l&#x105;duje w <em>nico&#x15B;ci</em> (je&#x15B;li przed wrzuceniem naszego przesuni&#x119;tego programu pami&#x119;&#x107; FLASH zosta&#x142;a wyczyszczona), lub w handlerze przerwania starego programu (je&#x15B;li istnieje), lub w hardfaulcie. &#x17B;eby program poprawnie skaka&#x142; do tablicy wektor&#xF3;w przerwa&#x144; naszego przesuni&#x119;tego programu, musimy j&#x105; przesun&#x105;&#x107; od tyle samo bajt&#xF3;w, o ile jest przesuni&#x119;ty nasz kod aplikacji.</p>
+<p>W tej chwili, obs&#x142;uga przerwania wygl&#x105;da nast&#x119;puj&#x105;co:</p>
+<p><img src="./img/vector_jump_default.png" alt="irq handling default"><br>
+<img src="./img/vector_jump_mem_default.png" alt="irq handling mem default"></p>
+<p>My chcemy &#x17C;eby wygl&#x105;da&#x142;a tak:</p>
+<p><img src="./img/vector_jump_offset.png" alt="irq handling offset"><br>
+<img src="./img/vector_jump_mem_offset.png" alt="irq handling mem offset"></p>
+<p>Na nasze szcz&#x119;&#x15B;cie, kod startowy wygenerowany przez Cube&apos;a przewidzia&#x142; tak&#x105; mo&#x17C;liwo&#x15B;&#x107;. Procedura przesuni&#x119;cia jest zaimplementowana w funkcji <code>SystemInit</code> (do kt&#xF3;rej skacze <em>Reset Handler</em> po przygotowaniu pami&#x119;ci, czyli bardzo wcze&#x15B;nie), kt&#xF3;ra jest zaimplementowana w pliku <code>system_stm32f4xx.c</code> (katalog <code>Core/Src</code>). W naszym przypadku, domy&#x15B;lnie ta funkcja powinna wygl&#x105;da&#x107; mniej-wi&#x119;cej tak:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword">void</span> <span class="token function">SystemInit</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* FPU settings ------------------------------------------------------------*/</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression"><span class="token punctuation">(</span>__FPU_PRESENT <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>__FPU_USED <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span></span></span>
+  SCB<span class="token operator">-&gt;</span>CPACR <span class="token operator">|=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">3UL</span> <span class="token operator">&lt;&lt;</span> <span class="token number">10</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token number">3UL</span> <span class="token operator">&lt;&lt;</span> <span class="token number">11</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* set CP10 and CP11 Full Access */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression"><span class="token function">defined</span> <span class="token punctuation">(</span>DATA_IN_ExtSRAM<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">defined</span> <span class="token punctuation">(</span>DATA_IN_ExtSDRAM<span class="token punctuation">)</span></span></span>
+  <span class="token function">SystemInit_ExtMemCtl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">/* DATA_IN_ExtSRAM || DATA_IN_ExtSDRAM */</span></span>
+
+  <span class="token comment">/* Configure the Vector Table location -------------------------------------*/</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression"><span class="token function">defined</span><span class="token punctuation">(</span>USER_VECT_TAB_ADDRESS<span class="token punctuation">)</span></span></span>
+  SCB<span class="token operator">-&gt;</span>VTOR <span class="token operator">=</span> VECT_TAB_BASE_ADDRESS <span class="token operator">|</span> VECT_TAB_OFFSET<span class="token punctuation">;</span> <span class="token comment">/* Vector Table Relocation in Internal SRAM */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">/* USER_VECT_TAB_ADDRESS */</span></span>
+<span class="token punctuation">}</span>
+</pre><p>Makro <code>USER_VECT_TAB_ADDRESS</code> nie b&#x119;dzie domy&#x15B;lnie zdefiniowane, wi&#x119;c przesuni&#x119;cie nie zostanie wykonane. Nale&#x17C;y wi&#x119;c to makro zdefiniowa&#x107; i okre&#x15B;li&#x107; jak daleko ma zosta&#x107; przesuni&#x119;ta tablica wektor&#xF3;w przerwa&#x144;. Zrobimy to nieco wy&#x17C;ej w tym samym pliku, gdzie jest ju&#x17C; przygotowany kod do tego:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* Note: Following vector table addresses must be defined in line with linker
+ configuration. */</span>
+<span class="token comment">/*!&lt; Uncomment the following line if you need to relocate the vector table
+ anywhere in Flash or Sram, else the vector table is kept at the automatic
+ remap of boot address selected */</span>
+<span class="token comment">/* #define USER_VECT_TAB_ADDRESS */</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression"><span class="token function">defined</span><span class="token punctuation">(</span>USER_VECT_TAB_ADDRESS<span class="token punctuation">)</span></span></span>
+<span class="token comment">/*!&lt; Uncomment the following line if you need to relocate your vector Table
+     in Sram else user remap will be done in Flash. */</span>
+<span class="token comment">/* #define VECT_TAB_SRAM */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression"><span class="token function">defined</span><span class="token punctuation">(</span>VECT_TAB_SRAM<span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">VECT_TAB_BASE_ADDRESS</span>   <span class="token expression">SRAM_BASE       </span><span class="token comment">/*!&lt; Vector Table base address field.
+                                                     This value must be a multiple of 0x200. */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">VECT_TAB_OFFSET</span>         <span class="token expression"><span class="token number">0x00000000U</span>     </span><span class="token comment">/*!&lt; Vector Table base offset field.
+                                                     This value must be a multiple of 0x200. */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">else</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">VECT_TAB_BASE_ADDRESS</span>   <span class="token expression">FLASH_BASE      </span><span class="token comment">/*!&lt; Vector Table base address field.
+                                                     This value must be a multiple of 0x200. */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">VECT_TAB_OFFSET</span>         <span class="token expression"><span class="token number">0x00000000U</span>     </span><span class="token comment">/*!&lt; Vector Table base offset field.
+                                                     This value must be a multiple of 0x200. */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">/* VECT_TAB_SRAM */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">/* USER_VECT_TAB_ADDRESS */</span></span>
+</pre><p>W powy&#x17C;szym kodzie musimy odkomentowa&#x107; linijk&#x119; zawieraj&#x105;c&#x105; <code>#define USER_VECT_TAB_ADDRESS</code> i ustawi&#x107; warto&#x15B;&#x107; makra <code>VECT_TAB_OFFSET</code> w sekcji odpowiedzialnej za offset FLASHa na <code>0x00008000U</code> - czyli ilo&#x15B;&#x107; bajt&#xF3;w o kt&#xF3;r&#x105; przesun&#x119;li&#x15B;my nasz program.</p>
+<p>Po modyfikacji, ca&#x142;o&#x15B;&#x107; powinna wygl&#x105;da&#x107; nast&#x119;puj&#x105;co:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* Note: Following vector table addresses must be defined in line with linker
+ configuration. */</span>
+<span class="token comment">/*!&lt; Uncomment the following line if you need to relocate the vector table
+ anywhere in Flash or Sram, else the vector table is kept at the automatic
+ remap of boot address selected */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">USER_VECT_TAB_ADDRESS</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression"><span class="token function">defined</span><span class="token punctuation">(</span>USER_VECT_TAB_ADDRESS<span class="token punctuation">)</span></span></span>
+<span class="token comment">/*!&lt; Uncomment the following line if you need to relocate your vector Table
+     in Sram else user remap will be done in Flash. */</span>
+<span class="token comment">/* #define VECT_TAB_SRAM */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression"><span class="token function">defined</span><span class="token punctuation">(</span>VECT_TAB_SRAM<span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">VECT_TAB_BASE_ADDRESS</span>   <span class="token expression">SRAM_BASE       </span><span class="token comment">/*!&lt; Vector Table base address field.
+                                                     This value must be a multiple of 0x200. */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">VECT_TAB_OFFSET</span>         <span class="token expression"><span class="token number">0x00000000U</span>     </span><span class="token comment">/*!&lt; Vector Table base offset field.
+                                                     This value must be a multiple of 0x200. */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">else</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">VECT_TAB_BASE_ADDRESS</span>   <span class="token expression">FLASH_BASE      </span><span class="token comment">/*!&lt; Vector Table base address field.
+                                                     This value must be a multiple of 0x200. */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">VECT_TAB_OFFSET</span>         <span class="token expression"><span class="token number">0x00008000U</span>     </span><span class="token comment">/*!&lt; Vector Table base offset field.
+                                                     This value must be a multiple of 0x200. */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">/* VECT_TAB_SRAM */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">/* USER_VECT_TAB_ADDRESS */</span></span>
+</pre><p><em>Je&#x15B;li nie korzystasz z HALa i masz w&#x142;asne, customowe &#x15B;rodowisko pracy, to po prostu pami&#x119;taj o ustawieniu warto&#x15B;ci rejestru VTOR podczas inicjalizacji systemu lub w bootloaderze - tu&#x17C; przed skokiem do aplikacji docelowej</em><br>
+Po tej modyfikacji, zbudowaniu i wrzuceniu programu na mikrokontroler, powinien on zacz&#x105;&#x107; dzia&#x142;a&#x107; prawid&#x142;owo - po ka&#x17C;dym klikni&#x119;ciu przycisku dioda powinna zmienia&#x107; sw&#xF3;j stan i powinien zosta&#x107; przes&#x142;any komunikat poprzez UART:</p>
+<p><img src="./img/vector_table_fixed.png" alt="vector table works"></p>
+<p>Ale sk&#x105;d si&#x119; wzi&#x105;&#x142; <em>alignment</em> do 0x200, czyli 512 bajt&#xF3;w (128 s&#x142;&#xF3;w)? Jest on spowodowany tym, &#x17C;e vector table musi by&#x107; wyr&#xF3;wnane pami&#x119;ciowo do ilo&#x15B;ci przerwa&#x144; (wyj&#x105;tk&#xF3;w) kt&#xF3;re s&#x105; w tej tablicy, co wyja&#x15B;nia poni&#x17C;szy screen z programming manuala Cortex&#xF3;w-M4:</p>
+<p><img src="./img/vtor.png" alt="vtor"></p>
+<p>Ka&#x17C;dy wpis w tablicy wektor&#xF3;w przerwa&#x144; zajmuje jedno s&#x142;owo, czyli 4 bajty, ze wzgl&#x119;du na to &#x17C;e tak&#x105; wielko&#x15B;&#x107; maj&#x105; adresy w 32-bitowych mikrokontrolerach ARM. Bior&#x105;c to pod uwag&#x119;, mo&#x17C;na wywnioskowa&#x107; &#x17C;e maksymalna ilo&#x15B;&#x107; wpis&#xF3;w w tablicy wektor&#xF3;w przerwa&#x144; mo&#x17C;e wynosi&#x107; 128. W przypadku naszego STM32F401RE, mamy do dyspozycji 85 przerwa&#x144; od peryferi&#xF3;w plus 11 przerwa&#x144; systemowych, co &#x142;&#x105;cznie daje 96 - nieco mniej ni&#x17C; 128, ale jest to najbli&#x17C;sza pot&#x119;ga dw&#xF3;jki wi&#x119;ksza od tej liczby, czyli wszystko si&#x119; zgadza. Zagadka rozwi&#x105;zana.</p>
+<h2 class="mume-header" id="5-tworzenie-bootloadera">5. Tworzenie bootloadera</h2>
+
+<p>Nadszed&#x142; czas na napisanie programu kt&#xF3;ry b&#x119;dzie aktualizowa&#x142; nasz software. Zaczniemy od prze&#x142;adowania <code>_write</code> &#x17C;eby m&#xF3;c u&#x17C;ywa&#x107; <code>printf</code>a, oraz obs&#x142;ugi przycisku - za&#x142;&#xF3;&#x17C;my, &#x17C;e nasz bootloader b&#x119;dzie skaka&#x107; do g&#x142;&#xF3;wnego programu po jego klikni&#x119;ciu.</p>
+<p>Poni&#x17C;szy kod nale&#x17C;y skopiowa&#x107; do odpowiednich sekcji w pliku <code>main.c</code>.</p>
+<p>Dodajmy wymagane biblioteki:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* USER CODE BEGIN Includes */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdbool.h&gt;</span></span>
+<span class="token comment">/* USER CODE END Includes */</span>
+</pre><p>Stw&#xF3;rzmy flag&#x119; za pomoc&#x105; kt&#xF3;rej obs&#x142;u&#x17C;ymy wci&#x15B;ni&#x119;cie przycisku (&#x17C;eby nie skaka&#x107; bezpo&#x15B;rednio z przerwania):</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* USER CODE BEGIN PV */</span>
+bool buttonPressed <span class="token operator">=</span> false<span class="token punctuation">;</span>
+<span class="token comment">/* USER CODE END PV */</span>
+</pre><p>Do funkcji <code>main</code> dodajmy <code>printf</code>a, w celu sprawdzenia czy bootloader si&#x119; uruchomi&#x142;, oraz obs&#x142;ug&#x119; klikni&#x119;cia przycisku:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/* USER CODE BEGIN 2 */</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Hello, this is bootloader. Waiting for firmware.\r\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">/* USER CODE END 2 */</span>
+
+  <span class="token comment">/* Infinite loop */</span>
+  <span class="token comment">/* USER CODE BEGIN WHILE */</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* USER CODE END WHILE */</span>
+
+    <span class="token comment">/* USER CODE BEGIN 3 */</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>buttonPressed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      buttonPressed <span class="token operator">=</span> false<span class="token punctuation">;</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Button clicked, jumping to application!\r\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// jump to application</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">/* USER CODE END 3 */</span>
+</pre><p>I nadpiszmy funkcje <code>_write</code> i handler przerwania EXTI <strong>(ponownie przypominam o sprawdzeniu czy przerwanie jest w&#x142;&#x105;czone w ustawieniach NVIC)</strong>:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* USER CODE BEGIN 4 */</span>
+<span class="token keyword">int</span> <span class="token function">_write</span><span class="token punctuation">(</span><span class="token keyword">int</span> file<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> ptr<span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span> ptr<span class="token punctuation">,</span> len<span class="token punctuation">,</span> HAL_MAX_DELAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> len<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">HAL_GPIO_EXTI_Callback</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> pin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>pin <span class="token operator">==</span> B1_Pin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    buttonPressed <span class="token operator">=</span> true<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* USER CODE END 4 *
+</span></pre><p>Je&#x15B;li wszystko posz&#x142;o zgodnie z planem, to po uruchomieniu programu (niezale&#x17C;nie od tego czy zrobimy to za pomoc&#x105; opcji <em>Run</em> czy <em>Debug</em>) powinni&#x15B;my otrzyma&#x107; komunikat w terminalu. Mo&#x17C;emy od razu sprawdzi&#x107; czy wykrywanie wci&#x15B;ni&#x119;cia przycisku dzia&#x142;a - po jego klikni&#x119;ciu te&#x17C; powinna si&#x119; pojawi&#x107; wiadomo&#x15B;&#x107;.</p>
+<p><img src="./img/bootloader_hello.png" alt="bootloader hello world"></p>
+<h3 class="mume-header" id="51-deinicjalizacja-peryferi%C3%B3w">5.1. Deinicjalizacja peryferi&#xF3;w</h3>
+
+<p>Zanim nast&#x105;pi skok do aplikacji, trzeba po bootloaderze posprz&#x105;ta&#x107;. Sprz&#x105;tanie b&#x119;dzie sk&#x142;ada&#x107; si&#x119; z deinicjalizacji wszystkich u&#x17C;ytych peryferi&#xF3;w i HALa, oraz resetu paru rejestr&#xF3;w systemowych.</p>
+<p>Je&#x15B;li pominiemy krok sprz&#x105;tania i zostawimy peryferia pracuj&#x105;ce w tle, kiedy aplikacja z nich nie korzysta, to mamy dwa problemy: po pierwsze, pob&#xF3;r pr&#x105;du si&#x119; nieco zwi&#x119;kszy, po drugie - w momencie w kt&#xF3;rym nast&#x105;pi przerwanie z danego peryferium, nast&#x105;pi nieoczekiwany skok do handlera przerwania (tutaj chcia&#x142;bym zaznaczy&#x107; &#x17C;e nie sprawdza&#x142;em czy skok nast&#x105;pi do &quot;starego&quot; wektora przerwa&#x144; (nie powinien, ale w takim przypadku spowoduje to prawdopodobnie hardfaulta), czy do nowego (program spr&#xF3;buje to przerwanie obs&#x142;u&#x17C;y&#x107; lub je zignoruje)). Nie chcemy mie&#x107; niespodzianek w kodzie, wi&#x119;c musimy zadba&#x107; o to &#x17C;eby wszystko by&#x142;o &#x142;adne i czyste przed wyj&#x15B;ciem z bootloadera.</p>
+<p>&#x17B;eby deinicjalizowa&#x107; peryferia nale&#x17C;y wywo&#x142;a&#x107; odpowiednie HALowe funkcje kt&#xF3;re wy&#x142;&#x105;cz&#x105; peryferia i ich przerwania, najlepiej w odwrotnej kolejno&#x15B;ci w stosunku do kolejno&#x15B;ci inicjalizacji. W naszym przypadku, do deinicjalizacji mamy cztery peryferia: CRC, GPIO, RCC i USART. Na szcz&#x119;&#x15B;cie HAL oferuje bardzo proste do u&#x17C;ycia funkcje kt&#xF3;re deinicjalizuj&#x105; peryferia, a cz&#x119;&#x15B;&#x107; kodu deinicjalizacyjnego (MSP, czyli konfiguracja zegar&#xF3;w, pin&#xF3;w i przerwa&#x144;) wygenerowa&#x142; nam CubeMX.<br>
+Jedynie w przypadku GPIO deinicjalizacja nie b&#x119;dzie tak trywialna - tutaj nale&#x17C;y deinicjalizowa&#x107; ka&#x17C;dy pin po kolei oraz wy&#x142;&#x105;czy&#x107; przerwania (co sugeruj&#x119; zrobi&#x107; przed deinicjalizacj&#x105; pin&#xF3;w).</p>
+<p>Od razu mo&#x17C;emy r&#xF3;wnie&#x17C; zresetowa&#x107; konfiguracj&#x119; SysTicka, &#x17C;eby nasza g&#x142;&#xF3;wna aplikacja startowa&#x142;a z &quot;zerowym&quot; tickiem.</p>
+<p>Stw&#xF3;rzmy w sekcji <code>USER CODE 0</code> funkcj&#x119; kt&#xF3;ra wy&#x142;&#x105;czy u&#x17C;yte peryferia i ich zegary:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* USER CODE BEGIN 0 */</span>
+<span class="token keyword">void</span> <span class="token function">deinit_peripherals</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">HAL_CRC_DeInit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hcrc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">HAL_UART_DeInit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">HAL_NVIC_DisableIRQ</span><span class="token punctuation">(</span>B1_EXTI_IRQn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">HAL_GPIO_DeInit</span><span class="token punctuation">(</span>LD2_GPIO_Port<span class="token punctuation">,</span> LD2_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">HAL_GPIO_DeInit</span><span class="token punctuation">(</span>B1_GPIO_Port<span class="token punctuation">,</span> B1_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">LL_RCC_DeInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// We&apos;re using LL RCC, so we&apos;ll use this function</span>
+  <span class="token function">HAL_DeInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Reset SysTicka</span>
+  SysTick<span class="token operator">-&gt;</span>CTRL <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  SysTick<span class="token operator">-&gt;</span>LOAD <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  SysTick<span class="token operator">-&gt;</span>VAL <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><h3 class="mume-header" id="52-skok-do-aplikacji">5.2. Skok do aplikacji</h3>
+
+<p>Nast&#x119;pnie, stw&#xF3;rzmy funkcj&#x119; kt&#xF3;ra b&#x119;dzie skaka&#x107; do docelowego programu. &#x17B;eby skok zosta&#x142; wykonany poprawnie, nale&#x17C;y zrobi&#x107; dwie rzeczy:</p>
+<ol>
+<li>Ustawi&#x107; wska&#x17A;nik stosu procesora na stos docelowej aplikacji</li>
+<li>Wykona&#x107; skok</li>
+</ol>
+<p>Jak ju&#x17C; wiemy, adres stosu znajduje si&#x119; na pocz&#x105;tku tablicy wektor&#xF3;w przerwa&#x144;, a tablica wektor&#xF3;w przerwa&#x144; znajduje si&#x119; na pocz&#x105;tku programu. Docelowo chcemy skoczy&#x107; do <em>Reset Handlera</em> aplikacji, wi&#x119;c adres skoku b&#x119;dzie r&#xF3;wny adresowi aplikacji + 4.</p>
+<p>Do ustawienia <em>stack pointera</em> wykorzystamy CMSISow&#x105; funkcj&#x119; <code>__set_MSP</code>, kt&#xF3;ra jako argument przyjmuje adres stosu: <code>__set_MSP(*((__IO uint32_t*) app_address));</code>. Makro <code>__IO</code> pochodzi z bibliotek CMSIS i okre&#x15B;la uprawnienia dost&#x119;pu do pami&#x119;ci pod danym adresem - w naszym przypadku jest to po prostu <code>volatile</code>. Z racji &#x17C;e adres stosu znajduje si&#x119; <em>pod</em> adresem pocz&#x105;tku aplikacji, musimy odczyta&#x107; zawarto&#x15B;&#x107; pami&#x119;ci pod tym adresem, wi&#x119;c rzutujemy adres na wska&#x17A;nik odpowiedniego typu - tutaj <code>uint32_t*</code> i dereferujemy go, co zwr&#xF3;ci zawarto&#x15B;&#x107; pami&#x119;ci pod nim.</p>
+<p>Skok wykonamy za pomoc&#x105; wska&#x17A;nika na funkcj&#x119;. Dla u&#x142;atwienia i unikni&#x119;cia bolesnej sk&#x142;adni wska&#x17A;nik&#xF3;w na funkcje w C, stworzymy pomocniczego typedefa: <code>typedef void (*jumpFunction)();</code>. Nast&#x119;pnie, pomocnicz&#x105; zmienn&#x105; z adresem skoku, kt&#xF3;ry przypiszemy do wska&#x17A;nika na funkcj&#x119;, kt&#xF3;ry wywo&#x142;amy &#x17C;eby w ko&#x144;cu uruchomi&#x107; nas docelowy program. Ca&#x142;o&#x15B;&#x107; zawarta jest w poni&#x17C;szej funkcji, kt&#xF3;ra dodatkowo wywo&#x142;uje wcze&#x15B;niej stworzon&#x105; funkcj&#x119; <code>deinit_peripherals</code>, wi&#x119;c umieszczamy j&#x105; pod ni&#x105;.</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword">void</span> <span class="token function">jump_to_application</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> <span class="token keyword">const</span> app_address<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">typedef</span> <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>jumpFunction<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// helper-typedef</span>
+  <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> jumpAddress <span class="token operator">=</span> <span class="token operator">*</span><span class="token punctuation">(</span>__IO <span class="token class-name">uint32_t</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>app_address <span class="token operator">+</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Address of application&apos;s Reset Handler</span>
+  jumpFunction runApplication <span class="token operator">=</span> <span class="token punctuation">(</span>jumpFunction<span class="token punctuation">)</span> jumpAddress<span class="token punctuation">;</span> <span class="token comment">// Function we&apos;ll use to jump to application</span>
+
+  <span class="token function">deinit_peripherals</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Deinitialization of peripherals and systick</span>
+  <span class="token function">__set_MSP</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">(</span>__IO <span class="token class-name">uint32_t</span><span class="token operator">*</span><span class="token punctuation">)</span> app_address<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Stack pointer setup</span>
+  <span class="token function">runApplication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Jump to application</span>
+<span class="token punctuation">}</span>
+</pre><p>Pozostaje nam jedynie wywo&#x142;a&#x107; t&#x105; funkcj&#x119; w cz&#x119;&#x15B;ci kodu odpowiedzialnej za obs&#x142;ug&#x119; przycisku, kt&#xF3;r&#x105; ju&#x17C; mamy - w funkcji <code>main</code></p>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/* Infinite loop */</span>
+  <span class="token comment">/* USER CODE BEGIN WHILE */</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* USER CODE END WHILE */</span>
+
+    <span class="token comment">/* USER CODE BEGIN 3 */</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>buttonPressed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      buttonPressed <span class="token operator">=</span> false<span class="token punctuation">;</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Button clicked, jumping to application!\r\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// jump to application</span>
+      <span class="token function">jump_to_application</span><span class="token punctuation">(</span><span class="token number">0x08008000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">/* USER CODE END 3 */</span>
+</pre><p>I voila, nasz prosty bootloader kt&#xF3;ry chwilowo potrafi tylko skaka&#x107; do g&#x142;&#xF3;wnego programu dzia&#x142;a. Wrzu&#x107; go na mikrokontroler, uruchom serial monitor, zresetuj mikrokontroler, wci&#x15B;nij przycisk i sprawd&#x17A; czy skok zostanie wykonany poprawnie - a powinien, za ka&#x17C;dym razem.</p>
+<p><img src="./img/boot_jump_works.png" alt="bootloader works 1"></p>
+<h3 class="mume-header" id="53-stworzenie-api-bootloadera">5.3. Stworzenie API bootloadera</h3>
+
+<p>Czas na zadanie sobie bardzo wa&#x17C;nego pytania - w jaki spos&#xF3;b nasz bootloader b&#x119;dzie komunikowa&#x107; si&#x119; z &quot;programatorem&quot;? I czym ten &quot;programator&quot; b&#x119;dzie?<br>
+W naszym przypadku, programatorem b&#x119;dzie komputer do kt&#xF3;rego pod&#x142;&#x105;czymy STMa, a nast&#x119;pnie za pomoc&#x105; programu lub skryptu b&#x119;dziemy mogli wrzuci&#x107; i zweryfikowa&#x107; firmware (w kolejnym rozdziale b&#x119;d&#x119; opisywa&#x142; tworzenie takiego skryptu). &#x17B;eby mo&#x17C;na by&#x142;o skomunikowa&#x107; ze sob&#x105; zewn&#x119;trzny program oraz bootloader, musimy stworzy&#x107; API (<em>Application Programming Interface</em>) naszego bootloadera, czyli zestaw komunikat&#xF3;w za pomoc&#x105; kt&#xF3;rych b&#x119;dzie mo&#x17C;na sterowa&#x107; jego dzia&#x142;aniem.</p>
+<p>Przypomnijmy sobie jakie zadania ma wykonywa&#x107; nasz bootloader:</p>
+<ul>
+<li>Aktualizacja firmware&apos;u</li>
+<li>Sprawdzenie poprawno&#x15B;ci firmware&apos;u</li>
+<li>Skok do aplikacji</li>
+</ul>
+<p>Skok do aplikacji oraz sprawdzenie poprawno&#x15B;ci mo&#x17C;e (ale nie musi) wykona&#x107; si&#x119; automatycznie po aktualizacji firmware&apos;u, ale musimy jako&#x15B; zakomunikowa&#x107; &#x17C;e chcemy ten firmware zaktualizowa&#x107; oraz musimy w jaki&#x15B; spos&#xF3;b wys&#x142;a&#x107; sum&#x119; kontroln&#x105; oraz sam plik binarny z programem. Dodatkowo, dobrze by&#x142;oby mie&#x107; jak&#x105;&#x15B; mo&#x17C;liwo&#x15B;&#x107; sprawdzenia czy na mikrokontrolerze aktualnie wykonuje si&#x119; bootloader, czy nie.</p>
+<p>Rozwi&#x105;za&#x144; tego problemu jest na prawd&#x119; wiele, od &quot;sztywnej&quot; komunikacji, gdzie bootloader oczekiwa&#x142;by na przyk&#x142;ad sumy kontrolej, wielko&#x15B;ci pliku binarnego i nast&#x119;pnie <code>n</code> bajt&#xF3;w z aplikacj&#x105;, po pe&#x142;nowymiarowe API z dwustronn&#x105; komunikacj&#x105; za pomoc&#x105; pe&#x142;noprawnych polece&#x144;.</p>
+<p>Ja, dla prostoty, postawi&#x119; na rozwi&#x105;zanie kt&#xF3;re jest pomi&#x119;dzy tymi dwoma: prosty system polece&#x144; ze sztywno ustawion&#x105; sk&#x142;adni&#x105; i wielko&#x15B;ci&#x105;. Ka&#x17C;de polecenie b&#x119;dzie wygl&#x105;da&#x107; nast&#x119;puj&#x105;co:</p>
+<table>
+<thead>
+<tr>
+<th>Opcode  [1B]</th>
+<th>Dane [4B]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bajt charakterystyczny dla polecenia</td>
+<td>Argument polecenia</td>
+</tr>
+</tbody>
+</table>
+<p>Natomiast mikrokontroler b&#x119;dzie odpowiada&#x142; na dane polecenia trzema bajtami - <code>OK!</code>, je&#x15B;li polecenie zosta&#x142;o wykonane poprawnie, lub <code>ERR</code> je&#x15B;li nast&#x105;pi&#x142; b&#x142;&#x105;d.<br>
+Dla uproszczenia naszego bootloadera, b&#x119;dziemy zak&#x142;ada&#x107; &#x17C;e ka&#x17C;de polecenie b&#x119;dzie wysy&#x142;a&#x107; <em>jakie&#x15B;</em> 4 bajty danych, ale w przypadku polece&#x144; kt&#xF3;re ich nie potrzebuj&#x105; - zostan&#x105; one zignorowane.</p>
+<p>Lista polece&#x144; b&#x119;dzie kr&#xF3;tka:</p>
+<table>
+<thead>
+<tr>
+<th>Opcode</th>
+<th>Opis</th>
+<th>Oczekiwane dane</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x01</td>
+<td>Echo - bootloader powinien odpowiedzie&#x107; na ten komunikat odsy&#x142;aj&#x105;c <code>OK!</code></td>
+<td>Brak</td>
+</tr>
+<tr>
+<td>0x02</td>
+<td>Ustawienie wielko&#x15B;ci pliku z aktualizacj&#x105;</td>
+<td>Wielko&#x15B;&#x107; pliku</td>
+</tr>
+<tr>
+<td>0x03</td>
+<td>Wej&#x15B;cie w tryb aktualizacji</td>
+<td>Brak</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>Sprawdzenie sumy kontrolnej aplikacji</td>
+<td>Suma kontrolna do por&#xF3;wnania</td>
+</tr>
+<tr>
+<td>0x05</td>
+<td>Skok do aplikacji</td>
+<td>Brak</td>
+</tr>
+</tbody>
+</table>
+<p>Po wej&#x15B;ciu w tryb aktualizacji, bootloader zacznie przyjmowa&#x107; pakiety danych przez UART, do momentu odebrania ca&#x142;ego pliku. Wielko&#x15B;&#x107; naszego pakietu musi by&#x107; wielokrotno&#x15B;ci&#x105; pojedynczego, 32-bitowego s&#x142;owa, ze wzgl&#x119;du na to &#x17C;e b&#x119;dziemy programowa&#x107; pami&#x119;&#x107; FLASH paczuszkami o tej wielko&#x15B;ci.<br>
+Do przekazania wielko&#x15B;ci pliku z aktualizacj&#x105; s&#x142;u&#x17C;y osobne polecenie, ze wzgl&#x119;du na to &#x17C;e b&#x119;dzie ona potrzebna zar&#xF3;wno do flashowania jak i weryfikacji oprogramowania i chcemy mie&#x107; mo&#x17C;liwo&#x15B;&#x107; zrobienia obu tych rzeczy niezale&#x17C;nie od siebie.</p>
+<h3 class="mume-header" id="54-szkielet-api">5.4. Szkielet API</h3>
+
+<p>Zacznijmy od usuni&#x119;cia ju&#x17C; niepotrzebnych <code>printf</code>&#xF3;w z funkcji <code>main</code> naszego bootloadera - b&#x119;d&#x105; one przeszkadza&#x107; naszemu API. Mo&#x17C;na r&#xF3;wnie&#x17C; usun&#x105;&#x107; prze&#x142;adowanie funkcji <code>_write</code>.</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/* USER CODE BEGIN 2 */</span>
+  <span class="token comment">/* USER CODE END 2 */</span>
+
+  <span class="token comment">/* Infinite loop */</span>
+  <span class="token comment">/* USER CODE BEGIN WHILE */</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* USER CODE END WHILE */</span>
+
+    <span class="token comment">/* USER CODE BEGIN 3 */</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>buttonPressed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      buttonPressed <span class="token operator">=</span> false<span class="token punctuation">;</span>
+      <span class="token comment">// jump to application</span>
+      <span class="token function">jump_to_application</span><span class="token punctuation">(</span><span class="token number">0x08008000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">/* USER CODE END 3 */</span>
+</pre><p>Stw&#xF3;rzmy na pocz&#x105;tek kilka definicji i struktur&#x119; polecenia kt&#xF3;re dostaniemy od bootloadera, oraz zmienn&#x105; w kt&#xF3;rej b&#x119;dziemy trzyma&#x107; wielko&#x15B;&#x107; aplikacji. Do odpowiednich sekcji dodajmy wi&#x119;c nast&#x119;puj&#x105;cy kod:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* Private typedef -----------------------------------------------------------*/</span>
+<span class="token comment">/* USER CODE BEGIN PTD */</span>
+<span class="token keyword">typedef</span> <span class="token keyword">enum</span> <span class="token class-name">BootloaderOpcode_t</span> <span class="token punctuation">{</span>
+  BOOTLOADER_CMD_INVALID <span class="token operator">=</span> <span class="token number">0x00</span><span class="token punctuation">,</span>
+  BOOTLOADER_CMD_ECHO <span class="token operator">=</span> <span class="token number">0x01</span><span class="token punctuation">,</span>
+  BOOTLOADER_CMD_SETSIZE <span class="token operator">=</span> <span class="token number">0x02</span><span class="token punctuation">,</span>
+  BOOTLOADER_CMD_UPDATE <span class="token operator">=</span> <span class="token number">0x03</span><span class="token punctuation">,</span>
+  BOOTLOADER_CMD_CHECK <span class="token operator">=</span> <span class="token number">0x04</span><span class="token punctuation">,</span>
+  BOOTLOADER_CMD_JUMP <span class="token operator">=</span> <span class="token number">0x05</span>
+<span class="token punctuation">}</span> BootloaderOpcode<span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">BootloaderCommand_t</span> <span class="token punctuation">{</span>
+  <span class="token class-name">uint32_t</span> data<span class="token punctuation">;</span>
+  BootloaderOpcode opcode<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> BootloaderCommand<span class="token punctuation">;</span>
+
+<span class="token comment">/* USER CODE END PTD */</span>
+
+<span class="token comment">/* Private define ------------------------------------------------------------*/</span>
+<span class="token comment">/* USER CODE BEGIN PD */</span>
+<span class="token keyword">char</span> <span class="token keyword">const</span><span class="token operator">*</span> <span class="token keyword">const</span> BOOTLOADER_MSG_OK <span class="token operator">=</span> <span class="token string">&quot;OK!&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> <span class="token keyword">const</span><span class="token operator">*</span> <span class="token keyword">const</span> BOOTLOADER_MSG_ERR <span class="token operator">=</span> <span class="token string">&quot;ERR&quot;</span><span class="token punctuation">;</span>
+
+<span class="token class-name">uint32_t</span> <span class="token keyword">const</span> APPLICATION_ADDRESS <span class="token operator">=</span> <span class="token number">0x08008000UL</span><span class="token punctuation">;</span>
+<span class="token comment">/* USER CODE END PD */</span>
+</pre><pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* Private variables ---------------------------------------------------------*/</span>
+
+<span class="token comment">/* USER CODE BEGIN PV */</span>
+bool buttonPressed <span class="token operator">=</span> false<span class="token punctuation">;</span>
+<span class="token class-name">uint32_t</span> applicationSize <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment">/* USER CODE END PV */</span>
+</pre><p>Enumeracja <code>BootloaderOpcode</code> to lista naszych polece&#x144;, a struktura <code>BootloaderCommand</code> zawiera polecenie oraz dane kt&#xF3;re z nim dostaniemy. Komunikaty kt&#xF3;re bootloader b&#x119;dzie wysy&#x142;a&#x107; do programatora znajduj&#x105; si&#x119; w sta&#x142;ych <code>BOOTLOADER_MSG_OK</code> i <code>BOOTLOADER_MSG_ERR</code>. Dodatkowo, umie&#x15B;cili&#x15B;my adres aplikacji w sta&#x142;ej <code>APPLICATION_ADDRESS</code> (na sta&#x142;e CubeMX nie wydziela &#x17C;adnych sekcji, wi&#x119;c um&#xF3;wmy si&#x119; &#x17C;e b&#x119;dziemy je trzyma&#x107; w sekcji dla definicji). Teraz, napiszemy funkcj&#x119; kt&#xF3;ra to polecenie odbierze (i umie&#x15B;cimy j&#x105; w sekcji <code>USER CODE 0</code>), oraz dwie pomocnicze funkcje kt&#xF3;re b&#x119;d&#x105; wysy&#x142;a&#x107; odpowied&#x17A; z bootloadera.</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">BootloaderCommand <span class="token function">get_command</span><span class="token punctuation">(</span>UART_HandleTypeDef<span class="token operator">*</span> <span class="token keyword">const</span> uart<span class="token punctuation">,</span> <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> timeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  BootloaderCommand cmd <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span>opcode <span class="token operator">=</span> BOOTLOADER_CMD_INVALID <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token class-name">uint8_t</span> buffer<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  HAL_StatusTypeDef status <span class="token operator">=</span> <span class="token function">HAL_UART_Receive</span><span class="token punctuation">(</span>uart<span class="token punctuation">,</span> buffer<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>status <span class="token operator">==</span> HAL_OK<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cmd<span class="token punctuation">.</span>opcode <span class="token operator">=</span> buffer<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// assuming big-endian</span>
+    cmd<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span> buffer<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">24</span><span class="token punctuation">)</span>
+               <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span> buffer<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">16</span><span class="token punctuation">)</span>
+               <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span> buffer<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">8</span><span class="token punctuation">)</span>
+               <span class="token operator">|</span> buffer<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> cmd<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">respond_ok</span><span class="token punctuation">(</span>UART_HandleTypeDef<span class="token operator">*</span> <span class="token keyword">const</span> uart<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// for a nice, visual effect</span>
+  <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LD2_GPIO_Port<span class="token punctuation">,</span> LD2_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span>uart<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span> BOOTLOADER_MSG_OK<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> HAL_MAX_DELAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">respond_err</span><span class="token punctuation">(</span>UART_HandleTypeDef<span class="token operator">*</span> <span class="token keyword">const</span> uart<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span>uart<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span> BOOTLOADER_MSG_ERR<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> HAL_MAX_DELAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>A nast&#x119;pnie u&#x17C;yjemy ich w g&#x142;&#xF3;wnej p&#x119;tli programu i sprawdzimy jakie polecenie otrzymali&#x15B;my, oraz odpowiednio na nie odpowiemy:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/* Infinite loop */</span>
+  <span class="token comment">/* USER CODE BEGIN WHILE */</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* USER CODE END WHILE */</span>
+
+    <span class="token comment">/* USER CODE BEGIN 3 */</span>
+    BootloaderCommand cmd <span class="token operator">=</span> <span class="token function">get_command</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>cmd<span class="token punctuation">.</span>opcode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> BOOTLOADER_CMD_ECHO<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Simple echo request, respond with OK to tell that</span>
+      <span class="token comment">// the bootloader is running.</span>
+      <span class="token function">respond_ok</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">case</span> BOOTLOADER_CMD_SETSIZE<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Set the app size and respond with OK</span>
+      applicationSize <span class="token operator">=</span> cmd<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+      <span class="token function">respond_ok</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">case</span> BOOTLOADER_CMD_UPDATE<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// TODO</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">case</span> BOOTLOADER_CMD_CHECK<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// TODO</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">case</span> BOOTLOADER_CMD_JUMP<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Jump directly to the application.</span>
+      <span class="token function">respond_ok</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">jump_to_application</span><span class="token punctuation">(</span>APPLICATION_ADDRESS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">case</span> BOOTLOADER_CMD_INVALID<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// No command received. We have to handle this case, because</span>
+      <span class="token comment">// otherwise the bootloader would indefinitely spam ERR</span>
+      <span class="token comment">// while nothing is happening.</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">default</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Invalid opcode, respond with error.</span>
+      <span class="token function">respond_err</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>buttonPressed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      buttonPressed <span class="token operator">=</span> false<span class="token punctuation">;</span>
+      <span class="token comment">// jump to application</span>
+      <span class="token function">jump_to_application</span><span class="token punctuation">(</span>APPLICATION_ADDRESS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">/* USER CODE END 3 */</span>
+</pre><p>Dzia&#x142;anie tego kodu mo&#x17C;na bardzo &#x142;atwo sprawdzi&#x107;, na przyk&#x142;ad RealTermem. Program powinien w tej chwili poprawnie reagowa&#x107; na echo, skok i niepoprawny opcode. Poni&#x17C;szy screenshot przedstawia test w kt&#xF3;rym wys&#x142;a&#x142;em cztery polecenia - pierwsze nieprawid&#x142;owe, dwa ECHO i na koniec JUMP.</p>
+<p><img src="./img/bootloader_test_1.png" alt="bootloader test 1"></p>
+<p><strong>Nale&#x17C;y pami&#x119;ta&#x107; &#x17C;eby wys&#x142;a&#x107; pe&#x142;ne 5 bajt&#xF3;w, w innym przypadku polecenie zostanie zdyskwalifikowane przez timeout. Z tego powodu, Putty i inne serial monitory kt&#xF3;re nie oferuj&#x105; mo&#x17C;liwo&#x15B;ci wys&#x142;ania ci&#x105;gu okre&#x15B;lonych bajt&#xF3;w jako jednego komunikatu, nie nadaj&#x105; si&#x119; do tego rodzaju test&#xF3;w.</strong></p>
+<h3 class="mume-header" id="55-odbi%C3%B3r-i-flashowanie-firmwareu">5.5. Odbi&#xF3;r i flashowanie firmware&apos;u</h3>
+
+<p>Nadszed&#x142; czas na implementacj&#x119; g&#x142;&#xF3;wnej funkcjonalno&#x15B;ci naszego bootloadera - flashowania oprogramowania.</p>
+<p>Stw&#xF3;rzmy do tego now&#x105; funkcj&#x119; i umie&#x15B;&#x107;my j&#x105; w sekcji <code>USER CODE 0</code></p>
+<pre data-role="codeBlock" data-info="c" class="language-c">bool <span class="token function">receive_and_flash_firmware</span><span class="token punctuation">(</span>UART_HandleTypeDef<span class="token operator">*</span> <span class="token keyword">const</span> uart<span class="token punctuation">,</span>
+                                <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> firmwareSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* USER CODE END 0 */</span>
+</pre><p>Do funkcji przeka&#x17C;emy dwa argumenty - wska&#x17A;nik na uchwyt interfejsu za pomoc&#x105; kt&#xF3;rego b&#x119;d&#x105; odbierane dane,  oraz wielko&#x15B;&#x107; ca&#x142;ego pliku. Funkcja ta dodatkowo zwr&#xF3;ci status programowania - <code>true</code>, je&#x15B;li zako&#x144;czy&#x142;o si&#x119; powodzeniem, lub <code>false</code> - je&#x15B;li nie.</p>
+<p>Do programowania pami&#x119;ci FLASH u&#x17C;yjemy HALa. Flashowanie sk&#x142;ada&#x107; si&#x119; b&#x119;dzie z czterech etap&#xF3;w:</p>
+<ol>
+<li>Odblokowanie pami&#x119;ci</li>
+<li>Wyczyszczenie aplikacji z pami&#x119;ci</li>
+<li>Oodbi&#xF3;r danych i programowanie</li>
+<li>Zablokowanie pami&#x119;ci</li>
+</ol>
+<p>Pami&#x119;&#x107; FLASH jest domy&#x15B;lnie zablokowana przed zapisem, w celu zabezpieczenia jej przed niepo&#x17C;&#x105;dan&#x105; modyfikacj&#x105; - na przyk&#x142;ad spowodowan&#x105; niestabilnym zasilaniem. &#x17B;eby j&#x105; odblokowa&#x107;, nale&#x17C;y umie&#x15B;ci&#x107; w rejestrach kontrolnych FLASHa odpowiednie warto&#x15B;ci - robi to za nas funkcja <code>HAL_FLASH_Unlock</code>. Po flashowaniu musimy j&#x105; zablokowa&#x107;, za pomoc&#x105; funkcji <code>HAL_FLASH_Lock</code>. Do programowania u&#x17C;yjemy gotowej funkcji <code>HAL_FLASH_Program</code>.</p>
+<p>Przed flashowaniem firmware&apos;u musimy wyczy&#x15B;ci&#x107; sektory w kt&#xF3;rych si&#x119; on znajdzie - napiszmy do tego osobn&#x105; funkcj&#x119;, &#x17C;eby zachowa&#x107; wzgl&#x119;dny porz&#x105;dek w kodzie (i umie&#x15B;&#x107;my j&#x105; nad &#x15B;wie&#x17C;o stworzonym prototypem funkcji <code>receive_and_flash_firmware</code>):</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">bool <span class="token function">erase_application</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> firstSector<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> lastSector<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  FLASH_EraseInitTypeDef eraseConfig<span class="token punctuation">;</span>
+  eraseConfig<span class="token punctuation">.</span>TypeErase <span class="token operator">=</span> FLASH_TYPEERASE_SECTORS<span class="token punctuation">;</span>
+  eraseConfig<span class="token punctuation">.</span>Sector <span class="token operator">=</span> firstSector<span class="token punctuation">;</span>
+  eraseConfig<span class="token punctuation">.</span>NbSectors <span class="token operator">=</span> lastSector <span class="token operator">-</span> firstSector <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token comment">// assuming we have 3.3V Vcc</span>
+  eraseConfig<span class="token punctuation">.</span>VoltageRange <span class="token operator">=</span> FLASH_VOLTAGE_RANGE_3<span class="token punctuation">;</span>
+
+  <span class="token class-name">uint32_t</span> sectorError <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">HAL_FLASHEx_Erase</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>eraseConfig<span class="token punctuation">,</span> <span class="token operator">&amp;</span>sectorError<span class="token punctuation">)</span> <span class="token operator">!=</span> HAL_OK<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> sectorError <span class="token operator">==</span> <span class="token number">0xFFFFFFFFU</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Funkcja <code>HAL_FLASHEx_Erase</code> pozwala na wyczyszczenie ca&#x142;ej pami&#x119;ci flash, lub konkretnych sektor&#xF3;w, w zale&#x17C;no&#x15B;ci od konfiguracji jak&#x105; jej przeka&#x17C;emy. Dodatkowo, sprawdzamy czy argument zwrotny <code>sectorError</code> jest r&#xF3;wny warto&#x15B;ci <code>0xFFFFFFFF</code> co wskazuje na poprawne wyczyszczenie pami&#x119;ci. Tajemniczy parametr <code>VoltageRange</code> okre&#x15B;la zakres napi&#x119;cia zasilania mikrokontrolera podczas wykonywania tej operacji - wa&#x17C;ne jest, &#x17C;eby odpowiednio go dobra&#x107;, poniewa&#x17C; w przeciwnym wypadku czyszczenie pami&#x119;ci mo&#x17C;e si&#x119; nie powie&#x15B;&#x107;. Warto&#x15B;&#x107; napi&#x119;cia zasilania jest r&#xF3;wnie&#x17C; wa&#x17C;na przy programowaniu pami&#x119;ci, o czym za chwil&#x119;.</p>
+<p>Z racji i&#x17C; nasz firmware b&#x119;dzie odbierany poprzez UART i nie mamy wystarczaj&#x105;co du&#x17C;o pami&#x119;ci &#x17C;eby odebra&#x107; ca&#x142;y plik i zweryfikowa&#x107; go przed flashowaniem, b&#x119;dziemy musieli odebra&#x107; i flashowa&#x107; firmware w kawa&#x142;kach. Powa&#x17C;ny problem z tym podej&#x15B;ciem jest taki, &#x17C;e je&#x15B;li nast&#x105;pi problem podczas komunikacji, to nie wykryjemy go dop&#xF3;ki proces aktualizacji si&#x119; nie zako&#x144;czy i nie zostanie sprawdzona suma kontrolna oprogramowania. W takim przypadku b&#x119;dzie trzeba ponawia&#x107; aktualizacj&#x119;, do skutku. W produkcyjnym urz&#x105;dzeniu taka sytuacja nie powinna mie&#x107; miejsca - nale&#x17C;y doda&#x107; zewn&#x119;trzn&#x105; pami&#x119;&#x107; w kt&#xF3;rej b&#x119;dzie trzymany plik z aktualizacj&#x105; przed flashowaniem (zewn&#x119;trzny flash, EEPROM, karta SD), albo podzieli&#x107; pami&#x119;&#x107; FLASH na trzy cz&#x119;&#x15B;ci: bootloader, cz&#x119;&#x15B;&#x107; programu i cz&#x119;&#x15B;&#x107; aktualizatora. Program zostanie zapisany najpierw do cz&#x119;&#x15B;ci aktualizatora, zweryfikowany i nast&#x119;pnie skopiowany do cz&#x119;&#x15B;ci programu. Niestety, to rozwi&#x105;zanie te&#x17C; jest problematyczne, poniewa&#x17C; musimy po&#x15B;wi&#x119;ci&#x107; po&#x142;ow&#x119; pami&#x119;ci dost&#x119;pnej dla aplikacji &#x17C;eby to zaimplementowa&#x107;.<br>
+Opcjonalnym zabezpieczeniem mog&#x142;o by by&#x107; sprawdzanie sumy kontrolnej ka&#x17C;dego pakietu, oraz implementacja mechanizmu retransmisji, ale pozostawiam to jako &#x107;wiczenie dla czytaj&#x105;cego poniewa&#x17C; ten artyku&#x142; jest ju&#x17C; wystarczaj&#x105;co d&#x142;ugi &#x1F603;.</p>
+<p>Podsumowuj&#x105;c, b&#x119;d&#x105;c &#x15B;wiadomi problemu, kontynuujemy z implementacj&#x105; naszego rozwi&#x105;zania. Po odblokowaniu flasha zaczniemy nas&#x142;uchiwa&#x107; na magistrali UART, oczekuj&#x105;c na pakiet z danymi, a nast&#x119;pnie wykonamy operacj&#x119; flashowania. Ca&#x142;&#x105; t&#x105; procedur&#x119; b&#x119;dziemy powtarza&#x107; do momentu odebrania ca&#x142;ego pliku binarnego, kt&#xF3;rego wielko&#x15B;&#x107; otrzymamy przed flashowaniem i przeka&#x17C;emy do naszej funkcji flashuj&#x105;cej.<br>
+Pozosta&#x142;o nam tylko okre&#x15B;li&#x107; wielko&#x15B;&#x107; pojedynczego pakietu - na razie uznajmy &#x17C;e b&#x119;dzie to 1KB.</p>
+<p>Stw&#xF3;rzmy wi&#x119;c <code>define</code> okre&#x15B;laj&#x105;cy wielko&#x15B;&#x107; bufora, oraz sam bufor, w odpowiednich sekcjach oczywi&#x15B;cie:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* Private define ------------------------------------------------------------*/</span>
+<span class="token comment">/* USER CODE BEGIN PD */</span>
+<span class="token keyword">char</span> <span class="token keyword">const</span><span class="token operator">*</span> <span class="token keyword">const</span> BOOTLOADER_MSG_OK <span class="token operator">=</span> <span class="token string">&quot;OK!&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> <span class="token keyword">const</span><span class="token operator">*</span> <span class="token keyword">const</span> BOOTLOADER_MSG_ERR <span class="token operator">=</span> <span class="token string">&quot;ERR&quot;</span><span class="token punctuation">;</span>
+
+<span class="token class-name">uint32_t</span> <span class="token keyword">const</span> APPLICATION_ADDRESS <span class="token operator">=</span> <span class="token number">0x08008000UL</span><span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">BOOTLOADER_BUFFER_SIZE</span> <span class="token expression"><span class="token number">1024</span></span></span>
+<span class="token comment">/* USER CODE END PD */</span>
+</pre><pre data-role="codeBlock" data-info="c" class="language-c"><span class="token comment">/* Private variables ---------------------------------------------------------*/</span>
+
+<span class="token comment">/* USER CODE BEGIN PV */</span>
+bool buttonPressed <span class="token operator">=</span> false<span class="token punctuation">;</span>
+<span class="token class-name">uint8_t</span> bootloaderBuffer<span class="token punctuation">[</span>BOOTLOADER_BUFFER_SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">/* USER CODE END PV */</span>
+</pre><p>I w ko&#x144;cu mo&#x17C;emy przej&#x15B;&#x107; do implementacji naszej funkcji flashuj&#x105;cej. Zaczniemy od odblokowania pami&#x119;ci i jej wyczyszczenia:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">bool <span class="token function">receive_and_flash_firmware</span><span class="token punctuation">(</span>UART_HandleTypeDef<span class="token operator">*</span> <span class="token keyword">const</span> uart<span class="token punctuation">,</span> <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> firmwareSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// sanity check - fail loudly if no application size is set</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>firmwareSize <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token class-name">uint32_t</span> bytesProgrammed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">HAL_FLASH_Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> HAL_OK<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">erase_application</span><span class="token punctuation">(</span>FLASH_SECTOR_2<span class="token punctuation">,</span> FLASH_SECTOR_7<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">HAL_FLASH_Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// tell the programmer that you&apos;re ready to go</span>
+  <span class="token function">respond_ok</span><span class="token punctuation">(</span>uart<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Ze wzgl&#x119;du na to, &#x17C;e czyszczenie zajmuje sporo czasu (kilka sekund), powiadomimy programator o gotowo&#x15B;ci odbioru poprzez wys&#x142;anie mu <code>OK!</code>. Programator przed rozpocz&#x119;ciem wysy&#x142;ania powinien oczekiwa&#x107; na ten komunikat.</p>
+<p>Nast&#x119;pnie, zaczniemy odbi&#xF3;r w p&#x119;tli do momentu odebrania i zaprogramowania wszystkich bajt&#xF3;w</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token keyword">while</span> <span class="token punctuation">(</span>bytesProgrammed <span class="token operator">&lt;</span> firmwareSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Calculate how much data is left to receive</span>
+    <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> bytesLeft <span class="token operator">=</span> firmwareSize <span class="token operator">-</span> bytesProgrammed<span class="token punctuation">;</span>
+    <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> bytesToReceive <span class="token operator">=</span> <span class="token punctuation">(</span>
+        bytesLeft <span class="token operator">&gt;</span> BOOTLOADER_BUFFER_SIZE <span class="token operator">?</span> BOOTLOADER_BUFFER_SIZE <span class="token operator">:</span> bytesLeft<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Try receiving the data, return on failure</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">HAL_UART_Receive</span><span class="token punctuation">(</span>uart<span class="token punctuation">,</span> bootloaderBuffer<span class="token punctuation">,</span> bytesToReceive<span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span> <span class="token operator">!=</span> HAL_OK<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">HAL_FLASH_Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</pre><p>Przy wyst&#x105;pieniu jakiegokolwiek b&#x142;&#x119;du musimy pilnowa&#x107;, &#x17C;eby zablokowa&#x107; pami&#x119;&#x107; FLASH. S&#x105; bardziej eleganckie metody radzenia sobie z takimi problemami (wielopoziomowe <code>if</code>y, wrapowanie w funkcje, wyj&#x105;tki/RAII je&#x15B;li u&#x17C;ywamy C++a i platforma na kt&#xF3;rej pracujemy nam na to pozwala) - tutaj wykorzystanie wielopoziomowych <code>if</code>&#xF3;w (umieszczanie ka&#x17C;dej kolejnej instrukcji w <code>if</code> zamiast zwracania warto&#x15B;ci od razu) by&#x142;oby sensownym pomys&#x142;em, gdyby nie p&#x119;tla kt&#xF3;ra nam nieco komplikuje ca&#x142;&#x105; sytuacj&#x119; i wymusza u&#x17C;ycie <code>goto</code>, czego zdecydowanie chc&#x119; unikn&#x105;&#x107;, dlatego zdecydowa&#x142;em si&#x119; to zrobi&#x107; w ten, nieco mniej bezpieczny spos&#xF3;b.</p>
+<p>Operacj&#x119; flashowania wydzielimy w osobn&#x105; funkcj&#x119;, &#x17C;eby zachowa&#x107; wzgl&#x119;dny porz&#x105;dek w kodzie. B&#x119;dzie ona wygl&#x105;da&#x107; nast&#x119;puj&#x105;co:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">bool <span class="token function">flash_and_verify</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> <span class="token keyword">const</span><span class="token operator">*</span> <span class="token keyword">const</span> bytes<span class="token punctuation">,</span> <span class="token class-name">size_t</span> <span class="token keyword">const</span> amount<span class="token punctuation">,</span> <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> offset<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>amount <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> bytes <span class="token operator">==</span> <span class="token constant">NULL</span> <span class="token operator">||</span> amount <span class="token operator">%</span> <span class="token number">4</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Program the flash memory word-by-word - hence +4 to bytesCounter every iteration</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span> bytesCounter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> bytesCounter <span class="token operator">&lt;</span> amount<span class="token punctuation">;</span> bytesCounter <span class="token operator">+=</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> programmingData <span class="token operator">=</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">&amp;</span>bytes<span class="token punctuation">[</span>bytesCounter<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> programmingAddress <span class="token operator">=</span> APPLICATION_ADDRESS <span class="token operator">+</span> offset <span class="token operator">+</span> bytesCounter<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">HAL_FLASH_Program</span><span class="token punctuation">(</span>FLASH_TYPEPROGRAM_WORD<span class="token punctuation">,</span> programmingAddress<span class="token punctuation">,</span> programmingData<span class="token punctuation">)</span> <span class="token operator">!=</span> HAL_OK<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> verificationData <span class="token operator">=</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token operator">*</span><span class="token punctuation">)</span> programmingAddress<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>verificationData <span class="token operator">!=</span> programmingData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Umieszczamy j&#x105; nad cz&#x119;&#x15B;ciowo ju&#x17C; napisan&#x105; funkcj&#x105; <code>receive_and_flash_firmware</code>.<br>
+Ze wzgl&#x119;du na to, &#x17C;e <code>HAL_FLASH_Program</code> flashuje pojedyncze s&#x142;owa, musimy umie&#x15B;ci&#x107; wywo&#x142;anie tej funkcji w p&#x119;tli, sk&#x142;ada&#x107; dane z bufora w s&#x142;owa i przelicza&#x107; ile bajt&#xF3;w zosta&#x142;o do zaprogramowania. Dodatkowo, po flashowaniu sprawdzamy czy dane kt&#xF3;re zapisali&#x15B;my do pami&#x119;ci faktycznie s&#x105; poprawne poprzez odczyt i por&#xF3;wnanie z danymi w buforze. Je&#x15B;li wszystko jest w porz&#x105;dku, funkcja ta powinna zwr&#xF3;ci&#x107; <code>true</code>.<br>
+No dobrze, ale dlaczego pami&#x119;&#x107; programujemy akurat s&#x142;owami? Funkcja <code>HAL_FLASH_Program</code> pozwala programowa&#x107; bajtami, p&#xF3;&#x142;-s&#x142;owami, s&#x142;owami lub podw&#xF3;jnymi s&#x142;owami - im wi&#x119;cej, tym szybciej, wi&#x119;c dlaczego nie u&#x17C;yjemy podw&#xF3;jnych s&#x142;&#xF3;w?<br>
+Jest to zwi&#x105;zane z napi&#x119;ciem zasilania mikrokontrolera i (w moim przypadku) brakiem specjalnego, zewn&#x119;trznego napi&#x119;cia zasilania. W <em>reference manualu</em> mikrokontrolera, w sekcji po&#x15B;wi&#x119;conej pami&#x119;ci FLASH mo&#x17C;na znale&#x17A;&#x107; informacj&#x119; na temat r&#xF3;wnoleg&#x142;o&#x15B;ci programowania i czyszczenia pami&#x119;ci:</p>
+<p><img src="./img/flash_parallelism.png" alt="flash parallelism"></p>
+<p>Tabelka ta okre&#x15B;la jakiej szeroko&#x15B;ci operacje mo&#x17C;na wykonywa&#x107; przy danych napi&#x119;ciach zasilania. Je&#x15B;li &#x17A;le dobierzemy operacj&#x119; (na przyk&#x142;ad spr&#xF3;bujemy zapisa&#x107; 32 bity przy napi&#x119;ciu 1.7V), programowanie mo&#x17C;e si&#x119; nie powie&#x15B;&#x107; i mo&#x17C;emy zosta&#x107; z &quot;krzakiem&quot; w pami&#x119;ci nawet je&#x15B;li od razu po zaprogramowaniu odczytamy poprawn&#x105; warto&#x15B;&#x107; - nasza funkcja <code>flash_and_verify</code> mo&#x17C;e tego nie wykry&#x107;! Ba, teoretycznie nawet podczas sprawdzania sumy kontrolnej pami&#x119;&#x107; mo&#x17C;e mie&#x107; poprawn&#x105; warto&#x15B;&#x107; i zmieni&#x107; si&#x119; dopiero po resecie!</p>
+<p>My zasilamy mikrokontroler napi&#x119;ciem 3.3V i nie podajemy &#x17C;adnego napi&#x119;cia na &#x17A;r&#xF3;d&#x142;o <code>Vpp</code> (kt&#xF3;re znajduje si&#x119; na n&#xF3;&#x17C;ce BOOT0 w przypadku tego mikrokontrolera), wi&#x119;c wybrali&#x15B;my programowanie 32 bitami na raz.</p>
+<p>Pozosta&#x142;o nam wi&#x119;c jedynie wykorzysta&#x107; t&#x105; funkcj&#x119; i doko&#x144;czy&#x107; funkcj&#x119; programuj&#x105;c&#x105;:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">flash_and_verify</span><span class="token punctuation">(</span>bootloaderBuffer<span class="token punctuation">,</span> bytesToReceive<span class="token punctuation">,</span> bytesProgrammed<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">HAL_FLASH_Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    bytesProgrammed <span class="token operator">+=</span> bytesToReceive<span class="token punctuation">;</span>
+    <span class="token function">respond_ok</span><span class="token punctuation">(</span>uart<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">HAL_FLASH_Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Po ka&#x17C;dym odebraniu i zaprogramowaniu pakietu wysy&#x142;amy kolejne <code>OK!</code> &#x17C;eby powiadomi&#x107; programator o gotowo&#x15B;ci do odbioru nast&#x119;pnego pakietu. Wywo&#x142;ajmy t&#x105; funkcj&#x119; w naszym <code>main</code>ie:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">    <span class="token keyword">case</span> BOOTLOADER_CMD_UPDATE<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">receive_and_flash_firmware</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">,</span> applicationSize<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">respond_ok</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">respond_err</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</pre><h3 class="mume-header" id="56-sprawdzanie-sumy-kontrolnej">5.6. Sprawdzanie sumy kontrolnej</h3>
+
+<p>Do weryfikacji sumy kontrolnej u&#x17C;yjemy wbudowanego w mikrokontroler hardware&apos;owego bloku CRC. Je&#x15B;li mikrokontroler na kt&#xF3;rym tworzysz bootloader takowego nie posiada, to musisz zadowoli&#x107; si&#x119; software&apos;ow&#x105; implementacj&#x105; CRC albo dowolnej innej sumy kontrolnej - b&#x119;dzie ona jednak znacznie wolniejsza i bardziej pr&#x105;do&#x17C;erna.</p>
+<p>Wbudowany w mikrokontroler blok CRC jest bardzo prosty w obs&#x142;udze - wystarczy przepu&#x15B;ci&#x107; ci&#x105;g danych przez jeden rejestr i na koniec odczyta&#x107; go, &#x17C;eby uzyska&#x107; sum&#x119; kontroln&#x105;. Ma on jednak pewien problem - <strong>mimo tego &#x17C;e u&#x17C;ywa standardowego wielomianu i warto&#x15B;ci startowej, nie jest on kompatybilny z wi&#x119;kszo&#x15B;ci&#x105; dost&#x119;pnych implementacji CRC32</strong>, ze wzgl&#x119;du na to &#x17C;e oblicza sum&#x119; kontroln&#x105; z ca&#x142;ego, 32-bitowego s&#x142;owa na raz i na dodatek operuje na little-endian - wi&#x119;kszo&#x15B;&#x107; implementacji CRC32 dzia&#x142;a na bajtach, a architektura x86 operuje domy&#x15B;lnie na big-endian, co powoduje &#x17C;e sumy kontrolne liczone z takimi samymi wielomianami i warto&#x15B;ciami startowymi b&#x119;d&#x105; r&#xF3;&#x17C;ne pomimo teoretycznej zgodno&#x15B;ci ze standardem. Z tego powodu programator b&#x119;dzie musia&#x142; korzysta&#x107; z customowej implementacji CRC32, lub mikrokontroler b&#x119;dzie musia&#x142; u&#x17C;ywa&#x107; software&apos;owego CRC - ja zdecydowa&#x142;em si&#x119; na napisanie implementacji na PC i u&#x17C;ycie wbudowanego w mikrokontroler bloku, poniewa&#x17C; jest to lepsze rozwi&#x105;zanie na d&#x142;ug&#x105; met&#x119;. Ale o implementacji programatora b&#x119;dzie p&#xF3;&#x17A;niej, teraz musimy stworzy&#x107; funkcj&#x119; weryfikuj&#x105;c&#x105; poprawno&#x15B;&#x107; firmware&apos;u w bootloaderze.</p>
+<p>Dodajmy nast&#x119;puj&#x105;c&#x105; funkcj&#x119; na koniec sekcji <code>USER CODE 0</code>:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">bool <span class="token function">verify_firmware</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> <span class="token keyword">const</span> firmwareSize<span class="token punctuation">,</span> <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> expectedChecksum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// sanity check - fail loudly if no application size is set</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>firmwareSize <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token class-name">uint32_t</span> <span class="token keyword">const</span> calculatedChecksum <span class="token operator">=</span> <span class="token function">HAL_CRC_Calculate</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hcrc<span class="token punctuation">,</span>
+                                                        <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token operator">*</span><span class="token punctuation">)</span> APPLICATION_ADDRESS<span class="token punctuation">,</span>
+                                                        firmwareSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>calculatedChecksum <span class="token operator">==</span> expectedChecksum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>I wywo&#x142;ajmy j&#x105; odpowiednio w funkcji <code>main</code>:</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">    <span class="token keyword">case</span> BOOTLOADER_CMD_CHECK<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">verify_firmware</span><span class="token punctuation">(</span>applicationSize<span class="token punctuation">,</span> cmd<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">respond_ok</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">respond_err</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</pre><p>I to by by&#x142;o na tyle - to nasz ca&#x142;y bootloader. Ca&#x142;y kod pliku <code>main.c</code> jest dost&#x119;pny tutaj: <a href="https://gist.github.com/SteelPh0enix/ae90c9d53e4260bc2176b913fe3bfcd7">https://gist.github.com/SteelPh0enix/ae90c9d53e4260bc2176b913fe3bfcd7</a>. Teraz musimy napisa&#x107; skrypt za kt&#xF3;rego pomoc&#x105; b&#x119;dziemy mogli wrzuca&#x107; nowy firmware na mikrokontroler.</p>
+<h2 class="mume-header" id="6-tworzenie-skryptu-do-programowania">6. Tworzenie skryptu do programowania</h2>
+
+<p>Okej, najci&#x119;&#x17C;sze za nami. Nasz bootloader powinen ju&#x17C; dzia&#x142;a&#x107;, ale nie mamy jeszcze &#x17C;adnego narz&#x119;dzia za pomoc&#x105; kt&#xF3;rego b&#x119;dziemy mogli si&#x119; z nim skomunikowa&#x107; i go u&#x17C;y&#x107; - musimy wi&#x119;c je stworzy&#x107;.</p>
+<p>Skrypt programuj&#x105;cy napiszemy w j&#x119;zyku Python 3, poniewa&#x17C; jest prosty, popularny i ma pakiety kt&#xF3;re u&#x142;atwi&#x105; nam prac&#x119;.</p>
+<p>Je&#x15B;li martwisz si&#x119; tym, &#x17C;e nie znasz Pythona - spokojnie, nie b&#x119;d&#x119; tutaj przyk&#x142;ada&#x142; wi&#x119;kszej uwagi do jego znajomo&#x15B;ci, wyja&#x15B;ni&#x119; tylko najwa&#x17C;niejsze elementy kodu i dostarcz&#x119; dzia&#x142;aj&#x105;ce gotowce do skopiowania i u&#x17C;ycia. Dodatkowo, finalny plik b&#x119;dzie dost&#x119;pny na moim Githubie (link do niego jest na ko&#x144;cu tego rozdzia&#x142;u)</p>
+<h3 class="mume-header" id="61-instalacja-pythona-i-zale%C5%BCno%C5%9Bci">6.1. Instalacja Pythona i zale&#x17C;no&#x15B;ci</h3>
+
+<p>Je&#x15B;li nie masz Pythona na swoim komputerze - najpro&#x15B;ciej jest go zainstalowa&#x107; poprzez pobranie instalatora ze strony <a href="https://www.python.org/">https://www.python.org/</a>, lub poprzez tw&#xF3;j ulubiony menad&#x17C;er pakiet&#xF3;w. <strong>Je&#x15B;li pracujesz na Windowsie, to pami&#x119;taj &#x17C;eby podczas instalacji zaznaczy&#x107; opcj&#x119; dodania &#x15B;cie&#x17C;ki Pythona do systemowego PATH</strong></p>
+<p>Je&#x15B;li nie jeste&#x15B; zaznajomiony z Pythonem, to zacznij od sprawdzenia czy jest widoczny w systemie: otw&#xF3;rz okno konsoli (cmd.exe, PowerShell lub dowolny inny terminal) i wpisz <code>python --version</code>. Je&#x15B;li polecenie zadzia&#x142;a i zwr&#xF3;ci wersj&#x119; Pythona wi&#x119;ksz&#x105; od 3.0.0, to jeste&#x15B; w domu. Je&#x15B;li nie - spr&#xF3;buj u&#x17C;y&#x107; <code>python3 --version</code>. Je&#x15B;li to te&#x17C; nie zadzia&#x142;a, sprawd&#x17A; czy na pewno posiadasz Pythona w zmiennej &#x15B;rodowiskowej PATH.<br>
+<em>Windows 10 ma nieprzyjemny zwyczaj &quot;zas&#x142;aniania&quot; Pythona swoim skr&#xF3;tem do Microsoft Store, sk&#x105;d r&#xF3;wnie&#x17C; mo&#x17C;na go pobra&#x107;. Je&#x15B;li po wywo&#x142;aniu tego polecenia otwiera ci si&#x119; Microsoft Store, umie&#x15B;&#x107; &#x15B;cie&#x17C;k&#x119; do niego na samym pocz&#x105;tku (g&#xF3;rze) systemowej zmiennej &#x15B;rodowiskowej PATH</em></p>
+<p><img src="./img/python_version.png" alt="check python version"></p>
+<p>Do obliczenia sumy kontrolnej u&#x17C;yjemy napisanej przeze mnie biblioteczki, ze wzgl&#x119;du na to &#x17C;e metoda obliczania sumy kontrolnej przez mikrokontroler STM32 jest nie do ko&#x144;ca zgodna z metod&#x105; kt&#xF3;rej u&#x17C;ywa wi&#x119;kszo&#x15B;&#x107; bibliotek (jak pisa&#x142;em wcze&#x15B;niej, STMy licz&#x105; zgodnie z little-endian, oraz na s&#x142;owach - wi&#x119;kszo&#x15B;&#x107; bibliotek operuje na big-endian i bajtach), a do komunikacji z mikrokontrolerem u&#x17C;yjemy <a href="https://pypi.org/project/pyserial/">pakietu <code>pyserial</code></a> (kt&#xF3;rego dokumentacj&#x119; mo&#x17C;na znale&#x17A;&#x107; <a href="https://pythonhosted.org/pyserial/">tutaj</a>). &#x17B;eby go zainstalowa&#x107;, u&#x17C;yj polecenia <code>python -m pip install pyserial</code> (lub <code>python3</code>).<br>
+Wspomnian&#x105; bibliotek&#x119; mo&#x17C;na znale&#x17A;&#x107; tutaj: <a href="https://gist.github.com/SteelPh0enix/108ea61eeb9676a0e1c51ced49e8e1c3">https://gist.github.com/SteelPh0enix/108ea61eeb9676a0e1c51ced49e8e1c3</a>. Sugeruj&#x119; j&#x105; umie&#x15B;ci&#x107; jako plik o nazwie <code>stm32_crc.py</code> w tym samym katalogu, w kt&#xF3;rym b&#x119;dzie nasz skrypt aktualizuj&#x105;cy.</p>
+<p>Do programowania w Pythonie, je&#x15B;li nie masz z nim &#x17C;adnego do&#x15B;wiadczenia, polecam u&#x17C;y&#x107; Visual Studio Code z rozszerzeniem Python. Bardzo dobr&#x105; alternatyw&#x105; jest r&#xF3;wnie&#x17C; IntelliJ PyCharm, ale nie b&#x119;d&#x119; opisywa&#x107; tutaj szczeg&#xF3;&#x142;&#xF3;w jego obs&#x142;ugi, wi&#x119;c je&#x15B;li nie masz &#x17C;adnego do&#x15B;wiadczenia z tym j&#x119;zykiem i &#x15B;rodowiskami IntelliJ, sugeruj&#x119; zosta&#x107; chwilowo przy VSCode.</p>
+<p>Otw&#xF3;rz edytor, nast&#x119;pnie katalog w kt&#xF3;rym b&#x119;dziesz trzyma&#x107; projekt i stw&#xF3;rz nowy plik Pythonowy (z rozszerzeniem <code>.py</code>). Nast&#x119;pnie, skopiuj do niego poni&#x17C;szy kod i spr&#xF3;buj go uruchomi&#x107; - w Visual Studio Code sugeruj&#x119; otworzy&#x107; terminal (Ctrl+Shift+` (tylda)) i wpisa&#x107; polecenie <code>python nazwaskryptu.py</code> (nie b&#x119;d&#x119; tutaj korzysta&#x107; z opcji <em>Run and Debug</em>, poniewa&#x17C; bywa kapry&#x15B;na). Do tego samego katalogu dodaj plik <code>stm32_crc.py</code> o kt&#xF3;rym m&#xF3;wi&#x142;em wy&#x17C;ej.</p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">import</span> serial
+<span class="token keyword">import</span> argparse
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> math
+<span class="token keyword">import</span> stm32_crc
+
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Hello, world!&apos;</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&apos;__main__&apos;</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><p><img src="./img/updater_hello.png" alt="vscode py 1"></p>
+<p>Je&#x15B;li nie zg&#x142;osi&#x142; si&#x119; &#x17C;aden b&#x142;&#x105;d podczas uruchamiania skryptu, to znaczy &#x17C;e wszystko co jest potrzebne do stworzenia naszego aktualizatora jest zainstalowane poprawnie. Na b&#x142;&#x119;dy VSCode zwi&#x105;zane z importem mojej biblioteki nie trzeba zwraca&#x107; uwagi - s&#x105; normalne.</p>
+<h3 class="mume-header" id="62-wyb%C3%B3r-pliku-z-aktualizacj%C4%85">6.2. Wyb&#xF3;r pliku z aktualizacj&#x105;</h3>
+
+<p>Plik z aktualizacj&#x105; przeka&#x17C;emy poprzez argument do skryptu, a do parsowania argument&#xF3;w u&#x17C;yjemy wbudowanego w Pythona <a href="https://docs.python.org/3/library/argparse.html">pakietu <code>argparse</code></a>. Od razu sprawdzimy czy podany poprzez argument plik istnieje (i czy w og&#xF3;le jest plikiem). Zamie&#x144; funkcj&#x119; <code>main</code> z poprzedniego przyk&#x142;adu na t&#x105; poni&#x17C;ej:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Stw&#xF3;rz interfejs do obs&#x142;ugi argument&#xF3;w</span>
+    parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">&apos;Update STM32 microcontroller firmware via UART&apos;</span><span class="token punctuation">)</span>
+    parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">&apos;update_file&apos;</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token builtin">str</span><span class="token punctuation">,</span> <span class="token builtin">help</span><span class="token operator">=</span><span class="token string">&apos;Path to compiled firmware file (*.bin)&apos;</span><span class="token punctuation">)</span>
+    args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># Sprawd&#x17A; czy podana &#x15B;cie&#x17C;ka istnieje</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isfile<span class="token punctuation">(</span>args<span class="token punctuation">.</span>update_file<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&apos;File </span><span class="token interpolation"><span class="token punctuation">{</span>args<span class="token punctuation">.</span>update_file<span class="token punctuation">}</span></span><span class="token string"> does not exist, exiting...&apos;</span></span><span class="token punctuation">)</span>
+      exit<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&apos;Updating from </span><span class="token interpolation"><span class="token punctuation">{</span>args<span class="token punctuation">.</span>update_file<span class="token punctuation">}</span></span><span class="token string">&apos;</span></span><span class="token punctuation">)</span>
+</pre><p>Interesuj&#x105;cy nas plik wyj&#x15B;ciowy to <code>*.bin</code>, wi&#x119;c znajd&#x17A; go w katalogu <code>Debug</code>. Je&#x15B;li nie istnieje, upewnij si&#x119; &#x17C;e tw&#xF3;j toolchain jest odpowiednio skonfigurowany na generowanie go (toolchain CubeIDE domy&#x15B;lnie jest, t&#x105; konfiguracj&#x119; mo&#x17C;na zmieni&#x107; w ustawieniach projektu, w sekcji <em>C/C++ Build</em> &gt; <em>Settings</em> &gt; <em>Tool Settings</em> &gt; <em>MCU Post build options</em> - upewnij si&#x119; &#x17C;e checkbox <em>Convert to binary file (-O binary)</em> jest zaznaczony). Je&#x15B;li nie stworzy&#x142;e&#x15B; skryptu w &quot;okolicy&quot; projektu aplikacji, to skopiuj binark&#x119; do katalogu ze skryptem dla wygody.</p>
+<p>Teraz mamy do&#x15B;&#x107; przyjazny interfejs naszego programu i mo&#x17C;liwo&#x15B;&#x107; podania &#x15B;cie&#x17C;ki do pliku.<br>
+&#x17B;eby go wywo&#x142;a&#x107;, musimy przekaza&#x107; &#x15B;cie&#x17C;k&#x119; do pliku przy wywo&#x142;ywaniu skryptu, na przyk&#x142;ad w taki spos&#xF3;b: <code>python .\update.py ..\Debug\Application_F401.bin</code>. Je&#x15B;li wywo&#x142;amy skrypt bez argument&#xF3;w, powiadomi nas o tym &#x17C;e potrzebuje &#x15B;cie&#x17C;ki, a je&#x15B;li wywo&#x142;amy go z flag&#x105; <code>-h</code> to wy&#x15B;wietli nieco wi&#x119;cej szczeg&#xF3;&#x142;&#xF3;w</p>
+<p><img src="./img/updater_invocation.png" alt="updater invoc"></p>
+<h3 class="mume-header" id="63-obliczanie-sumy-kontrolnej">6.3. Obliczanie sumy kontrolnej</h3>
+
+<p>Do sprawdzenia sumy kontrolej musimy za&#x142;adowa&#x107; plik z aktualizacj&#x105; do pami&#x119;ci. W Pythonie jest to bardzo proste, dodajmy ten kod do naszej funkcji <code>main</code>:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">    update_data <span class="token operator">=</span> <span class="token builtin">bytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># Otwieramy plik w trybie odczytu bajt&#xF3;w i wrzucamy jego zawarto&#x15B;&#x107;</span>
+    <span class="token comment"># do zmiennej `update_data`</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>args<span class="token punctuation">.</span>update_file<span class="token punctuation">,</span> <span class="token string">&apos;rb&apos;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> update_file<span class="token punctuation">:</span>
+      update_data <span class="token operator">=</span> update_file<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><p><strong>Pami&#x119;taj o poprawnym formatowaniu kodu (ilo&#x15B;ci spacji na pocz&#x105;tku ka&#x17C;dej linijki)! Python okre&#x15B;la zakres bloku kodu na tej podstawie i je&#x15B;li przypadkiem dodasz albo usuniesz spacje kt&#xF3;re znajduj&#x105; si&#x119; na pocz&#x105;tku linijki kodu, program wyrzuci b&#x142;&#x105;d!</strong></p>
+<p>Nast&#x119;pnie, u&#x17C;yjemy mojej biblioteki do obliczenia sumy CRC32. Firmware powinien mie&#x107; wielko&#x15B;&#x107; zawsze podzieln&#x105; przez 4, wi&#x119;c nie b&#x119;dziemy mieli sytuacji w kt&#xF3;rej ostatnie s&#x142;owo b&#x119;dzie niepe&#x142;ne.</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">    crc_calculator <span class="token operator">=</span> stm32_crc<span class="token punctuation">.</span>STM32CRC<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    firmware_checksum <span class="token operator">=</span> crc_calculator<span class="token punctuation">.</span>calculate<span class="token punctuation">(</span>update_data<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&apos;Firmware checksum: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">hex</span><span class="token punctuation">(</span>firmware_checksum<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">&apos;</span></span><span class="token punctuation">)</span>
+</pre><p>Nasz kod i efekt jego dzia&#x142;ania w tym momencie powinien wygl&#x105;da&#x107; mniej-wi&#x119;cej tak:</p>
+<p><img src="./img/updater_crc.png" alt="updater crc"></p>
+<p>Oczywi&#x15B;cie suma kontrolna Twojego firmware&apos;u mo&#x17C;e by&#x107; inna ni&#x17C; moja.</p>
+<h3 class="mume-header" id="64-komunikacja-z-stmem">6.4. Komunikacja z STMem</h3>
+
+<p>Czas na napisanie kodu komunikacyjnego. Do po&#x142;&#x105;czenia si&#x119; z STMem musimy wiedzie&#x107; na jakim porcie si&#x119; znajduje, wi&#x119;c zaczniemy od dodania argumentu do <code>ArgumentParser</code>a, w kt&#xF3;rym b&#x119;dziemy podawali port COM/TTY naszej p&#x142;ytki.</p>
+<p>Zmodyfikujmy wi&#x119;c troch&#x119; kod z pocz&#x105;tku <code>main</code>a:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">    <span class="token comment"># Stw&#xF3;rz interfejs do obs&#x142;ugi argument&#xF3;w</span>
+    parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span>
+        description<span class="token operator">=</span><span class="token string">&apos;Update STM32 microcontroller firmware via UART&apos;</span><span class="token punctuation">)</span>
+    parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">&apos;update_file&apos;</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token builtin">str</span><span class="token punctuation">,</span>
+                        <span class="token builtin">help</span><span class="token operator">=</span><span class="token string">&apos;Path to compiled firmware file (*.bin)&apos;</span><span class="token punctuation">)</span>
+    parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">&apos;com_port&apos;</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token builtin">str</span><span class="token punctuation">,</span> <span class="token builtin">help</span><span class="token operator">=</span><span class="token string">&apos;COM port of the microcontroller&apos;</span><span class="token punctuation">)</span>
+    args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><p>Teraz, &#x17C;eby poprawnie uruchomi&#x107; skrypt, trzeba poda&#x107; dwa argumenty - &#x15B;cie&#x17C;k&#x119; do pliku z aktualizacj&#x105;, oraz port COM STMa. W przypadku Windowsa, b&#x119;dzie to <code>COMx</code>, gdzie <code>x</code> to numerek portu - najpro&#x15B;ciej sprawdzi&#x107; to w Menad&#x17C;erze urz&#x105;dze&#x144;. W przypadku Linuxa - <code>/dev/ttyX</code> gdzie <code>X</code> jest zazwyczaj ID portu w stylu <code>ACM0</code> albo <code>USB0</code> - u&#x17C;yj polecenia <code>ls -al /dev/tty*</code> &#x17C;eby znale&#x17A;&#x107; interesuj&#x105;cy ci&#x119; port i upewnij si&#x119; &#x17C;e masz do niego uprawnienia.</p>
+<p>Dodajmy poni&#x17C;szy kod do naszej funkcji <code>main</code>:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token comment"># Long timeout (20s), because erasing the memory can take a while</span>
+        stm_uart <span class="token operator">=</span> serial<span class="token punctuation">.</span>Serial<span class="token punctuation">(</span>port<span class="token operator">=</span>args<span class="token punctuation">.</span>com_port<span class="token punctuation">,</span> baudrate<span class="token operator">=</span><span class="token number">921600</span><span class="token punctuation">,</span> timeout<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> serial<span class="token punctuation">.</span>SerialException <span class="token keyword">as</span> ex<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&apos;Cannot open STM32 port: </span><span class="token interpolation"><span class="token punctuation">{</span>ex<span class="token punctuation">}</span></span><span class="token string">. Make sure it\&apos;s not opened by another application!&apos;</span></span><span class="token punctuation">)</span>
+        exit<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> <span class="token keyword">not</span> stm_uart<span class="token punctuation">.</span>isOpen<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Couldn\&apos;t open STM32 UART port! Exiting...&apos;</span><span class="token punctuation">)</span>
+        exit<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Connected to STM32 microcontroller!&apos;</span><span class="token punctuation">)</span>
+</pre><p>W tym kodzie dodatkowo sprawdzamy czy konstruktor klasy <code>Serial</code> nie zwr&#xF3;ci&#x142; wyj&#x105;tku - taka sytuacja zdarza si&#x119; zazwyczaj je&#x15B;li inna aplikacja ma dost&#x119;p do portu kiedy pr&#xF3;bujemy go otworzy&#x107;, dlatego sprawd&#x17A; czy serial monitor jest wy&#x142;&#x105;czony przed uruchomieniem tego skryptu.</p>
+<p>Sprawd&#x17A; czy program jak na razie dzia&#x142;a jak powinien. Wywo&#x142;aj go, podaj&#x105;c jako pierwszy argument &#x15B;cie&#x17C;k&#x119; do pliku z firmwarem, a jako drugi - port COM pod kt&#xF3;rym widoczny jest STM.</p>
+<p><img src="./img/updater_serial_connect.png" alt="updater serial connected"></p>
+<h3 class="mume-header" id="65-implementacja-api">6.5. Implementacja API</h3>
+
+<p>Je&#x15B;li skrypt poprawnie &#x142;&#x105;czy si&#x119; z STMem, to mo&#x17C;emy zacz&#x105;&#x107; implementowa&#x107; API bootloadera w skrypcie.<br>
+Zacznijmy od stworzenia paru pomocniczych rzeczy, funkcji, kt&#xF3;ra zamieni opcode i argument na ci&#x105;g bajt&#xF3;w dla bootloadera, oraz generycznej funkcji kt&#xF3;ra wy&#x15B;le ci&#x105;g bajt&#xF3;w do bootloadera i sprawdzi odpowied&#x17A;.</p>
+<p>Umie&#x15B;&#x107; ten kod nad funkcj&#x105; <code>main</code>:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">from</span> enum <span class="token keyword">import</span> IntEnum
+
+BOOTLOADER_OK <span class="token operator">=</span> <span class="token string">b&quot;OK!&quot;</span>
+BOOTLOADER_ERR <span class="token operator">=</span> <span class="token string">b&quot;ERR&quot;</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">BootloaderCommand</span><span class="token punctuation">(</span>IntEnum<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    INVALID <span class="token operator">=</span> <span class="token number">0x00</span><span class="token punctuation">,</span>
+    ECHO <span class="token operator">=</span> <span class="token number">0x01</span><span class="token punctuation">,</span>
+    SETSIZE <span class="token operator">=</span> <span class="token number">0x02</span><span class="token punctuation">,</span>
+    UPDATE <span class="token operator">=</span> <span class="token number">0x03</span><span class="token punctuation">,</span>
+    CHECK <span class="token operator">=</span> <span class="token number">0x04</span><span class="token punctuation">,</span>
+    JUMP <span class="token operator">=</span> <span class="token number">0x05</span>
+
+
+<span class="token keyword">def</span> <span class="token function">create_command</span><span class="token punctuation">(</span>command<span class="token punctuation">:</span> BootloaderCommand<span class="token punctuation">,</span> data<span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bytes</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token builtin">bytes</span><span class="token punctuation">(</span><span class="token punctuation">[</span>command<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>to_bytes<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">&apos;big&apos;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">send_command</span><span class="token punctuation">(</span>command<span class="token punctuation">:</span> <span class="token builtin">bytes</span><span class="token punctuation">,</span> port<span class="token punctuation">:</span> serial<span class="token punctuation">.</span>Serial<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
+    port<span class="token punctuation">.</span>write<span class="token punctuation">(</span>command<span class="token punctuation">)</span>
+    stm_response <span class="token operator">=</span> port<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> stm_response <span class="token operator">==</span> BOOTLOADER_OK
+</pre><p>W tym fragmencie dodatkowo umie&#x15B;ci&#x142;em enumeracj&#x119; z rozkazami dla bootloadera i dwie &quot;sta&#x142;e&quot; z jego odpowiedziami dla czytelno&#x15B;ci, Funkcja <code>create_command</code> zamienia opcode i argument na ci&#x105;g 5 bajt&#xF3;w kt&#xF3;ry mo&#x17C;e zosta&#x107; bezpo&#x15B;rednio wys&#x142;any do bootloadera za pomoc&#x105; funkcji <code>send_command</code>, kt&#xF3;ra zwr&#xF3;ci <code>True</code> je&#x15B;li wykonanie polecenia si&#x119; powiod&#x142;o lub <code>False</code> w przeciwnym wypadku.</p>
+<p>Nast&#x119;pnie, stworzymy funkcj&#x119; kt&#xF3;ra wywo&#x142;a polecenie ECHO i sprawdzi czy aktualnie na mikrokontrolerze pracuje bootloader:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">def</span> <span class="token function">is_bootloader_running</span><span class="token punctuation">(</span>port<span class="token punctuation">:</span> serial<span class="token punctuation">.</span>Serial<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> send_command<span class="token punctuation">(</span>create_command<span class="token punctuation">(</span>BootloaderCommand<span class="token punctuation">.</span>ECHO<span class="token punctuation">)</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span>
+</pre><p>i wywo&#x142;ajmy j&#x105; w funkcji <code>main</code>:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Connected to STM32 microcontroller!&apos;</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> is_bootloader_running<span class="token punctuation">(</span>stm_uart<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Bootloader is running, ready to flash&apos;</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Bootloader not detected, exiting...&apos;</span><span class="token punctuation">)</span>
+        exit<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+</pre><p>Je&#x15B;li bootloader nie zostanie wykryty, skrypt zako&#x144;czy prac&#x119;, a je&#x15B;li zostanie - przejdzie dalej. Je&#x15B;li na STMie w tej chwili jest uruchomiony bootloader, to skrypt powinien zadzia&#x142;a&#x107; nast&#x119;puj&#x105;co:</p>
+<p><img src="./img/bootloader_echo.png" alt="bootloader echo"></p>
+<p>Nast&#x119;pnym krokiem jest napisanie funkcji przesy&#x142;aj&#x105;cej wielko&#x15B;&#x107; pliku binarnego:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">def</span> <span class="token function">send_firmware_size</span><span class="token punctuation">(</span>port<span class="token punctuation">:</span> serial<span class="token punctuation">.</span>Serial<span class="token punctuation">,</span> size<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> send_command<span class="token punctuation">(</span>create_command<span class="token punctuation">(</span>BootloaderCommand<span class="token punctuation">.</span>SETSIZE<span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span>
+</pre><p>Dzi&#x119;ki <code>send_command</code>, wi&#x119;kszo&#x15B;&#x107; komend to b&#x119;d&#x105; jednolinijkowce. Wywo&#x142;ajmy t&#x105; funkcj&#x119; po sprawdzeniu czy bootloader dzia&#x142;a:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">    <span class="token keyword">if</span> send_firmware_size<span class="token punctuation">(</span>stm_uart<span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>update_data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&apos;Firmware size set to </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">len</span><span class="token punctuation">(</span>update_data<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">&apos;</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Cannot set the firmware size, exiting...&apos;</span><span class="token punctuation">)</span>
+        exit<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+</pre><p>Pozosta&#x142;y nam tylko dwie funkcje do implementacji: flashowanie i weryfikacja CRC.</p>
+<p>Flashowanie b&#x119;dzie najbardziej skomplikowane.<br>
+Stw&#xF3;rzmy kolejn&#x105; funkcj&#x119;:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">def</span> <span class="token function">flash_firmware</span><span class="token punctuation">(</span>port<span class="token punctuation">:</span> serial<span class="token punctuation">.</span>Serial<span class="token punctuation">,</span> firmware<span class="token punctuation">:</span> <span class="token builtin">bytes</span><span class="token punctuation">,</span> packet_size<span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">1024</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> send_command<span class="token punctuation">(</span>create_command<span class="token punctuation">(</span>BootloaderCommand<span class="token punctuation">.</span>UPDATE<span class="token punctuation">)</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Cannot enter into update mode!&apos;</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+</pre><p>Zaczniemy od wys&#x142;ania polecenia flashowania. <code>send_command</code> zaczeka na odpowied&#x17A; kt&#xF3;r&#x105; bootloader wy&#x15B;le po wyczyszczeniu pami&#x119;ci.</p>
+<p>Stw&#xF3;rzmy nast&#x119;pnie par&#x119; pomocniczych zmiennych:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">    bytes_sent <span class="token operator">=</span> <span class="token number">0</span>
+    firmware_size <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>firmware<span class="token punctuation">)</span>
+    packets_amount <span class="token operator">=</span> math<span class="token punctuation">.</span>ceil<span class="token punctuation">(</span>firmware_size <span class="token operator">/</span> packet_size<span class="token punctuation">)</span>
+    packets_sent <span class="token operator">=</span> <span class="token number">0</span>
+</pre><p>B&#x119;dziemy wy&#x15B;wietla&#x107; <em>progress</em> aktualizacji, wi&#x119;c obliczymy od razu ile pakiet&#xF3;w zostanie wys&#x142;anych.</p>
+<p>Teraz czas rozpocz&#x105;&#x107; p&#x119;tl&#x119; wysy&#x142;ania oprogramowania.</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">    <span class="token keyword">while</span> bytes_sent <span class="token operator">&lt;</span> firmware_size<span class="token punctuation">:</span>
+        <span class="token comment"># calculate next packet length</span>
+        bytes_left <span class="token operator">=</span> firmware_size <span class="token operator">-</span> bytes_sent
+        next_packet_length <span class="token operator">=</span> packet_size <span class="token keyword">if</span> bytes_left <span class="token operator">&gt;</span> packet_size <span class="token keyword">else</span> bytes_left
+        firmware_slice <span class="token operator">=</span> firmware<span class="token punctuation">[</span>bytes_sent<span class="token punctuation">:</span><span class="token punctuation">(</span>bytes_sent <span class="token operator">+</span> next_packet_length<span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&apos;Sending </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">len</span><span class="token punctuation">(</span>firmware_slice<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string"> bytes&apos;</span></span><span class="token punctuation">)</span>
+        port<span class="token punctuation">.</span>write<span class="token punctuation">(</span>firmware_slice<span class="token punctuation">)</span>
+        stm_response <span class="token operator">=</span> port<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> stm_response <span class="token operator">!=</span> BOOTLOADER_OK<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Bootloader did not respond or returned an error while programming!&apos;</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            packets_sent <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&apos;Progress: </span><span class="token interpolation"><span class="token punctuation">{</span>packets_sent<span class="token punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token punctuation">{</span>packets_amount<span class="token punctuation">}</span></span><span class="token string">&apos;</span></span><span class="token punctuation">)</span>
+        
+        bytes_sent <span class="token operator">+=</span> next_packet_length
+    
+    final_response <span class="token operator">=</span> port<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> final_response <span class="token operator">==</span> BOOTLOADER_OK
+</pre><p>Po obliczeniu wielko&#x15B;ci pakietu, wyci&#x105;gamy <code>slice</code> (pythonowy spos&#xF3;b na dostanie &quot;kawa&#x142;ka&quot; tablicy) z danymi kt&#xF3;re maj&#x105; by&#x107; wys&#x142;ane, wysy&#x142;amy je i czekamy na odpowied&#x17A; kt&#xF3;ra powie nam &#x17C;e bootloader poprawnie sflashowa&#x142; ten kawa&#x142;ek firmware&apos;u i czeka na kolejny pakiet.<br>
+Na koniec, po wys&#x142;aniu ca&#x142;ego firmware&apos;u, czekamy na finalne potwierdzenie (wys&#x142;ane z funkcji <code>main</code>).</p>
+<p>Od razu napiszmy funkcj&#x119; kt&#xF3;ra wykona sprawdzenie sumy kontrolnej aplikacji:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">def</span> <span class="token function">verify_firmware</span><span class="token punctuation">(</span>port<span class="token punctuation">:</span> serial<span class="token punctuation">.</span>Serial<span class="token punctuation">,</span> checksum<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> send_command<span class="token punctuation">(</span>create_command<span class="token punctuation">(</span>BootloaderCommand<span class="token punctuation">.</span>CHECK<span class="token punctuation">,</span> checksum<span class="token punctuation">)</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span>
+</pre><p>i wywo&#x142;ajmy obie funkcje na ko&#x144;cu naszego <code>main</code>a:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">    <span class="token keyword">if</span> flash_firmware<span class="token punctuation">(</span>stm_uart<span class="token punctuation">,</span> update_data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Update finished, verifying firmware...&apos;</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> verify_firmware<span class="token punctuation">(</span>stm_uart<span class="token punctuation">,</span> firmware_checksum<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Firmware verified! UPDATE SUCCESSFUL!&apos;</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Firmware unverified, invalid checksum.&apos;</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Update failed!&apos;</span><span class="token punctuation">)</span>
+</pre><p>W tej chwili nasz programator powinien ju&#x17C; by&#x107; w stanie zaprogramowa&#x107; i zweryfikowa&#x107; poprawno&#x15B;&#x107; dzia&#x142;ania oprogramowania na STMie. Przetestujmy go wi&#x119;c!</p>
+<h3 class="mume-header" id="66-test-programatora">6.6 Test programatora</h3>
+
+<p>Zmodyfikuj aplikacj&#x119; kt&#xF3;r&#x105; stworzyli&#x15B;my na pocz&#x105;tku - ja zmieni&#x119; nieco komunikaty kt&#xF3;re wysy&#x142;a poprzez UART</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">  <span class="token comment">/* USER CODE BEGIN 2 */</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Hello, world, from application 2.0!\r\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">/* USER CODE END 2 */</span>
+</pre><pre data-role="codeBlock" data-info="c" class="language-c"><span class="token keyword">void</span> <span class="token function">HAL_GPIO_EXTI_Callback</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> pin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>pin <span class="token operator">==</span> B1_Pin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LD2_GPIO_Port<span class="token punctuation">,</span> LD2_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    buttonCounter<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;[2.0] Button has been pressed %d time(s) already!\r\n&quot;</span><span class="token punctuation">,</span> buttonCounter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>Nast&#x119;pnie, zbuduj j&#x105; (Ctrl+B) <strong>ale nie uruchamiaj <em>Run</em> ani <em>Debug</em>!</strong>, i skopiuj plik binarny do katalogu ze skryptem.</p>
+<p><img src="./img/script_dir.png" alt="script dir"></p>
+<p>Teraz, upewnij si&#x119; &#x17C;e na mikrokontrolerze jest finalna wersja bootloadera (mo&#x17C;esz go na przyk&#x142;ad sflashowa&#x107; opcj&#x105; <em>Run</em>), zrestartuj go i wywo&#x142;aj updater z odpowiednimi argumentami. Powiniene&#x15B; zobaczy&#x107; co&#x15B; w tym stylu, a diodka na mikrokontrolerze powinna miga&#x107; podczas aktualizacji:</p>
+<p><img src="./img/update_success.png" alt="update success"></p>
+<p>Teraz, &#x17C;eby upewni&#x107; si&#x119; &#x17C;e aplikacja faktycznie zosta&#x142;a zaktualizowana, uruchom serial monitor i pod&#x142;&#x105;cz si&#x119; do STMa. Nast&#x119;pnie, kliknij przycisk &#x17C;eby skoczy&#x107; do aplikacji (bo jeszcze tego nie zaimplementowali&#x15B;my w programatorze) i przetestuj czy aplikacja dzia&#x142;a zgodnie z tym, jak j&#x105; zmodyfikowa&#x142;e&#x15B;/a&#x15B;</p>
+<p><img src="./img/update_proof.png" alt="update proof"></p>
+<p>Je&#x15B;li wszystko dzia&#x142;a - gratulacje, mamy dzia&#x142;aj&#x105;cy bootloader oraz skrypt do aktualizacji!<br>
+Pozosta&#x142;a tylko jeszcze jedna ma&#x142;a rzecz do zrobienia - skok do aplikacji po aktualizacji zako&#x144;czonej sukcesem. Zmodyfikujmy wi&#x119;c ko&#x144;c&#xF3;wk&#x119; kodu programatora:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">    <span class="token keyword">if</span> flash_firmware<span class="token punctuation">(</span>stm_uart<span class="token punctuation">,</span> update_data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Update finished, verifying firmware...&apos;</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> verify_firmware<span class="token punctuation">(</span>stm_uart<span class="token punctuation">,</span> firmware_checksum<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Firmware verified! UPDATE SUCCESSFUL!&apos;</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Jumping to application...&apos;</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> send_command<span class="token punctuation">(</span>create_command<span class="token punctuation">(</span>BootloaderCommand<span class="token punctuation">.</span>JUMP<span class="token punctuation">)</span><span class="token punctuation">,</span> stm_uart<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Application is running!&apos;</span><span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Jumping to application failed!&apos;</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Firmware unverified, invalid checksum.&apos;</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;Update failed!&apos;</span><span class="token punctuation">)</span>
+</pre><p>Gotowe! Pe&#x142;ny kod programatora mo&#x17C;na znale&#x17A;&#x107; tutaj: <a href="https://gist.github.com/SteelPh0enix/666f5d1e9357d13a39c88b41a2b15ecf">https://gist.github.com/SteelPh0enix/666f5d1e9357d13a39c88b41a2b15ecf</a></p>
+<h2 class="mume-header" id="7-podsumowanie-i-wykorzystane-materia%C5%82y">7. Podsumowanie i wykorzystane materia&#x142;y</h2>
+
+<p>Przedstawiony przyk&#x142;ad to najprostszy bootloader z minimaln&#x105; funkcjonalno&#x15B;ci&#x105;, ale gotowy do rozbudowania. Je&#x15B;li czujesz si&#x119; na si&#x142;ach, spr&#xF3;buj zaimplementowa&#x107; dodatkowe funkcjonalno&#x15B;ci - na przyk&#x142;ad weryfikacj&#x119; pakiet&#xF3;w po odbiorze oraz retransmisj&#x119; lub te&#x17C; szyfrowanie pliku binarnego algorytmem asymetrycznym, co jest bardzo cz&#x119;sto stosowane (warto mie&#x107; wtedy hardware&apos;owy blok krypto, ale nie jest on absolutnie konieczny - zawsze mo&#x17C;na u&#x17C;y&#x107; software&apos;owej implementacji).</p>
+<p>Je&#x15B;li znajdziesz jakie&#x15B; niejasno&#x15B;ci dotycz&#x105;ce tego artyku&#x142;u, skontaktuj si&#x119; ze mn&#x105;:<br>
+Github: <a href="https://github.com/SteelPh0enix">https://github.com/SteelPh0enix</a><br>
+Facebook: <a href="https://www.facebook.com/steelph0en1x/">https://www.facebook.com/steelph0en1x/</a><br>
+Twitter: <a href="https://twitter.com/steel_ph0enix">https://twitter.com/steel_ph0enix</a><br>
+Telegram: @SteelPh0enix</p>
+<p>Je&#x15B;li masz problemy z produktami firmy STMicroelectronics, skontaktuj si&#x119; ze swoim lokalnym biurem. W Polsce, napisz e-mail do <code>stm.warsaw@st.com</code></p>
+<p>Podczas tworzenia artyku&#x142;u wykorzysta&#x142;em nast&#x119;puj&#x105;ce tre&#x15B;ci:</p>
+<ul>
+<li>Dokumentacja mikrokontrolera STM32F401RE:
+<ul>
+<li>Reference manual: <a href="https://www.st.com/resource/en/reference_manual/dm00096844-stm32f401xbc-and-stm32f401xde-advanced-armbased-32bit-mcus-stmicroelectronics.pdf">https://www.st.com/resource/en/reference_manual/dm00096844-stm32f401xbc-and-stm32f401xde-advanced-armbased-32bit-mcus-stmicroelectronics.pdf</a></li>
+<li>Programming manual: <a href="https://www.st.com/resource/en/programming_manual/dm00046982-stm32-cortexm4-mcus-and-mpus-programming-manual-stmicroelectronics.pdf">https://www.st.com/resource/en/programming_manual/dm00046982-stm32-cortexm4-mcus-and-mpus-programming-manual-stmicroelectronics.pdf</a></li>
+</ul>
+</li>
+<li>Biblioteka <code>stm32-bootloader</code>: <a href="https://github.com/akospasztor/stm32-bootloader/">https://github.com/akospasztor/stm32-bootloader/</a></li>
+</ul>
+<p>Wykorzystane oprogramowanie:</p>
+<ul>
+<li>STM32CubeIDE (wersja 1.6.1): <a href="https://www.st.com/en/development-tools/stm32cubeide.html">https://www.st.com/en/development-tools/stm32cubeide.html</a></li>
+<li>STM32CubeMX (wersja 6.2.1): <a href="https://www.st.com/en/development-tools/stm32cubemx.html">https://www.st.com/en/development-tools/stm32cubemx.html</a></li>
+<li>Pakiet STM32Cube_FW_F4 (wersja 1.26.1): <a href="https://www.st.com/en/embedded-software/stm32cubef4.html">https://www.st.com/en/embedded-software/stm32cubef4.html</a></li>
+<li>Visual Studio Code: <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></li>
+<li>Putty: <a href="https://www.putty.org/">https://www.putty.org/</a></li>
+<li>Realterm: <a href="https://sourceforge.net/projects/realterm/">https://sourceforge.net/projects/realterm/</a></li>
+<li>Microsoft Whiteboard: <a href="https://www.microsoft.com/pl-pl/p/microsoft-whiteboard/9mspc6mp8fm4">https://www.microsoft.com/pl-pl/p/microsoft-whiteboard/9mspc6mp8fm4</a></li>
+</ul>
+<p>Wykorzystany hardware:</p>
+<ul>
+<li>Nucleo-F401RE: <a href="https://www.st.com/en/evaluation-tools/nucleo-f401re.html">https://www.st.com/en/evaluation-tools/nucleo-f401re.html</a></li>
+</ul>
+<p>&#xA9; Wojciech Olech / SteelPh0enix 2021<br>
+Artyku&#x142; dost&#x119;pny na licencji CC BY-NC-ND 4.0 (Attribution-NonCommercial-NoDerivatives 4.0 International): <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode">https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode</a></p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
