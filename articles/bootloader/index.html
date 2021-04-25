@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css">
       
       
       
@@ -814,7 +814,7 @@ bool buttonPressed <span class="token operator">=</span> false<span class="token
 <ol>
 <li>Odblokowanie pami&#x119;ci</li>
 <li>Wyczyszczenie aplikacji z pami&#x119;ci</li>
-<li>Oodbi&#xF3;r danych i programowanie</li>
+<li>Odbi&#xF3;r danych i programowanie</li>
 <li>Zablokowanie pami&#x119;ci</li>
 </ol>
 <p>Pami&#x119;&#x107; FLASH jest domy&#x15B;lnie zablokowana przed zapisem, w celu zabezpieczenia jej przed niepo&#x17C;&#x105;dan&#x105; modyfikacj&#x105; - na przyk&#x142;ad spowodowan&#x105; niestabilnym zasilaniem. &#x17B;eby j&#x105; odblokowa&#x107;, nale&#x17C;y umie&#x15B;ci&#x107; w rejestrach kontrolnych FLASHa odpowiednie warto&#x15B;ci - robi to za nas funkcja <code>HAL_FLASH_Unlock</code>. Po flashowaniu musimy j&#x105; zablokowa&#x107;, za pomoc&#x105; funkcji <code>HAL_FLASH_Lock</code>. Do programowania u&#x17C;yjemy gotowej funkcji <code>HAL_FLASH_Program</code>.</p>
